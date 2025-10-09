@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Loja de Jogos</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+    <!--BOTÃO HAMBURGER E BARRA DA ESQUERDA-->
+        <button type="button" id="hamburger_menu_icon"> 
+            <img src="img/hamburger_menu_icon.png">
+        </button>
+
+        <aside class="sidebar hidden">
+            <!--ICONES DO USUÁRIO E CARRINHO -->
+                <section class="icons">
+                    <a href="#">
+                        <img src="img/shopping_cart_button.png">
+                    </a>
+                    <a href="#">
+                        <img id="profile-image" src="img/profile_icon.png">
+                    </a>
+                </section>
+            <h2>Nome do site</h2>
+            <ul class="menu">
+            <li>
+                <a href="#">
+                    <img src="img/home_icon.png">
+                    Home
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="img/games_icon.png">
+                    Jogos
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="img/genre_icon.png">
+                    Gêneros
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="img/wishlist_icon.png">
+                    Lista de desejos
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="img/profile_icon.png">
+                    Perfil
+                </a>
+            </li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <header class="topbar">
+                <section class="home_button">
+                    <a href="../home/home.html">Home</a>
+                </section>
+            </header>
+
+            <section class="greetings">
+                <h2>Olá, Usuário</h2>
+            </section>
+
+            <section class="profile-box">
+                <div class="games-section">
+                    <h3>Meus jogos</h3>
+                        <!--SEÇÃO DA LISTA DOS JOGOS POSSUÍDOS PELO USUÁRIO-->
+                        <div class="games-list">
+                        <div class="game"></div>
+                        <div class="game"></div>
+                        <div class="game"></div>
+                        <div class="game"></div><div class="game"></div>
+                    </div>
+
+                    <!--SEÇÃO DO HISTÓRICO DE COMPRAS-->
+                    <div class="history-section">
+                        <h3>Histórico de compras</h3>
+                        <button type="button">Ver Histórico</button>
+                    </div>
+                </div>
+
+                <div class="avatar">
+                    <img src="img/profile_icon.png">
+                </div>
+            </section>
+
+            <!--SEÇÃO DAS REVIEWS-->
+            <section class="reviews-box">
+                <p>Minhas avaliações: </p>
+                <br><br><br><br><br>
+
+                <p>Meus comentários: </p>
+                <br><br><br><br><br>
+            </section>
+        </main>
+
+        <!--SRIPTS-->
+        <script src="js/sidebar.js"></script>
+    </body>
+</html>

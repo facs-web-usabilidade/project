@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Loja de Jogos</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+    <!--BOTÃO HAMBURGER E BARRA DA ESQUERDA-->
+        <button type="button" id="hamburger_menu_icon"> 
+            <img src="img/hamburger_menu_icon.png">
+        </button>
+
+        <aside class="sidebar hidden">
+            <!--ICONES DO USUÁRIO E CARRINHO -->
+                <section class="icons">
+                    <a href="#">
+                        <img src="img/shopping_cart_button.png">
+                    </a>
+                    <a href="../profile/profile.html"> <!--LINK DO PROFILE AO CLICAR NA IMAGEM-->
+                        <img id="profile-image" src="img/profile_icon.png">
+                    </a>
+                </section>
+            <h2>Nome do site</h2>
+            <ul class="menu">
+            <li>
+                <a href="#">
+                    <img src="img/home_icon.png">
+                    Home
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="img/games_icon.png">
+                    Jogos
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="img/genre_icon.png">
+                    Gêneros
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="img/wishlist_icon.png">
+                    Lista de desejos
+                </a>
+            </li>
+            <li>
+                <a href="../profile/profile.html">  <!--LINK DO PROFILE AO CLICAR NO PERFIL-->
+                    <img src="img/profile_icon.png">
+                    Perfil
+                </a>
+            </li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <header class="topbar">
+                <!--BARRA DE PESQUISA-->
+                <section class="search-box">
+                    <input type="text" placeholder="Buscar...">
+                    <button>
+                        <img src="img/search_button.png">
+                    </button>
+                </section>
+            </header>
+
+            <section class="featured">
+                <div class="same-line">
+                    <h3>Mais Vendidos</h3>
+                    <a href="#"><h4>Descubra mais</h5></a>
+                </div>
+                <!--CARDS DOS JOGOS DA HOME-->
+                <section class="cards">
+                    <div class="card">Hollow Knight: Silksong</div>
+                    <div class="card">Death Stranding</div>
+                    <div class="card">Split Fiction</div>
+                    <div class="card">Stardew Valley</div>
+                    <div class="card">Pokémon Emerald</div>
+                </section>
+            </section>
+
+            <!--CARDS BESTSELLERS-->
+            <section class="bestsellers">
+                <h3>Melhores Ofertas</h3>
+
+                <div class="bestseller-slider">
+                    <button class="arrow left" onclick="prevTitle()"> < </button>
+                    <div class="card" id="bestseller-card">Hollow Knight: Silksong</div>
+                    <button class="arrow right" onclick="nextTitle()"> > </button>
+                </div>
+            </section>
+        </main>
+
+        <!--SRIPTS-->
+        <script src="js/slider.js"></script>
+        <script src="js/sidebar.js"></script>
+    </body>
+</html>

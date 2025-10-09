@@ -1,0 +1,270 @@
+body {
+    overflow: auto; /*!OVERFLOW ESTÁ HIDDEN, ALTERAR NO FUTURO*/
+    margin: 0;
+    padding: 0 5%;
+    font-family: Arial, sans-serif;
+    background-color: #0D171F;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar { 
+    position: fixed;
+    right: 0;
+    width: 250px;
+    background-color: #1C2C3B;
+    padding: 20px;
+    height: 95.8vh;
+    border-radius: 0 10px 10px 0;
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.sidebar.hidden {
+    transform: translateX(100%);
+}
+
+#hamburger_menu_icon {
+    position: fixed;
+    top: 22px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 2000; 
+}
+
+#hamburger_menu_icon img {
+    width: 30px;
+    height: 30px;
+    filter: brightness(0) invert(1);
+}
+
+.sidebar h2 {
+    margin: 0 0 20px 0;
+    display: flex;
+    align-items: center;
+    font-size: 28px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin: 15px 0;
+}
+
+.sidebar a {
+    user-select: none;
+    text-decoration: none;
+    color: #aaa;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.2s;
+}
+
+.sidebar a img {
+    width: 24px;
+    height: 24px;
+}
+
+.sidebar a:hover{
+    text-decoration: underline;
+    text-underline-offset: 6px;
+    color: #fff;
+    font-size: 21px;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.content .icons a img {
+    display: flex;
+    width: 35px;
+    height: 35px;
+    padding: 6px;
+    border-radius: 50%;
+    user-select: none;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-box {
+    margin-left: 30%;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    height: 40px;
+    display: flex;
+    background: #eee;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.search-box input {
+    width: 500px;
+    border: none;
+    padding: 8px 12px;
+    outline: none;
+    font-size: 14px;
+}
+
+.search-box button {
+    border: none;
+    background: #ddd;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+
+.search-box button img {
+    width: 20px;
+    height: 20px;
+}
+
+button img {
+    user-select: none;
+    height: 20px;
+    width: 20px;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-left: 50%;
+}
+
+#profile-image {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+.featured h3, .bestsellers h3 {
+    font-size: 30px;
+    margin-bottom: 20px;
+    margin-left: 30px;
+}
+
+.bestsellers h3 {
+    padding: 0;
+    margin-left: 25vw;
+}
+
+.same-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.same-line h4 {
+    transform: translate(-4vw, 40px);
+    text-decoration: none;
+    color: #eee;
+    user-select: none;
+}
+
+.cards, .bestsellers-cards {
+    display: flex;
+    gap: 25px;
+    margin: 40px 30px;
+    margin-top: 0px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+}
+
+.card {
+    flex: 0 0 auto;
+    width: 200px;
+    height: 300px;
+    background: #D9D9D9;
+    border-radius: 12px;
+    box-shadow: 5px 5px 5px rgb(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: opacity 0.4s ease;
+    color: black;
+    text-align: center;
+}
+
+.card img {
+    border-radius: 10px;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0,0, 0.5);
+    color: #ccc;
+    border: none;
+    font-size: 2rem;
+    padding: 5px 12px;
+    border-radius: 25%;
+    cursor: pointer;
+    user-select: none;
+}
+
+.arrow.left {
+    left: 20%;
+}
+
+.arrow.right {
+    right: 20%;
+}
+
+.arrow:hover {
+    background: rgba(0,0,0,1);
+    color: white;
+}
+
+.bestsellers-box {
+    margin: 30px;
+    margin-top: 0px;
+    width: 240px;
+    height: 340px;
+    background: #fff;
+    border-radius: 8px;
+}
+
+.bestseller-slider {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#bestseller-card {
+    width: 500px;
+    height: 250px;
+    color: black;
+    background-color: #D9D9D9;
+}
+
+#bestseller-card:hover, .card:hover {
+    background-color: #eee;
+    transition: opacity 1s ease;
+}

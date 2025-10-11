@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="PT-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SUPA-Games : Cadastre-se</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="js/register.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="header-bar">
+      <img src="./img/games_icon.png" width="50px" height="50px">
+      <h2>SUPA-Games</h2>
+    </div>
+  </header>
+  <main>
+    <div class="form-container">
+      <div>
+        <h2>Cadastre-se</h2>
+      </div>
+      <div class="form-main">
+        <form action="../home/home.html" method="post">
+          <div class="form-input">
+            <div class="form-label">
+              <label for="name">Nome</label>
+            </div>
+            <input type="text" name="name" placeholder="Digite seu nome" autocomplete="name" required>
+          </div>
+          <div class="form-input">
+            <div class="form-label">
+              <label for="email">E-mail</label>
+            </div>
+            <input type="email" name="email" placeholder="Digite seu email" autocomplete="email" required>
+          </div>
+          <div class="form-input">
+            <div class="form-label">
+              <label for="password">Senha</label>
+            </div>
+            <input type="password" name="password" placeholder="Digite sua senha" required>
+          </div>
+          <div class="form-input">
+            <div class="form-label">
+              <label for="confirm_password">Confirmação de senha</label>
+            </div>
+            <input type="password" name="confirm_password" placeholder="Repita sua senha" required>
+          </div>
+          <button type="submit">Cadastrar</button>
+        </form>
+      </div>
+      <div>
+        <p>Já tem cadastro? <a href="#">Clique aqui!</a></p>
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>

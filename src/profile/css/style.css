@@ -10,7 +10,7 @@ body {
 
 .sidebar { 
     position: fixed;
-    right: 0;
+    left: 0;
     width: 250px;
     background-color: #1C2C3B;
     padding: 20px;
@@ -59,14 +59,34 @@ body {
 .games-list {
     display: flex;
     gap: 15px;
-    margin-bottom: 15px;
+    overflow-y: auto;
+    padding-bottom: 5px;
+}
+
+::-webkit-scrollbar {
+    padding-top: 10px;
+    height: 10px;
+    background-color: #0D171F;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #aaa;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #ccc;
 }
 
 .game {
-    width: 60px;
-    height: 90px;
+    flex: 0 0 calc(20% - 8px);
+    width: 20%;
+    height: 10vh;
     background-color: #ccc;
     border-radius: 2px;
+}
+
+.history-section {
+    font-size: 20px;
 }
 
 .history-section h3 {
@@ -100,6 +120,8 @@ body {
 .avatar img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .reviews-box {
@@ -111,7 +133,7 @@ body {
 }
 
 .sidebar.hidden {
-    transform: translateX(100%);
+    transform: translateX(-100%);
 }
 
 #hamburger_menu_icon {
@@ -131,7 +153,7 @@ body {
 }
 
 .sidebar h2 {
-    margin: 0 0 20px 0;
+    margin: 20px 0 20px 0;
     display: flex;
     align-items: center;
     font-size: 28px;
@@ -169,6 +191,13 @@ body {
     font-size: 21px;
 }
 
+.active_path {
+    text-decoration: underline;
+    text-underline-offset: 6px;
+    color: #fff;
+    margin: 0;
+}
+
 .content {
     margin-top: 20px;
     flex: 1;
@@ -176,7 +205,7 @@ body {
     min-width: calc(70vw);
 }
 
-.content .icons a img {
+.icons a img {
     display: flex;
     width: 35px;
     height: 35px;
@@ -186,16 +215,63 @@ body {
 }
 
 .icons {
+    position: fixed;
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 0px;
     font-size: 20px;
-    margin-bottom: 10px;
-    margin-left: 50%;
+    margin-top: 12.5px;
+    right: 60px;
 }
 
 #profile-image {
     width: 35px;
     height: 35px;
     border-radius: 50%;
+}
+
+@media (max-width: 1080px) {
+    body {
+        margin: 0;
+        margin-right: 8%;
+        margin-bottom: 8%;
+        padding: 0;
+        border: 0;
+    }
+
+    .profile-box, .reviews-box {
+        width: 95%;
+    }
+
+    .games-list {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 10px;
+    }
+
+    .games-section {
+        width: 100%;
+    }
+
+    .game {
+        flex: 0 0 80%;
+        scroll-snap-align: center;
+        height: 20vh;
+        width: 20%;
+    }
+
+    .games-list::-webkit-scrollbar {
+        display: none;
+    }
+
+    .profile-box {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .avatar {
+        margin: 20px;
+    }
 }

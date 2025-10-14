@@ -121,12 +121,6 @@ body {
     overflow: hidden;
 }
 
-@media screen and (max-width: 1080px) {
-    .search-box {
-        margin-left: 5%;
-    }
-}
-
 .search-box input {
     width: 60vw;
     max-width: 500px;
@@ -150,6 +144,20 @@ body {
 .search-box button img {
     width: 20px;
     height: 20px;
+}
+
+@media screen and (max-width: 1080px) {
+    .search-box {
+        width: 55vw;
+        margin-left: 0;
+    }
+
+    .search-box input {
+        margin-left: 8px;
+        width: calc(55vw - 45px);
+        padding: 8px 0px;
+        padding-right: 0;
+    }
 }
 
 button img {

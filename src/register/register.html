@@ -6,51 +6,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SUPA-Games : Cadastre-se</title>
   <link rel="stylesheet" href="./css/style.css">
-  <script src="js/register.js"></script>
+  <script defer src="js/register.js"></script>
 </head>
 
 <body>
   <header>
     <div class="header-bar">
-      <img src="./img/games_icon.png" width="50px" height="50px">
+      <img src="./img/games_icon.png" width="50px" height="50px" alt="SUPA games logo">
       <h2>SUPA-Games</h2>
     </div>
   </header>
   <main>
     <div class="form-container">
-      <div>
+      <div class="form-title">
         <h2>Cadastre-se</h2>
       </div>
       <div class="form-main">
-        <form action="../home/home.html" method="post">
+        <form action="../home/home.html" method="post" class="registerForm">
           <div class="form-input">
             <div class="form-label">
               <label for="name">Nome</label>
             </div>
-            <input type="text" name="name" placeholder="Digite seu nome" autocomplete="name" required>
+            <input id="nameInput" type="text" placeholder="e.g. João Silva Souza" autocomplete="name">
+            <span class="error-message"></span>
           </div>
           <div class="form-input">
             <div class="form-label">
               <label for="email">E-mail</label>
             </div>
-            <input type="email" name="email" placeholder="Digite seu email" autocomplete="email" required>
+            <input id="emailInput" type="email" placeholder="e.g. joaossouza@email.com" autocomplete="email">
+            <span class="error-message"></span>
           </div>
           <div class="form-input">
             <div class="form-label">
               <label for="password">Senha</label>
             </div>
-            <input type="password" name="password" placeholder="Digite sua senha" required>
+            <input id="passwordInput" type="password" placeholder="Digite uma senha forte">
+            <span class="error-message"></span>
           </div>
           <div class="form-input">
             <div class="form-label">
               <label for="confirm_password">Confirmação de senha</label>
             </div>
-            <input type="password" name="confirm_password" placeholder="Repita sua senha" required>
+            <input id="repeatPasswordInput" type="password" placeholder="Repita a senha anterior">
+            <span class="error-message"></span>
           </div>
           <button type="submit">Cadastrar</button>
         </form>
       </div>
-      <div>
+      <div class="to-login">
         <p>Já tem cadastro? <a href="#">Clique aqui!</a></p>
       </div>
     </div>

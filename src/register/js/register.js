@@ -29,7 +29,7 @@ class Register {
 
       if (error == 0) {
         // this.form.submit();
-        const promiseResponse = fetch('http://localhost:3000/auth/register', {
+        const promiseResponse = fetch('http://localhost:3000/api/v1/auth/register', {
           method: "POST",
           body: JSON.stringify(this.userToRegister),
           headers: {

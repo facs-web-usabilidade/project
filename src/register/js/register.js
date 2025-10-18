@@ -105,6 +105,6 @@ class Register {
 
 const form = document.querySelector(".registerForm");
 if (form) {
-  const fields = ["nameInput", "emailInput", "passwordInput", "repeatPasswordInput"];
+  const fields = ["nome", "email", "senha", "repeteSenha"];
   new Register(form, fields);
 }

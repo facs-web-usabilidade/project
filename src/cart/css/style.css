@@ -42,7 +42,7 @@ body {
 }
 
 .sidebar h2 {
-  margin: 20px 0 20px 0;
+  margin: 50px 0 20px 0;
   display: flex;
   align-items: center;
   font-size: 28px;
@@ -104,7 +104,7 @@ main.content-grid {
 #hamburger_menu_icon {
   position: fixed;
   top: 15px;
-  right: 25px;
+  left: 25px;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -173,7 +173,7 @@ main.content-grid {
   align-items: center;
   gap: 15px;
   top: 15px;
-  right: 70px;
+  right: 15px;
   z-index: 2000;
 }
 
@@ -328,7 +328,7 @@ main.content-grid {
   .cart-item {
     align-items: center;
   }
-  
+
   .cart-item-remove {
     flex-basis: auto;
     margin-left: auto;

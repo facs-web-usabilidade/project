@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-    
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +13,7 @@
   <button type="button" id="hamburger_menu_icon">
     <img src="img/hamburger_menu_icon.png">
   </button>
-  
+
   <aside class="sidebar hidden">
     <h2>SUPA-Games</h2>
     <ul class="menu">
@@ -24,7 +24,7 @@
         </a>
       </li>
       <li>
-        <a href="../games/games.html"> 
+        <a href="../games/games.html">
           <img src="img/games_icon.png">
           <p class="active_path">Jogos > Detalhes</p>
         </a>
@@ -72,7 +72,7 @@
 
   <main class="content-grid">
     <div class="game-details-container">
-      
+
       <section class="game-info">
         <div class="info-top">
           <div class="game-image">Hollow Knight: Silksong</div>
@@ -82,10 +82,14 @@
             <p><strong>Avaliação:</strong></p>
             <p><strong>Desenvolvedora:</strong></p>
             <p><strong>Gênero:</strong></p>
-            <h3>Sobre este jogo:</h3>
-            <p class="game-description">
-              Descrição do jogo...
-            </p>
+            <fieldset>
+              <legend>
+                <h3>Sobre este jogo:</h3>
+              </legend>
+              <p class="game-description">
+                Descrição do jogo...
+              </p>
+            </fieldset>
 
             <a href="../cart/cart.html" class="cart-btn">Adicionar ao carrinho</a>
             <button class="wishlist-btn">+ Lista de desejos</button>
@@ -106,27 +110,28 @@
 
       <aside class="comments-section">
         <h3>Comentários:</h3>
-        
+
         <div class="comment-box new-comment">
           <textarea placeholder="Comente aqui:"></textarea>
         </div>
-        
+
         <div class="comment-list">
           <div class="comment-box">
             <div class="comment-avatar"></div>
             <p>Historia fraca ....</p>
           </div>
-          
+
           <div class="comment-box">
             <div class="comment-avatar"></div>
             <p>Historia divertida ....</p>
           </div>
         </div>
       </aside>
-      
+
     </div>
   </main>
 
   <script src="js/sidebar.js"></script>
 </body>
+
 </html>

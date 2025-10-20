@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SUPA-Games - Carrinho</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <button type="button" id="hamburger_menu_icon">
+    <img src="img/hamburger_menu_icon.png">
+  </button>
+  
+  <aside class="sidebar hidden">
+    <h2>SUPA-Games</h2>
+    <ul class="menu">
+      <li>
+        <a href="../home/home.html">
+          <img src="img/home_icon.png">
+          Home
+        </a>
+      </li>
+      <li>
+        <a href="#"> 
+          <img src="img/games_icon.png">
+          Jogos 
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img src="img/genre_icon.png">
+          Gêneros
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img src="img/wishlist_icon.png">
+          Lista de desejos
+        </a>
+      </li>
+      <li>
+        <a href="../profile/profile.html">
+          <img src="img/profile_icon.png">
+          Perfil
+        </a>
+      </li>
+    </ul>
+  </aside>
+
+  <section class="icons">
+    <a href="#">
+      <img src="img/shopping_cart_button.png">
+    </a>
+    <a href="../profile/profile.html">
+      <img id="profile-image" src="img/profile_icon.png">
+    </a>
+  </section>
+
+  <main class="content">
+    <header class="topbar">
+      <section class="search-box">
+        <input type="text" placeholder="Buscar...">
+        <button>
+          <img src="img/search_button.png">
+        </button>
+      </section>
+    </header>
+  </main>
+
+  <main class="content-grid">
+    <div class="cart-container">
+      
+      <section class="cart-items">
+        <h2>Itens no carrinho:</h2>
+        
+        <div class="cart-list">
+          <div class="cart-item">
+            <div class="cart-item-image"></div>
+            <div class="cart-item-details">
+              <h4>Hollow Knight: Silksong</h4>
+              <p>Quantidade: 1</p>
+              <p class="cart-item-price">Valor</p>
+            </div>
+            <a href="#" class="cart-item-remove">
+              Remover <span class="remove-icon">X</span>
+            </a>
+          </div>
+          
+          <div class="cart-item">
+            <div class="cart-item-image"></div>
+            <div class="cart-item-details">
+              <h4>Death Stranding</h4>
+              <p>Quantidade: 1</p>
+              <p class="cart-item-price">Valor</p>
+            </div>
+            <a href="#" class="cart-item-remove">
+              Remover <span class="remove-icon">X</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <aside class="cart-summary">
+        <h2>Valor total:</h2>
+        <p class="total-price">R$ 0,00</p>
+        <button class="checkout-btn">Continuar para o pagamento</button>
+      </aside>
+      
+    </div>
+  </main>
+
+  <script src="js/sidebar.js"></script>
+</body>
+</html>

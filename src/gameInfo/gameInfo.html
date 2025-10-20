@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SUPA-Games - Detalhes do Jogo</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <button type="button" id="hamburger_menu_icon">
+    <img src="img/hamburger_menu_icon.png">
+  </button>
+  
+  <aside class="sidebar hidden">
+    <h2>SUPA-Games</h2>
+    <ul class="menu">
+      <li>
+        <a href="../home/home.html">
+          <img src="img/home_icon.png">
+          Home
+        </a>
+      </li>
+      <li>
+        <a href="#"> 
+          <img src="img/games_icon.png">
+          Jogos 
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img src="img/genre_icon.png">
+          Gêneros
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img src="img/wishlist_icon.png">
+          Lista de desejos
+        </a>
+      </li>
+      <li>
+        <a href="../profile/profile.html">
+          <img src="img/profile_icon.png">
+          Perfil
+        </a>
+      </li>
+    </ul>
+  </aside>
+
+  <section class="icons">
+    <a href="#">
+      <img src="img/shopping_cart_button.png">
+    </a>
+    <a href="../profile/profile.html">
+      <img id="profile-image" src="img/profile_icon.png">
+    </a>
+  </section>
+
+  <main class="content">
+    <header class="topbar">
+      <section class="search-box">
+        <input type="text" placeholder="Buscar...">
+        <button>
+          <img src="img/search_button.png">
+        </button>
+      </section>
+    </header>
+  </main>
+
+  <main class="content-grid">
+    <div class="game-details-container">
+      
+      <section class="game-info">
+        <div class="info-top">
+          <div class="game-image">Hollow Knight: Silksong</div>
+          <div class="game-details">
+            <h2>Hollow Knight: Silksong</h2>
+            <p class="game-price">R$</p>
+            <p><strong>Avaliação:</strong></p>
+            <p><strong>Desenvolvedora:</strong></p>
+            <p><strong>Gênero:</strong></p>
+            <h3>Sobre este jogo:</h3>
+            <p class="game-description">
+              Descrição do jogo...
+            </p>
+
+            <a href="../cart/cart.html" class="cart-btn">Adicionar ao carrinho</a>
+            <button class="wishlist-btn">+ Lista de desejos</button>
+
+          </div>
+        </div>
+        <div class="game-rating">
+          <h3>Avalie</h3>
+          <div class="stars">
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">☆</span>
+          </div>
+        </div>
+      </section>
+
+      <aside class="comments-section">
+        <h3>Comentários:</h3>
+        
+        <div class="comment-box new-comment">
+          <textarea placeholder="Comente aqui:"></textarea>
+        </div>
+        
+        <div class="comment-list">
+          <div class="comment-box">
+            <div class="comment-avatar"></div>
+            <p>Historia fraca ....</p>
+          </div>
+          
+          <div class="comment-box">
+            <div class="comment-avatar"></div>
+            <p>Historia divertida ....</p>
+          </div>
+        </div>
+      </aside>
+      
+    </div>
+  </main>
+
+  <script src="js/sidebar.js"></script>
+</body>
+</html>

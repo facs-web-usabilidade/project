@@ -50,6 +50,7 @@ body {
 }
 
 .sidebar ul {
+  margin-top: 50px;
   list-style: none;
   padding: 0;
 }
@@ -150,7 +151,7 @@ body {
 @media screen and (max-width: 1080px) {
   .search-box {
     width: 55vw;
-    margin-left: 0;
+    margin-left: 13%;
   }
 
   .search-box input {
@@ -259,7 +260,9 @@ button img {
 }
 
 .card:hover {
+  transition: 0.5s;
   outline: 3px solid blueviolet;
+  color: blueviolet;
 }
 
 @media (max-width: 1080px) {
@@ -275,6 +278,29 @@ button img {
 
 .card img {
   border-radius: 10px;
+}
+
+#website-home-link {
+  position: absolute;
+  top: -2px;
+  left: 70px;
+  font-size: 1.2em;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#website-home-link a {
+  text-decoration: none;
+  color: #fff;
+}
+
+#website-home-link a:hover {
+  text-shadow: 2px 1px blueviolet;
+}
+
+@media (max-width: 1080px) {
+  #website-home-link {
+    display: none;
+  }
 }
 
 .arrow {

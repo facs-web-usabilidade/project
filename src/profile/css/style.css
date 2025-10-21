@@ -25,18 +25,8 @@ fieldset {
   z-index: 1000;
 }
 
-.home_button a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 24px;
-  font-weight: 600;
-}
-
-.home_button a:hover {
-  text-decoration: underline;
-}
-
 .greetings h2 {
+  margin-top: 50px;
   font-size: 36px;
   font-weight: 100;
 }
@@ -49,23 +39,6 @@ fieldset {
   width: 80%;
   padding: 20px;
   border-radius: 6px;
-}
-
-.games-section {
-  flex: 1;
-}
-
-.games-section h3 {
-  margin-top: 0;
-  font-size: 30px;
-  font-weight: 100;
-}
-
-.games-list {
-  display: flex;
-  gap: 15px;
-  overflow-y: auto;
-  padding-bottom: 5px;
 }
 
 ::-webkit-scrollbar {
@@ -82,35 +55,27 @@ fieldset {
   background-color: #ccc;
 }
 
-.game {
-  flex: 0 0 calc(20% - 8px);
-  width: 20%;
-  height: 10vh;
-  background-color: #ccc;
-  border-radius: 2px;
+#website-home-link {
+  position: absolute;
+  top: -2px;
+  left: 70px;
+  font-size: 1.2em;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.history-section {
-  font-size: 20px;
+#website-home-link a {
+  text-decoration: none;
+  color: #fff;
 }
 
-.history-section h3 {
-  margin-bottom: 8px;
+#website-home-link a:hover {
+  text-shadow: 2px 1px blueviolet;
 }
 
-.history-section button {
-  background-color: #ccc;
-  color: black;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 2px;
-  cursor: pointer;
-  font-size: 16px;
-  min-width: fit-content;
-}
-
-.history-section button:hover {
-  background-color: #aaa;
+@media (max-width: 1080px) {
+  #website-home-link {
+    display: none;
+  }
 }
 
 .avatar {
@@ -135,7 +100,7 @@ fieldset {
   margin-top: 20px;
   padding: 20px;
   border-radius: 6px;
-  margin: 10px 5px;
+  margin: 10px 0px;
 }
 
 .sidebar.hidden {
@@ -158,14 +123,8 @@ fieldset {
   filter: brightness(0) invert(1);
 }
 
-.sidebar h2 {
-  margin: 50px 0 20px 0;
-  display: flex;
-  align-items: center;
-  font-size: 28px;
-}
-
 .sidebar ul {
+  margin-top: 50px;
   list-style: none;
   padding: 0;
 }
@@ -250,28 +209,6 @@ fieldset {
     width: 95%;
   }
 
-  .games-list {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 10px;
-  }
-
-  .games-section {
-    width: 100%;
-  }
-
-  .game {
-    flex: 0 0 80%;
-    scroll-snap-align: center;
-    height: 20vh;
-    width: 20%;
-  }
-
-  .games-list::-webkit-scrollbar {
-    display: none;
-  }
-
   .profile-box {
     flex-direction: column;
     align-items: center;
@@ -280,5 +217,77 @@ fieldset {
 
   .avatar {
     margin: 20px;
+  }
+}
+
+.card-links {
+  display: flex;
+  gap: 20px;
+  flex: 2;
+}
+
+.profile-card {
+  flex: 1;
+  background-color: rgb(100, 100, 100, 0.15);
+  color: #fff;
+  text-decoration: none;
+  padding: 20px;
+  border-radius: 8px;
+  transition: 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.profile-card:hover {
+  background-color: rgb(100, 100, 100, 0.25);
+  transform: scale(1.02);
+}
+
+.profile-card h3 {
+  margin: 0 0 10px 0;
+  font-size: 26px;
+  font-weight: 400;
+}
+
+.profile-card p {
+  margin: 0;
+  font-size: 16px;
+  color: #ccc;
+}
+
+/* Mantém o avatar ao lado no desktop */
+.profile-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1f2d3a;
+  width: 80%;
+  padding: 20px;
+  border-radius: 6px;
+}
+
+@media (max-width: 1080px) {
+  .profile-box {
+    width: 95%;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .card-links {
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+  }
+
+  .profile-card {
+    width: 90%;
+    align-items: center;
+  }
+
+  .avatar {
+    margin-top: 20px;
   }
 }

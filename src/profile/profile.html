@@ -1,117 +1,113 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Loja de Jogos</title>
-  <link rel="icon" type="image/png" href="img/games_icon.png">
-  <link rel="stylesheet" href="css/style.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Loja de Jogos</title>
+        <link rel="icon" type="image/png" href="img/games_icon.png">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
 
-<body>
-  <!--BOTÃO HAMBURGER E BARRA DA ESQUERDA-->
-  <button type="button" id="hamburger_menu_icon">
-    <img src="img/hamburger_menu_icon.png">
-  </button>
+    <body>
+    <!--BOTÃO HAMBURGER E BARRA DA ESQUERDA-->
+        <button type="button" id="hamburger_menu_icon">
+            <img src="img/hamburger_menu_icon.png">
+        </button>
 
-  <aside class="sidebar hidden">
-    <!--ICONES DO USUÁRIO E CARRINHO -->
-    <h2>SUPA-Games</h2>
-    <ul class="menu">
-      <li>
-        <a href="../home/home.html">
-          <img src="img/home_icon.png">
-          Home
-        </a>
-      </li>
-      <li>
-        <a href="../games/games.html">
-          <img src="img/games_icon.png">
-          Jogos
-        </a>
-      </li>
-      <li>
-        <a href="../genres/genres.html">
-          <img src="img/genre_icon.png">
-          Gêneros
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <img src="img/wishlist_icon.png">
-          Lista de desejos
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <img src="img/profile_icon.png">
-          <p class="active_path">Perfil</p>
-        </a>
-      </li>
-    </ul>
-  </aside>
+        <aside class="sidebar hidden">
+            <!--ICONES DO USUÁRIO E CARRINHO -->
+            <ul class="menu">
+                <li>
+                    <a href="../home/home.html">
+                        <img src="img/home_icon.png">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="../games/games.html">
+                        <img src="img/games_icon.png">
+                        Jogos
+                    </a>
+                </li>
+                <li>
+                    <a href="../genres/genres.html">
+                        <img src="img/genre_icon.png">
+                        Gêneros
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="img/wishlist_icon.png">
+                        Lista de desejos
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="img/profile_icon.png">
+                        <p class="active_path">Perfil</p>
+                    </a>
+                </li>
+            </ul>
+        </aside>
 
-  <section class="icons">
-    <a href="../cart/cart.html">
-      <img src="img/shopping_cart_button.png">
-    </a>
-    <a href="#">
-      <img id="profile-image" src="img/profile_icon.png">
-    </a>
-  </section>
+        <section class="icons">
+            <a href="../cart/cart.html">
+                <img src="img/shopping_cart_button.png">
+            </a>
+            <a href="#">
+                <img id="profile-image" src="img/profile_icon.png">
+            </a>
+        </section>
 
-  <main class="content">
-    <section class="greetings">
-      <h2>Olá, Usuário</h2>
-    </section>
+        <main class="content">
+            <section class="greetings">
+                <h2>Olá, Usuário</h2>
+            </section>
 
-    <section class="profile-box">
-      <div class="games-section">
-        <h3>Meus jogos</h3>
-        <!--SEÇÃO DA LISTA DOS JOGOS POSSUÍDOS PELO USUÁRIO-->
-        <div class="games-list">
-          <div class="game"></div>
-          <div class="game"></div>
-          <div class="game"></div>
-          <div class="game"></div>
-          <div class="game"></div>
-          <div class="game"></div>
-          <div class="game"></div>
-        </div>
-      </div>
+            <section class="profile-box">
+                <div class="card-links">
+                    <a href="#" class="profile-card">
+                        <h3>Meus Jogos</h3>
+                        <p>Ver todos os jogos da sua conta</p>
+                    </a>
 
-      <div class="avatar">
-        <img src="img/profile_icon.png">
-      </div>
-    </section>
+                    <a href="#" class="profile-card">
+                        <h3>Histórico de Compras</h3>
+                        <p>Veja todas a suas compras</p>
+                    </a>
+                </div>
 
-    <!--SEÇÃO DO HISTÓRICO DE COMPRAS-->
-    <section class="history-section">
-      <h3>Histórico de compras</h3>
-      <button type="button">Ver Histórico</button>
-      </div>
+                <div class="avatar">
+                    <img src="img/profile_icon.png">
+                </div>
+            </section>
 
-      <!--SEÇÃO DAS REVIEWS-->
-      <section class="reviews-box">
-        <fieldset>
-          <legend>
-            <p>Minhas avaliações:</p>
-          </legend>
-          <br><br><br><br><br>
-        </fieldset>
+            <section id="website-home-link">
+                <a href="../home/home.html">
+                    <h2>SUPA-Games</h2>
+                </a>
+            </section>
 
-        <fieldset>
-          <legend>
-            <p>Meus comentários: </p>
-          </legend>
-          <br><br><br><br><br>
-        </fieldset>
-      </section>
-  </main>
+            <!--SEÇÃO DAS REVIEWS-->
+            <section class="reviews-box">
+                <fieldset>
+                    <legend>
+                        <p>Minhas avaliações:</p>
+                    </legend>
+                    <br><br><br><br><br>
+                </fieldset>
 
-  <!--SRIPTS-->
-  <script src="js/sidebar.js"></script>
-</body>
+                <fieldset>
+                    <legend>
+                        <p>Meus comentários: </p>
+                    </legend>
+                    <br><br><br><br><br>
+                </fieldset>
+            </section>
+        </main>
 
+        <!--SRIPTS-->
+        <script src="js/sidebar.js"></script>
+    </body>
 </html>

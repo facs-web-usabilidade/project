@@ -252,6 +252,13 @@ button img {
   scroll-behavior: smooth;
 }
 
+@media (max-width: 1080px) {
+  .cards,
+  .bestsellers-cards {
+    margin: 0;
+  }
+}
+
 .cards {
   overflow-x: auto;
   padding: 5px;

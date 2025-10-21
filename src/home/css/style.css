@@ -221,7 +221,7 @@ button img {
 
 .cards {
   overflow-x: auto;
-  padding-bottom: 5px;
+  padding: 5px;
 }
 
 ::-webkit-scrollbar {
@@ -253,6 +253,10 @@ button img {
   transition: opacity 0.4s ease;
   color: black;
   text-align: center;
+}
+
+.card:hover {
+  outline: 3px solid blueviolet;
 }
 
 .card img {
@@ -295,6 +299,11 @@ button img {
   height: 340px;
   background: #fff;
   border-radius: 8px;
+}
+
+.home-carrousel {
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .bestseller-slider {

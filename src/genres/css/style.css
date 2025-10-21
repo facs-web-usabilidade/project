@@ -222,7 +222,7 @@ button img {
 
 .cards {
   overflow-y: auto;
-  padding-bottom: 5px;
+  padding: 5px;
 }
 
 ::-webkit-scrollbar {
@@ -256,6 +256,10 @@ button img {
   text-align: center;
   padding: 10px;
   max-width: calc((56vw) / 2);
+}
+
+.card:hover {
+  outline: 3px solid blueviolet;
 }
 
 @media (max-width: 1080px) {

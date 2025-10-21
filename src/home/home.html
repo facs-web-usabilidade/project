@@ -7,6 +7,8 @@
   <title>Loja de Jogos</title>
   <link rel="icon" type="image/png" href="img/games_icon.png">
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/slider.js"></script>
+  <script src="js/sidebar.js"></script>
 </head>
 
 <body>
@@ -53,13 +55,13 @@
   </aside>
 
   <section class="icons">
-      <a href="../cart/cart.html">
-        <img src="img/shopping_cart_button.png">
-      </a>
-      <a href="../profile/profile.html"> <!--LINK DO PROFILE AO CLICAR NA IMAGEM-->
-        <img id="profile-image" src="img/profile_icon.png">
-      </a>
-    </section>
+    <a href="../cart/cart.html">
+      <img src="img/shopping_cart_button.png">
+    </a>
+    <a href="../profile/profile.html"> <!--LINK DO PROFILE AO CLICAR NA IMAGEM-->
+      <img id="profile-image" src="img/profile_icon.png">
+    </a>
+  </section>
 
   <main class="content">
     <header class="topbar">
@@ -72,6 +74,34 @@
       </section>
     </header>
 
+
+    <section class="home-carrousel">
+      <!--CARDS BESTSELLERS-->
+      <section class="bestseller">
+        <h3>Melhores Ofertas</h3>
+
+        <div class="bestseller-slider">
+          <button class="arrow left" onclick="prevTitle()">
+            < </button>
+              <div class="card" id="bestseller-card">Hollow Knight: Silksong</div>
+              <button class="arrow right" onclick="nextTitle()"> > </button>
+        </div>
+      </section>
+      <!--MAIS BEM AVALIADOS-->
+      <section class="bestseller">
+        <h3>Melhores avaliados</h3>
+
+        <div class="bestseller-slider">
+          <button class="arrow left" onclick="prevTitle()">
+            < </button>
+              <div class="card" id="bestseller-card">Hollow Knight: Silksong</div>
+              <button class="arrow right" onclick="nextTitle()"> > </button>
+        </div>
+      </section>
+    </section>
+
+
+    <!--CARDS DOS JOGOS DA HOME-->
     <section class="featured">
       <div class="same-line">
         <h3>Mais Vendidos</h3>
@@ -79,32 +109,21 @@
           <h4>Descubra mais</h5>
         </a>
       </div>
-      <!--CARDS DOS JOGOS DA HOME-->
       <section class="cards">
-        <a href="../gameInfo/gameInfo.html"><div class="card">Hollow Knight: Silksong</div></a>
+        <a href="../gameInfo/gameInfo.html">
+          <div class="card">Hollow Knight: Silksong</div>
+        </a>
         <div class="card">Death Stranding</div>
         <div class="card">Split Fiction</div>
         <div class="card">Stardew Valley</div>
         <div class="card">Pokémon Emerald</div>
       </section>
     </section>
-
-    <!--CARDS BESTSELLERS-->
-    <section class="bestsellers">
-      <h3>Melhores Ofertas</h3>
-
-      <div class="bestseller-slider">
-        <button class="arrow left" onclick="prevTitle()">
-          < </button>
-            <div class="card" id="bestseller-card">Hollow Knight: Silksong</div>
-            <button class="arrow right" onclick="nextTitle()"> > </button>
-      </div>
-    </section>
   </main>
 
-  <!--SCRIPTS-->
+  <!-- SCRIPTS
   <script src="js/slider.js"></script>
-  <script src="js/sidebar.js"></script>
+  <script src="js/sidebar.js"></script> -->
 </body>
 
 </html>

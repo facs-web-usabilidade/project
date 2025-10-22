@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SUPA-Games - Carrinho</title>
+  <link rel="icon" type="image/png" href="img/games_icon.png">
+  <link rel="stylesheet" href="css/history.css">
+</head>
+
+<body>
+  <button type="button" id="hamburger_menu_icon">
+    <img src="img/hamburger_menu_icon.png">
+  </button>
+  
+  <aside class="sidebar hidden">
+    <ul class="menu">
+      <li>
+        <a href="../home/home.html">
+          <img src="img/home_icon.png">
+          Home
+        </a>
+      </li>
+      <li>
+        <a href="../games/games.html"> 
+          <img src="img/games_icon.png">
+          Jogos 
+        </a>
+      </li>
+      <li>
+        <a href="../genres/genres.html">
+          <img src="img/genre_icon.png">
+          Gêneros
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img src="img/wishlist_icon.png">
+          Lista de desejos
+        </a>
+      </li>
+      <li>
+        <a href="../profile/profile.html">
+          <img src="img/profile_icon.png">
+          Perfil
+        </a>
+      </li>
+    </ul>
+  </aside>
+
+  <section class="icons">
+    <a href="#">
+      <img src="img/shopping_cart_button.png">
+    </a>
+    <a href="../profile/profile.html">
+      <img id="profile-image" src="img/profile_icon.png">
+    </a>
+  </section>
+
+  <main class="content">
+    <header class="topbar">
+      <section class="search-box">
+        <input type="text" placeholder="Buscar...">
+        <button>
+          <img src="img/search_button.png">
+        </button>
+      </section>
+    </header>
+  </main>
+
+  <section id="website-home-link">
+        <a href="../home/home.html">
+            <h2>SUPA-Games</h2>
+        </a>
+    </section>
+
+  <main class="content-grid">
+    <div class="cart-container">
+      
+      <section class="cart-items">
+        <h2>Histórico de Compras:</h2>
+        
+        <div class="cart-list">
+          <div class="cart-item">
+            <div class="cart-item-image"></div>
+            <div class="cart-item-details">
+              <h4>Hollow Knight: Silksong</h4>
+              <p class="cart-item-amount">Quantidade: <span class="cart-item-amount-value">1 unid.</span></p>
+              <p class="cart-item-price">Valor: <span class="cart-item-price-value">R$59,99</span></p>
+              <p class="cart-item-date">Data: <span class="cart-item-date-value">22/10/2025</span></p>
+            </div>
+          </div>
+          
+          <div class="cart-item">
+            <div class="cart-item-image"></div>
+            <div class="cart-item-details">
+              <h4>Death Stranding</h4>
+              <p class="cart-item-amount">Quantidade: <span class="cart-item-amount-value">1 unid.</span></p>
+              <p class="cart-item-price">Valor: <span class="cart-item-price-value">R$159,00</span></p>
+              <p class="cart-item-date">Data: <span class="cart-item-date-value">22/10/2025</span></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="cart-summary">
+        <h2>Total em compras:</h2>
+        <p class="total-price">R$ <span class="total-price-value">218,99</span></p>
+      </aside>
+      
+    </div>
+  </main>
+
+  <script src="js/sidebar.js"></script>
+</body>
+</html>

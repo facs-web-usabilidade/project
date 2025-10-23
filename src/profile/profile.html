@@ -52,13 +52,19 @@
         </aside>
 
         <section class="icons">
-            <a href="../cart/cart.html">
-                <img src="img/shopping_cart_button.png">
-            </a>
-            <a href="#">
-                <img id="profile-image" src="img/profile_icon.png">
-            </a>
-        </section>
+      <a href="../cart/cart.html">
+        <img src="img/shopping_cart_button.png">
+      </a>
+      <section class="profile-dropdown">
+        <img id="profile-image" src="img/profile_icon.png">
+
+        <div class="dropdown-menu" id="profile-dropdown-menu">
+          <a href="../profile/profile.html">Perfil</a> <!--LINK DO PROFILE AO CLICAR NO PERFIL-->
+          <a href="#">Configurações</a>
+          <a href="#">Sair</a>
+        </div>
+      </section>
+    </section>
 
         <main class="content">
             <section class="greetings">
@@ -109,5 +115,6 @@
 
         <!--SRIPTS-->
         <script src="js/sidebar.js"></script>
+        <script src="js/profile-dropdown.js"></script>
     </body>
 </html>

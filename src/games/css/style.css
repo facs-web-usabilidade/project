@@ -79,7 +79,7 @@ body {
   text-decoration: underline;
   text-underline-offset: 6px;
   color: #fff;
-  font-size: 21px;
+  padding: 0px 15px;
 }
 
 .active_path {
@@ -178,10 +178,55 @@ button img {
   right: 15px;
 }
 
-#profile-image {
+#profile-image { 
   width: 35px;
   height: 35px;
   border-radius: 50%;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.profile-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+#profile-image:hover {
+  outline: 2px solid blueviolet; /* Borda em volta do perfil, remover caso achem feio */
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  padding: 8px 0;
+  right: 0;
+  top: 45px;
+  background-color: #1C2C3B;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.35);
+  z-index: 1000;
+  flex-direction: column;
+}
+
+.dropdown-menu a {
+  text-decoration: none;
+  display: block;
+  color: #ccc;
+  padding: 10px 15px;
+  font-size: 20px;
+  transition: 0.2s;
+}
+
+.dropdown-menu a:hover {
+  background-color: #2a3b4f;
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+.profile-dropdown.show .dropdown-menu {
+  display: flex;
 }
 
 .games h3,

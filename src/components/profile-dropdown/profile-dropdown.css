@@ -1,9 +1,19 @@
-#profile-image { 
+.icons {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    gap: 0px;
+    font-size: 20px;
+    margin-top: 12.5px;
+    right: 15px;
+}
+
+.icons a img {
     width: 35px;
     height: 35px;
+    padding: 6px;
     border-radius: 50%;
-    cursor: pointer;
-    transition: 0.2s;
+    user-select: none;
 }
 
 .profile-dropdown {
@@ -11,8 +21,16 @@
     display: inline-block;
 }
 
+#profile-image {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
 #profile-image:hover {
-  outline: 2px solid blueviolet; /* Borda em volta do perfil, remover caso achem feio */
+    outline: 2px solid blueviolet;
 }
 
 .dropdown-menu {

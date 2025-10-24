@@ -7,81 +7,17 @@
   <title>Loja de Jogos</title>
   <link rel="icon" type="image/png" href="img/games_icon.png">
   <link rel="stylesheet" href="css/myGames.css">
+  <script defer src="../components/components.js"></script>
 </head>
 
 <body>
-  <!--BOTÃO HAMBURGER E BARRA DA ESQUERDA-->
-  <button type="button" id="hamburger_menu_icon">
-    <img src="img/hamburger_menu_icon.png">
-  </button>
-
-  <aside class="sidebar hidden">
-    <!--ICONES DO USUÁRIO E CARRINHO -->
-    <ul class="menu">
-      <li>
-        <a href="../home/home.html">
-          <img src="img/home_icon.png">
-          Home
-        </a>
-      </li>
-      <li>
-        <a href="../games/games.html">
-          <img src="img/games_icon.png">
-          Jogos
-        </a>
-      </li>
-      <li>
-        <a href="../genres/genres.html">
-          <img src="img/genre_icon.png">
-          Gêneros
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <img src="img/wishlist_icon.png">
-          Lista de desejos
-        </a>
-      </li>
-      <li>
-        <a href="../profile/profile.html"> <!--LINK DO PROFILE AO CLICAR NO PERFIL-->
-          <img src="img/profile_icon.png">
-          <p class="active_path">Perfil > Meus Jogos</p>
-        </a>
-      </li>
-    </ul>
-  </aside>
-
-  <section class="icons">
-      <a href="../cart/cart.html">
-        <img src="img/shopping_cart_button.png">
-      </a>
-      <section class="profile-dropdown">
-        <img id="profile-image" src="img/profile_icon.png">
-
-        <div class="dropdown-menu" id="profile-dropdown-menu">
-          <a href="../profile/profile.html">Perfil</a> <!--LINK DO PROFILE AO CLICAR NO PERFIL-->
-          <a href="#">Configurações</a>
-          <a href="#">Sair</a>
-        </div>
-      </section>
-    </section>
+  <div id="sidebar-container"></div> <!--! COMPONENT SIDEBAR-->
+  <div id="profile-container"></div> <!--! COMPONENT PERFIL/ICONS-->
+  <div id="hamburger-container"></div>  <!--! COMPONENT MENU HAMBURGER-->
 
   <main class="content">
-    <header class="topbar">
-      <!--BARRA DE PESQUISA-->
-      <section class="search-box">
-        <input type="text" placeholder="Buscar...">
-        <button>
-          <img src="img/search_button.png">
-        </button>
-      </section>
-    </header>
-
-    <section id="website-home-link">
-      <a href="../home/home.html">
-        <h2>SUPA-Games</h2>
-      </a>
-    </section>
+    <div id="topbar-container"></div> <!--! COMPONENT TOPBAR-->
+    <div id="homelink-container"></div> <!--! COMPONENT HOMELINK-->
 
     <section class="games">
       <div class="same-line">
@@ -109,11 +45,6 @@
       </section>
     </section>
   </main>
-
-  <!--SCRIPTS-->
-  <script src="js/slider.js"></script>
-  <script src="js/sidebar.js"></script>
-  <script src="js/profile-dropdown.js"></script>
 </body>
 
 </html>

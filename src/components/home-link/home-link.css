@@ -1,0 +1,23 @@
+
+#website-home-link {
+    position: absolute;
+    top: -2px;
+    left: 70px;
+    font-size: 1.2em;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#website-home-link a {
+    text-decoration: none;
+    color: #fff;
+}
+
+#website-home-link a:hover {
+    text-shadow: 2px 1px blueviolet;
+}
+
+@media (max-width: 1080px) {
+    #website-home-link {
+        display: none;
+    }
+}

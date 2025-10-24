@@ -1,0 +1,15 @@
+#hamburger_menu_icon {
+    position: fixed;
+    top: 22px;
+    left: 15px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 2000;
+}
+
+#hamburger_menu_icon img {
+    width: 30px;
+    height: 30px;
+    filter: brightness(0) invert(1);
+}

@@ -7,9 +7,8 @@
   <title>SUPA-Games : Admin</title>
   <link rel="icon" type="image/png" href="./img/games_icon.png">
   <link rel="stylesheet" href="./css/style.css">
+  <script defer src="../components/components.js"></script>
   <script defer src="js/admin.js"></script>
-  <script defer src="js/profile-dropdown.js"></script>
-  <script defer src="js/sidebar.js"></script>
 </head>
 
 <body>
@@ -21,7 +20,6 @@
 
   <main>
     <div class="admin-container">
-      <!-- LEFT PANEL -->
       <div class="form-container">
         <div class="form-title">
           <h2>Admin</h2>
@@ -75,57 +73,9 @@
         </div>
       </div>
 
-      <button type="button" id="hamburger_menu_icon">
-    <img src="img/hamburger_menu_icon.png">
-  </button>
-  
-    <aside class="sidebar hidden">
-      <h2>SUPA-Games</h2>
-      <ul class="menu">
-        <li>
-          <a href="../home/home.html">
-            <img src="img/home_icon.png">
-            Home
-          </a>
-        </li>
-        <li>
-          <a href="../games/games.html"> 
-            <img src="img/games_icon.png">
-            Jogos 
-          </a>
-        </li>
-        <li>
-          <a href="../genres/genres.html">
-            <img src="img/genre_icon.png">
-            Gêneros
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <img src="img/wishlist_icon.png">
-            Lista de desejos
-          </a>
-        </li>
-        <li>
-          <a href="../profile/profile.html">
-            <img src="img/profile_icon.png">
-            Perfil
-          </a>
-        </li>
-      </ul>
-    </aside>
-    
-      <section class="icons">
-        <section class="profile-dropdown">
-          <img id="profile-image" src="img/profile_icon.png">
-
-          <div class="dropdown-menu" id="profile-dropdown-menu">
-            <a href="../profile/profile.html">Perfil</a> <!--LINK DO PROFILE AO CLICAR NO PERFIL-->
-            <a href="#">Configurações</a>
-            <a href="#">Sair</a>
-          </div>
-        </section>
-      </section>
+      <div id="hamburger-container"></div>  <!--! COMPONENT MENU HAMBURGER-->
+      <div id="sidebar-container"></div> <!--! COMPONENT SIDEBAR-->
+      <div id="profile-container"></div> <!--! COMPONENT PERFIL/ICONS-->
 
       <!-- Painel que vai ser aberto, (criar Jogo de exemplo) -->
       <div class="side-panel" id="sidePanel">

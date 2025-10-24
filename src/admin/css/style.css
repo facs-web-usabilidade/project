@@ -159,7 +159,6 @@ button:hover {
   background-color: blueviolet;
   color: #fff;
   cursor: pointer;
-  outline: 1px solid #000;
 }
 
 a {

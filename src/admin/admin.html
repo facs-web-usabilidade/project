@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SUPA-Games : Admin</title>
+  <link rel="icon" type="image/png" href="./img/games_icon.png">
+  <link rel="stylesheet" href="./css/style.css">
+  <script defer src="js/admin.js"></script>
+  <script defer src="js/profile-dropdown.js"></script>
+  <script defer src="js/sidebar.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="header-bar">
+      <h2>Painel Admin</h2>
+    </div>
+  </header>
+
+  <main>
+    <div class="admin-container">
+      <!-- LEFT PANEL -->
+      <div class="form-container">
+        <div class="form-title">
+          <h2>Admin</h2>
+        </div>
+
+        <div class="form-main">
+          <div class="form-input">
+            <div class="form-label">
+              <label>Jogos</label>
+            </div>
+            <div class="btn">
+              <button id="criarBtn">Criar</button>
+              <button>Atualizar</button>
+              <button>Deletar</button>
+            </div>
+            <hr>
+          </div>
+
+          <div class="form-input">
+            <div class="form-label">
+              <label>Empresa</label>
+            </div>
+            <div class="btn">
+              <button>Criar</button>
+              <button>Atualizar</button>
+              <button>Deletar</button>
+            </div>
+            <hr>
+          </div>
+
+
+          <div class="form-input">
+            <div class="form-label">
+              <label>Perfil</label>
+            </div>
+            <div class="btn">
+              <button>Criar</button>
+            </div>
+            <hr>
+          </div>
+
+          <div class="form-input">
+            <div class="form-label">
+              <label>Gênero</label>
+            </div>
+            <div class="btn">
+              <button>Criar</button>
+            </div>
+            <hr>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" id="hamburger_menu_icon">
+    <img src="img/hamburger_menu_icon.png">
+  </button>
+  
+    <aside class="sidebar hidden">
+      <h2>SUPA-Games</h2>
+      <ul class="menu">
+        <li>
+          <a href="../home/home.html">
+            <img src="img/home_icon.png">
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="../games/games.html"> 
+            <img src="img/games_icon.png">
+            Jogos 
+          </a>
+        </li>
+        <li>
+          <a href="../genres/genres.html">
+            <img src="img/genre_icon.png">
+            Gêneros
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <img src="img/wishlist_icon.png">
+            Lista de desejos
+          </a>
+        </li>
+        <li>
+          <a href="../profile/profile.html">
+            <img src="img/profile_icon.png">
+            Perfil
+          </a>
+        </li>
+      </ul>
+    </aside>
+    
+      <section class="icons">
+        <section class="profile-dropdown">
+          <img id="profile-image" src="img/profile_icon.png">
+
+          <div class="dropdown-menu" id="profile-dropdown-menu">
+            <a href="../profile/profile.html">Perfil</a> <!--LINK DO PROFILE AO CLICAR NO PERFIL-->
+            <a href="#">Configurações</a>
+            <a href="#">Sair</a>
+          </div>
+        </section>
+      </section>
+
+      <!-- Painel que vai ser aberto, (criar Jogo de exemplo) -->
+      <div class="side-panel" id="sidePanel">
+        <button class="close-btn" id="closeBtn">X</button>
+        <h2>Criar Jogo</h2>
+
+        <div class="side-inputs">
+          <input type="text" placeholder="Nome do jogo" id="game-name">
+          <input type="text" placeholder="Preço" id="game-price">
+          <input type="text" placeholder="Desenvolvedora" id="game-dev">
+          <input type="text" placeholder="Descrição" id="game-desc">
+          <input type="text" placeholder="Gênero" id="game-genre">
+        </div>
+
+        <button class="submit-btn" id="submitBtn">Confirmar</button>
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>

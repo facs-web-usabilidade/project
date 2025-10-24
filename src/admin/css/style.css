@@ -159,6 +159,7 @@ button:hover {
   background-color: blueviolet;
   color: #fff;
   cursor: pointer;
+  outline: 1px solid #000;
 }
 
 a {
@@ -200,6 +201,7 @@ a:hover {
   height: 75vh;
   position: relative;
   transition: 0.5s ease;
+  outline: 1px solid blueviolet;
 }
 
 .side-panel.active {
@@ -208,10 +210,10 @@ a:hover {
 
 .close-btn {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 5px;
+  right: 15px;
   background: transparent;
-  border: 1px solid red;
+  border: 1px solid blueviolet;
   color: #fff;
   font-size: 20px;
   cursor: pointer;
@@ -228,7 +230,7 @@ a:hover {
   gap: 15px;
   width: auto;
   min-width: 80%;
-  margin-top: 30px;
+  margin-top: 0px;
 }
 
 .side-inputs input {
@@ -236,9 +238,16 @@ a:hover {
   height: 40px;
   border-radius: 7px;
   background-color: #fff;
-  padding: 5px 10px;
+  padding: 0px 10px;
   font-size: 1em;
-  color: #000;
+}
+
+.side-inputs label {
+  padding: 0;
+  margin: 5px 30px -10px 0px;
+  width: 100%;
+  font-size: 15px;
+  text-align: left;
 }
 
 .icons {
@@ -391,7 +400,7 @@ a:hover {
   
   .side-panel {
     order: -1;
-    width: 80vw;
+    width: 82.5vw;
   }
 
   body {

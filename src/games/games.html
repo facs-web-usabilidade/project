@@ -14,56 +14,44 @@
   <link rel="stylesheet" href="../components/scrollbar/scrollbar.css">
   <link rel="stylesheet" href="css/style.css">
   <script defer src="../components/components.js"></script>
+  <script defer src="js/games.js"></script>
+  <script defer src="js/filtro.js"></script>
 </head>
 
 <body>
-  <div id="sidebar-container"></div> <!--! COMPONENT SIDEBAR-->
-  <div id="profile-container"></div> <!--! COMPONENT PERFIL/ICONS-->
-  <div id="hamburger-container"></div>  <!--! COMPONENT MENU HAMBURGER-->
+  <div id="sidebar-container"></div>
+  <div id="profile-container"></div>
+  <div id="hamburger-container"></div>
 
   <main class="content">
-    <div id="topbar-container"></div> <!--! COMPONENT TOPBAR-->
-    <div id="homelink-container"></div> <!--! COMPONENT HOMELINK-->
+    <div id="topbar-container"></div>
+    <div id="homelink-container"></div>
 
-    <section class="games">
-      <div class="same-line">
-        <h3>Lista de Jogos</h3>
+    <!-- SEÇÃO DE JOGOS -->
+    <section class="games-section">
+
+      <div class="genre-row">
+        <h3>Gêneros</h3>
+
+        <!-- FILTROS DE GÊNERO -->
+        <section class="genre-filters">
+          <button class="genre-btn genre-btn-all" data-genre="all">Todos</button>
+          <button class="genre-btn" data-genre="acao">Ação</button>
+          <button class="genre-btn" data-genre="rpg">RPG</button>
+          <button class="genre-btn" data-genre="corrida">Corrida</button>
+          <button class="genre-btn" data-genre="indie">Indie</button>
+          <button class="genre-btn" data-genre="estrategia">Estratégia</button>
+          <a class="genre-btn genre-btn-more" href="../genres/genres.html">Mais</a>
+        </section>
       </div>
-      <!--CARDS DOS JOGOS DA HOME-->
-      <section class="cards">
-        <a href="../gameInfo/gameInfo.html"><div class="card">Hollow Knight: Silksong</div></a>
-        <div class="card">Death Stranding</div>
-        <div class="card">Split Fiction</div>
-        <div class="card">Stardew Valley</div>
-        <div class="card">Pokémon Emerald</div>
-        <!--ADD +-->
-        <div class="card">The Legend of Zelda: Tears of the Kingdom</div>
-        <div class="card">Celeste</div>
-        <div class="card">Undertale</div>
-        <div class="card">Dark Souls III</div>
-        <div class="card">Elden Ring</div>
-        <div class="card">The Witcher 3: Wild Hunt</div>
-        <div class="card">Cyberpunk 2077</div>
-        <div class="card">Red Dead Redemption 2</div>
-        <div class="card">God of War: Ragnarök</div>
-        <div class="card">Resident Evil 4 Remake</div>
-        <div class="card">Super Mario Odyssey</div>
-        <div class="card">Metroid Dread</div>
-        <div class="card">Cuphead</div>
-        <div class="card">Ori and the Will of the Wisps</div>
-        <div class="card">Dead Cells</div>
-        <div class="card">Hades</div>
-        <div class="card">Slay the Spire</div>
-        <div class="card">Terraria</div>
-        <div class="card">Minecraft</div>
-        <div class="card">No Man’s Sky</div>
-        <div class="card">Horizon Forbidden West</div>
-        <div class="card">Final Fantasy VII Remake</div>
-        <div class="card">Persona 5 Royal</div>
-        <div class="card">Baldur’s Gate 3</div>
-        <div class="card">Starfield</div>
 
+      <!-- LISTA DE JOGOS -->
+      <section class="games">
+        <h3>Lista de Jogos</h3>
+
+        <section class="cards" id="game-list"></section>
       </section>
+
     </section>
   </main>
 </body>

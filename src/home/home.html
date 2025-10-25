@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="../components/scrollbar/scrollbar.css">
   <link rel="stylesheet" href="css/style.css">
   <script defer src="../components/components.js"></script>
+  <script defer src="js/games.js"></script>
+  <script defer src="js/slider.js"></script>
 </head>
 
 <body>
@@ -32,7 +34,10 @@
 
         <div class="bestseller-slider">
           <button class="arrow left" onclick="prevTitle1()"> < </button>
-          <div class="card" id="card-slider-bestsellers">Hollow Knight: Silksong</div>
+          <div class="carde" id="bestseller-slider-card">
+            <img src="../components/img/card_340w_240h.png">
+            <p id="card-slider-bestsellers">Hollow Knight: Silksong</p>
+          </div>
           <button class="arrow right" onclick="nextTitle1()"> > </button>
         </div>
       </section>
@@ -42,7 +47,10 @@
 
         <div class="toprated-slider">
           <button class="arrow left" onclick="prevTitle2()"> < </button>
-          <div class="card" id="card-slider-toprated">Stardew Valley</div>
+          <div class="carde" id="toprated-slider-card">
+            <img src="../components/img/card_340w_240h.png">
+            <p id="card-slider-toprated">Stardew Valley</p>
+          </div>
           <button class="arrow right" onclick="nextTitle2()"> > </button>
         </div>
       </section>
@@ -58,15 +66,7 @@
           <h4>Descubra mais</h5>
         </a>
       </div>
-      <section class="cards">
-        <a href="../gameInfo/gameInfo.html">
-          <div class="card">Hollow Knight: Silksong</div>
-        </a>
-        <div class="card">Death Stranding</div>
-        <div class="card">Split Fiction</div>
-        <div class="card">Stardew Valley</div>
-        <div class="card">Pokémon Emerald</div>
-      </section>
+      <section class="cards" id="game-list"></section>
     </section>
   </main>
 </body>

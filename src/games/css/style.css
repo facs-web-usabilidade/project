@@ -63,7 +63,7 @@ body {
 }
 
 .genre-btn-all {
-  background-color: rgb(192, 0, 199); 
+  border: 2px solid rgb(192, 0, 199); 
   color: white;
 }
 
@@ -71,8 +71,13 @@ body {
   background-color: rgb(210, 0, 218); 
 }
 
+.genre-btn-all.active {
+  background-color: rgb(210, 0, 218); 
+  color: white;
+}
+
 .genre-btn-more {
-  background-color: rgb(212, 120, 0); 
+  border: 2px solid rgb(212, 120, 0); 
   color: white;
 }
 

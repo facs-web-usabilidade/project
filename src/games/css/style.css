@@ -77,12 +77,12 @@ body {
 }
 
 .genre-btn-more {
-  border: 2px solid rgb(212, 120, 0); 
+  border: 2px solid rgb(29, 175, 0); 
   color: white;
 }
 
 .genre-btn-more:hover {
-  background-color: rgb(226, 128, 1); 
+  background-color: rgb(33, 200, 0); 
 }
 
 /* ======= LISTA DE JOGOS ======= */

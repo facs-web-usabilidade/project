@@ -189,3 +189,10 @@ body.light-theme .genre-btn-all {
     height: 90px;
   }
 }
+
+.games-page-highlight {
+    text-decoration: underline !important;
+    text-underline-offset: 6px;
+    color: #fff !important;
+    padding: 0px 15px;
+}

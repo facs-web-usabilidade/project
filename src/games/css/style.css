@@ -52,12 +52,20 @@ body {
   user-select: none;
 }
 
+body.light-theme .genre-btn {
+  background-color: #E3D3C4;
+}
+
 .genre-btn:hover {
-  background-color: #263C52;
+  background-color: #bbada0;
   transform: translateY(-2px);
 }
 
-.genre-btn.active {
+body.light-theme .genre-btn:hover {
+  background-color: #cfbeaf;
+}
+
+.genre-btn.active, body.light-theme .genre-btn.active {
   background-color: blueviolet;
   color: #fff;
 }
@@ -65,6 +73,10 @@ body {
 .genre-btn-all {
   border: 2px solid rgb(192, 0, 199); 
   color: white;
+}
+
+body.light-theme .genre-btn-all {
+  color: 000;
 }
 
 .genre-btn-all:hover {

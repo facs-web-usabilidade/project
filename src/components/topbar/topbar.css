@@ -62,3 +62,14 @@ main.content-grid .search-box {
         right: auto;
     }
 }
+
+body.light-theme .search-box input {
+    background-color: #E3D3C4;
+    color: #000;
+}
+body.light-theme .search-box img {
+    filter: invert(0);
+}
+body.light-theme .search-box button {
+    background-color: #bbada0;
+}

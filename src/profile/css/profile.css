@@ -11,6 +11,12 @@ body {
 
 fieldset {
   border: 1px solid rgb(154, 204, 180);
+  border-radius: 5px;
+}
+
+body.light-theme fieldset {
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 5px;
 }
 
 .greetings h2 {
@@ -27,6 +33,10 @@ fieldset {
   width: 80%;
   padding: 20px;
   border-radius: 6px;
+}
+
+body.light-theme .profile-box {
+  background-color: #E3D3C4;
 }
 
 .avatar {
@@ -52,6 +62,10 @@ fieldset {
   padding: 20px;
   border-radius: 6px;
   margin: 10px 0px;
+}
+
+body.light-theme .reviews-box {
+  background-color: #E3D3C4;
 }
 
 .content {
@@ -111,6 +125,16 @@ fieldset {
   transform: scale(1.02);
 }
 
+body.light-theme .profile-card {
+  background-color: #bbada0;
+  color: #000;
+}
+
+body.light-theme .profile-card:hover {
+  background-color: #c5b6a7;
+  color: #000;
+}
+
 .profile-card h3 {
   margin: 0 0 10px 0;
   font-size: 26px;
@@ -123,6 +147,10 @@ fieldset {
   color: #ccc;
 }
 
+body.light-theme .profile-card p {
+  color: #000;
+}
+
 /* Mantém o avatar ao lado no desktop */
 .profile-box {
   display: flex;
@@ -132,6 +160,10 @@ fieldset {
   width: 80%;
   padding: 20px;
   border-radius: 6px;
+}
+
+body.light-theme .profile-box img {
+  filter: invert(1);
 }
 
 @media (max-width: 1080px) {

@@ -48,7 +48,7 @@ body {
 }
 
 .same-line h4:hover {
-  text-shadow: 2px 1px blueviolet
+  text-shadow: 0.5px 1px blueviolet
 }
 
 .cards,
@@ -271,4 +271,15 @@ hr {
   .bestseller .card {
     z-index: -1;
   }
+}
+
+body.light-theme .card {
+  box-shadow: 0px 0px 3px 1px #000;
+}
+
+body.light-theme .carde img {
+  box-shadow: 0px 0px 3px 1px #000;
+}
+body.light-theme h4, body.light-theme #card-slider-toprated, body.light-theme #card-slider-bestsellers  {
+  color: #000;
 }

@@ -88,7 +88,7 @@
 }
 
 .cart-item-remove {
-    flex-basis: 100%;
+    width: fit-content;
     text-align: right;
     color: #aaa;
     text-decoration: none;
@@ -149,4 +149,27 @@
         margin-left: auto;
         text-align: left;
     }
+}
+
+body.light-theme .cart-item {
+    background-color: #bbada0;
+    color: #000;
+}
+
+body.light-theme .cart-item .cart-item-amount, body.light-theme .cart-item .cart-item-price, body.light-theme .cart-item .cart-item-date {
+    color: #000;
+}
+
+body.light-theme .cart-summary {
+    background-color: #bbada0;
+}
+
+body.light-theme .remove-icon {
+    color: #ff4444;
+}
+
+body.light-theme .cart-item-remove {
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 1px;
 }

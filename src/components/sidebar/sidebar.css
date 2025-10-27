@@ -54,3 +54,16 @@
     color: #fff;
     padding: 0px 15px;
 }
+
+body.light-theme .sidebar {
+    background-color: #a0b5b8;
+}
+
+body.light-theme .sidebar a:hover {
+    background-color: #a0b5b8;
+    color: #000;
+}
+
+body.light-theme .sidebar a img {
+    filter: invert(1);
+}

@@ -58,6 +58,10 @@ main.content-grid {
   padding: 25px;
 }
 
+body.light-theme .game-info {
+  background-color: #bbada0;
+}
+
 .info-top {
   display: flex;
   flex-wrap: wrap;
@@ -177,6 +181,14 @@ main.content-grid {
   padding: 25px;
 }
 
+body.light-theme .wishlist-btn {
+  background-color: #a89b8f;
+}
+
+body.light-theme .wishlist-btn:hover {
+  background-color: blueviolet;
+}
+
 .comments-section h3 {
   margin-top: 0;
   font-size: 24px;
@@ -190,6 +202,34 @@ main.content-grid {
   display: flex;
   align-items: center;
   gap: 15px;
+}
+
+body.light-theme .comment-box {
+  background-color: #a89b8f;
+}
+
+body.light-theme .game-price {
+  color: #000;
+}
+
+body.light-theme .game-details p span {
+  text-shadow: 1px 1px black;
+}
+
+body.light-theme .game-details .game-preco {
+  color: green;
+}
+body.light-theme .game-details .game-nota {
+  color: gold;
+}
+body.light-theme .game-details .game-dev {
+  color: rgb(185, 83, 100);
+}
+body.light-theme .game-details .game-genero {
+  color: blue;
+}
+body.light-theme .game-details .game-ano {
+  color: cyan;
 }
 
 .comment-box.new-comment textarea {

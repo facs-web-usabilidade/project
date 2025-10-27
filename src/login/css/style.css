@@ -38,19 +38,59 @@ main {
 }
 
 .container-container {
-    display: flex;
-    /* WIP */
+  display: flex;
+  justify-content: center;
+  padding: 20px 0px;
+  width: 100%;
+  height: 70vh;
 }
 
 @media (max-width: 600px) {
-    .container-container {
-        flex-direction: column-reverse;
-        /* WIP */
-    }
+  .container-container {
+    flex-direction: column-reverse;
+    /* WIP */
+  }
 }
 
 .intro-register-container {
-    /* WIP */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0px 20px;
+  height: 80%;
+  width: 60vw;
+}
+
+.intro-register-container h2 {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 0;
+  width: 70%;
+}
+
+.intro-register-container h3,
+.form-container h3 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.intro-register-container p,
+.form-container p {
+  font-size: 28px;
+  margin: 0;
+}
+
+.intro-register-container-subtitle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 20px;
+  width: 45%;
+}
+
+.intro-register-container button {
+  width: 35%;
 }
 
 .form-container {
@@ -61,8 +101,8 @@ main {
   background-color: #1C2C3B;
   border-radius: 2px;
   padding: 20px 5px;
+  margin: 0px 20px;
   width: 30vw;
-  height: 75vh;
 }
 
 @media (max-width: 1080px) {
@@ -71,12 +111,17 @@ main {
   }
 }
 
+.form-container h3,
+.form-container p {
+  text-align: center;
+}
+
 form,
 .form-main,
 .form-input {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   gap: 5px;
 }
@@ -84,6 +129,12 @@ form,
 form {
   width: 95%;
   height: 85%;
+}
+
+.form-title {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
 }
 
 .form-title h2 {
@@ -161,10 +212,14 @@ a:hover {
 }
 
 .error-message {
-  font-size: 12px;
+  font-size: 16px;
   color: red;
   font-weight: 700;
   align-self: flex-start;
+}
+
+#login-status.error-message {
+  align-self: center;
 }
 
 .to-login {

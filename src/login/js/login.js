@@ -60,7 +60,7 @@ form.addEventListener("submit", async function (e) {
         if (response.ok) {
             loginStatus.textContent = "Credenciais verificadas com sucesso! Em breve você será redirecionado(a) para a loja, por favor aguarde...";
             loginStatus.style.color = "green";
-            alert(data.token);
+            alert(data.token); // token a ser salvo em session
             await sleep(2000); // função para simular artificialmente a resposta demorada da api
             window.location.href = "../home/home.html";
         } else {

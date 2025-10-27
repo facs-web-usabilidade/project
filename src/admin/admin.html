@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SUPA-Games : Admin</title>
+  <link rel="icon" type="image/png" href="../components/img/games_icon.png">
+  <link rel="stylesheet" href="../components/sidebar/sidebar.css">
+  <link rel="stylesheet" href="../components/profile-dropdown/profile-dropdown.css">
+  <link rel="stylesheet" href="../components/hamburger-menu/hamburger-menu.css">
+  <link rel="stylesheet" href="../components/home-link/home-link.css">
+  <link rel="stylesheet" href="../components/scrollbar/scrollbar.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <script defer src="../components/components.js"></script>
+  <script defer src="js/admin.js"></script>
+</head>
+
+<body>
+  <div id="hamburger-container"></div>  <!--! COMPONENT MENU HAMBURGER-->
+  <div id="sidebar-container"></div> <!--! COMPONENT SIDEBAR-->
+  <div id="profile-container"></div> <!--! COMPONENT PERFIL/ICONS-->
+
+  <main class="content">
+    <div id="homelink-container"></div> <!--! COMPONENT HOMELINK-->
+
+    <div class="admin-container">
+      <div class="form-container">
+        <div class="form-title">
+          <h2>Admin</h2>
+        </div>
+
+        <div class="form-main">
+          <div class="form-input">
+            <div class="form-label">
+              <label>Jogos</label>
+            </div>
+            <div class="btn">
+              <button id="criarBtn">Criar</button>
+              <button>Atualizar</button>
+              <button>Deletar</button>
+            </div>
+            <hr>
+          </div>
+
+          <div class="form-input">
+            <div class="form-label">
+              <label>Empresa</label>
+            </div>
+            <div class="btn">
+              <button>Criar</button>
+              <button>Atualizar</button>
+              <button>Deletar</button>
+            </div>
+            <hr>
+          </div>
+
+
+          <div class="form-input">
+            <div class="form-label">
+              <label>Perfil</label>
+            </div>
+            <div class="btn">
+              <button>Criar</button>
+            </div>
+            <hr>
+          </div>
+
+          <div class="form-input">
+            <div class="form-label">
+              <label>Gênero</label>
+            </div>
+            <div class="btn">
+              <button>Criar</button>
+            </div>
+            <hr>
+          </div>
+        </div>
+      </div>
+
+      <!-- Painel que vai ser aberto, (criar Jogo de exemplo) -->
+      <div class="side-panel" id="sidePanel">
+        <button class="close-btn" id="closeBtn">X</button>
+        <h2>Criar Jogo</h2>
+
+        <div class="side-inputs">
+          <label for="game-name">Nome do Jogo</label>
+          <input type="text" placeholder="Nome do jogo" id="game-name">
+
+          <label for="game-price">Preço</label>
+          <input type="text" placeholder="Preço" id="game-price">
+
+          <label for="game-dev">Desenvolvedora</label>
+          <input type="text" placeholder="Desenvolvedora" id="game-dev">
+
+          <label for="game-desc">Descrição</label>
+          <input type="text" placeholder="Descrição" id="game-desc">
+
+          <label for="game-genre">Gênero</label>
+          <input type="text" placeholder="Gênero" id="game-genre">
+        </div>
+
+        <button class="submit-btn" id="submitBtn">Confirmar</button>
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>

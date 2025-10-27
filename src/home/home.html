@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loja de Jogos</title>
+  <link rel="icon" type="image/png" href="../components/img/games_icon.png">
+  <link rel="stylesheet" href="../components/sidebar/sidebar.css">
+  <link rel="stylesheet" href="../components/topbar/topbar.css">
+  <link rel="stylesheet" href="../components/profile-dropdown/profile-dropdown.css">
+  <link rel="stylesheet" href="../components/home-link/home-link.css">
+  <link rel="stylesheet" href="../components/hamburger-menu/hamburger-menu.css">
+  <link rel="stylesheet" href="../components/scrollbar/scrollbar.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="../components/components.js"></script>
+  <script defer src="js/games.js"></script>
+  <script defer src="js/slider.js"></script>
+</head>
+
+<body>
+  <div id="sidebar-container"></div> <!--! COMPONENT SIDEBAR-->
+  <div id="profile-container"></div> <!--! COMPONENT PERFIL/ICONS-->
+  <div id="hamburger-container"></div>  <!--! COMPONENT MENU HAMBURGER-->
+
+  <main class="content">
+    <div id="topbar-container"></div> <!--! COMPONENT TOPBAR-->
+    <div id="homelink-container"></div> <!--! COMPONENT HOMELINK-->
+
+    <section class="home-carrousel">
+      <!--CARDS BESTSELLERS-->
+      <section class="bestseller">
+        <h3>Melhores Ofertas</h3>
+
+        <div class="bestseller-slider">
+          <button class="arrow left" onclick="prevTitle1()"> < </button>
+          <div class="carde" id="bestseller-slider-card">
+            <img src="../components/img/card_340w_240h.png">
+            <p id="card-slider-bestsellers">Hollow Knight: Silksong</p>
+          </div>
+          <button class="arrow right" onclick="nextTitle1()"> > </button>
+        </div>
+      </section>
+      <!--MAIS BEM AVALIADOS-->
+      <section class="toprated">
+        <h3>Melhores avaliados</h3>
+
+        <div class="toprated-slider">
+          <button class="arrow left" onclick="prevTitle2()"> < </button>
+          <div class="carde" id="toprated-slider-card">
+            <img src="../components/img/card_340w_240h.png">
+            <p id="card-slider-toprated">Stardew Valley</p>
+          </div>
+          <button class="arrow right" onclick="nextTitle2()"> > </button>
+        </div>
+      </section>
+    </section>
+
+    <hr id="home-splitter">
+
+    <!--CARDS DOS JOGOS DA HOME-->
+    <section class="featured">
+      <div class="same-line">
+        <h3>Mais Vendidos</h3>
+        <a href="#">
+          <h4>Descubra mais</h5>
+        </a>
+      </div>
+      <section class="cards" id="game-list"></section>
+    </section>
+  </main>
+</body>
+
+</html>

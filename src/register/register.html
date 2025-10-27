@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SUPA-Games : Cadastre-se</title>
+  <link rel="icon" type="image/png" href="../components/img/games_icon.png">
+  <link rel="stylesheet" href="./css/style.css">
+  <script defer src="./js/register.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="header-bar">
+      <img src="../components/img/games_icon.png" width="50px" height="50px" alt="SUPA games logo">
+      <h2>SUPA-Games</h2>
+    </div>
+  </header>
+  <main>
+    <div class="form-container">
+      <div class="form-title">
+        <h2>Cadastre-se</h2>
+      </div>
+      <div class="form-main">
+        <form action="../home/home.html" method="post" class="registerForm">
+          <div class="form-input">
+            <div class="form-label">
+              <label for="nome">Nome</label>
+            </div>
+            <input id="nome" type="text" placeholder="Exemplo: João Silva Souza" autocomplete="name">
+            <span class="error-message"></span>
+          </div>
+          <div class="form-input">
+            <div class="form-label">
+              <label for="email">E-mail</label>
+            </div>
+            <input id="email" type="email" placeholder="Exemplo: joaossouza@email.com" autocomplete="email">
+            <span class="error-message"></span>
+          </div>
+          <div class="form-input">
+            <div class="form-label">
+              <label for="senha">Senha</label>
+            </div>
+            <input id="senha" type="password" placeholder="Digite uma senha forte">
+            <span class="error-message"></span>
+          </div>
+          <div class="form-input">
+            <div class="form-label">
+              <label for="repeteSenha">Confirmação de senha</label>
+            </div>
+            <input id="repeteSenha" type="password" placeholder="Repita a senha anterior">
+            <span class="error-message"></span>
+          </div>
+          <button type="submit">Cadastrar</button>
+        </form>
+      </div>
+      <div class="to-login">
+        <p>Já tem cadastro? <a href="../login/login.html">Clique aqui!</a></p>
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>

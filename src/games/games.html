@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loja de Jogos</title>
+  <link rel="icon" type="image/png" href="../components/img/games_icon.png">
+  <link rel="stylesheet" href="../components/sidebar/sidebar.css">
+  <link rel="stylesheet" href="../components/topbar/topbar.css">
+  <link rel="stylesheet" href="../components/profile-dropdown/profile-dropdown.css">
+  <link rel="stylesheet" href="../components/home-link/home-link.css">
+  <link rel="stylesheet" href="../components/hamburger-menu/hamburger-menu.css">
+  <link rel="stylesheet" href="../components/scrollbar/scrollbar.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="../components/components.js"></script>
+  <script defer src="js/games.js"></script>
+  <script defer src="js/filtro.js"></script>
+</head>
+
+<body>
+  <div id="sidebar-container"></div>
+  <div id="profile-container"></div>
+  <div id="hamburger-container"></div>
+
+  <main class="content">
+    <div id="topbar-container"></div>
+    <div id="homelink-container"></div>
+
+    <!-- SEÇÃO DE JOGOS -->
+    <section class="games-section">
+
+      <div class="genre-row">
+        <h3>Gêneros</h3>
+
+        <!-- FILTROS DE GÊNERO -->
+        <section class="genre-filters">
+          <button class="genre-btn genre-btn-all" data-genre="all">Todos</button>
+          <button class="genre-btn" data-genre="acao">Ação</button>
+          <button class="genre-btn" data-genre="rpg">RPG</button>
+          <button class="genre-btn" data-genre="corrida">Corrida</button>
+          <button class="genre-btn" data-genre="indie">Indie</button>
+          <button class="genre-btn" data-genre="estrategia">Estratégia</button>
+          <a class="genre-btn genre-btn-more" href="../genres/genres.html">Mais</a>
+        </section>
+      </div>
+
+      <!-- LISTA DE JOGOS -->
+      <section class="games">
+        <h3>Lista de Jogos</h3>
+
+        <section class="cards" id="game-list"></section>
+      </section>
+
+    </section>
+  </main>
+</body>
+
+</html>

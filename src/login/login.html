@@ -6,7 +6,7 @@
         <title>SUPA-Games</title>
         <link rel="icon" type="image/png" href="../components/img/games_icon.png" />
         <link rel="stylesheet" href="./css/style.css" />
-        <script src="./js/login.js"></script>
+        <script defer src="./js/login.js"></script>
     </head>
     <body>
         <header>
@@ -30,7 +30,7 @@
                         <h3>Já possui uma conta? Acesse a loja utilizando suas credenciais aqui</h3>
                     </div>
                     <div class="form-main">
-                        <form action="../home/home.html" method="post" class="loginForm">
+                        <form method="post" id="login-form" class="login-form">
                             <div class="form-input">
                                 <div class="form-label">
                                     <label for="email">E-mail</label>
@@ -46,7 +46,7 @@
                                 <span id="password-error" class="error-message"></span>
                             </div>
                             <button type="submit" id="login-button">Entrar</button>
-                            <span id="login-error" class="error-message"></span>
+                            <span id="login-status" class="error-message"></span>
                         </form>
                     </div>
                 </div>

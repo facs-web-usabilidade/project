@@ -37,6 +37,19 @@ main {
   }
 }
 
+.title-small-screen {
+  display: none;
+}
+
+@media (max-width: 1080px) {
+  .title-small-screen {
+    font-size: 1.7em;
+    display: block;
+    text-align: center;
+    margin: 0;
+  }
+}
+
 .container-container {
   display: flex;
   justify-content: center;
@@ -45,10 +58,11 @@ main {
   height: 70vh;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1080px) {
   .container-container {
     flex-direction: column-reverse;
-    /* WIP */
+    width: auto;
+    height: auto;
   }
 }
 
@@ -61,11 +75,27 @@ main {
   width: 60vw;
 }
 
-.intro-register-container h2 {
+@media (max-width: 1080px) {
+  .intro-register-container {
+    margin: auto;
+    height: 100%;
+    width: 90vw;
+    align-items: center;
+  }
+}
+
+.title-big-screen {
+  display: block;
   font-size: 42px;
   font-weight: 700;
   margin-bottom: 0;
   width: 70%;
+}
+
+@media (max-width: 1080px) {
+  .title-big-screen {
+    display: none;
+  }
 }
 
 .intro-register-container h3,
@@ -75,10 +105,29 @@ main {
   margin-bottom: 0;
 }
 
+@media (max-width: 1080px) {
+  .intro-register-container h3,
+  .form-container h3 {
+    font-size: 1.5em;
+    font-weight: 700;
+    margin: 0;
+  }
+}
+
 .intro-register-container p,
 .form-container p {
   font-size: 28px;
+  font-weight: 500;
   margin: 0;
+}
+
+@media (max-width: 1080px) {
+  .intro-register-container p,
+  .form-container p {
+    font-size: 1.2em;
+    font-weight: 700;
+    margin-top: 10px;
+  }
 }
 
 .intro-register-container-subtitle {
@@ -89,8 +138,29 @@ main {
   width: 45%;
 }
 
-.intro-register-container button {
+@media (max-width: 1080px) {
+  .intro-register-container-subtitle {
+    font-size: 1em;
+    font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 0;
+    width: 90vw;
+    text-align: center;
+  }
+}
+
+.intro-register-container a {
   width: 35%;
+}
+
+@media (max-width: 1080px) {
+  .intro-register-container a  {
+    width: 95%;
+  }
+}
+
+.intro-register-container a button {
+  width: 100%;
 }
 
 .form-container {
@@ -116,6 +186,12 @@ main {
   text-align: center;
 }
 
+@media (max-width: 1080px) {
+  .form-container {
+    width: 90vw;
+  }
+}
+
 form,
 .form-main,
 .form-input {
@@ -135,12 +211,6 @@ form {
   display: flex;
   flex-direction: column;
   width: 70%;
-}
-
-.form-title h2 {
-  margin-bottom: 0;
-  font-weight: 700;
-  user-select: none;
 }
 
 .form-main {

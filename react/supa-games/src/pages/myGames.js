@@ -1,16 +1,16 @@
 import { useEffect } from "react";
 import "../styles/pages/myGames.css";
 
-const myGames = () => {
-    // useEffect(() => {
-        
-    // }, []);
+const MyGames = () => {
+  // useEffect(() => {
 
-    return (
-        <main>
-            
-        </main> 
-    );
+  // }, []);
+
+  return (
+    <main>
+
+    </main>
+  );
 };
 
-export default myGames;
+export default MyGames;

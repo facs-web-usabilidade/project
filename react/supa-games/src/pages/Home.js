@@ -101,7 +101,6 @@ function Home() {
     showTitle1(index1 + 1);
   };
 
-
   function prevTitle2() {
     showTitle2(index2 - 1);
   };
@@ -117,26 +116,26 @@ function Home() {
           <h3>Melhores Ofertas</h3>
 
           <div className="bestseller-slider">
-            <button className="arrow left" onClick={prevTitle1()}> E </button>
+            <button className="arrow left" onClick={prevTitle1}> E </button>
             {games && <BigGameCard
               id={"bestseller-slider-card"}
               game={games[0]}
               imgSrc={"images/card_340w_240h.png"}
               altTxt={"imagem de jogo"}
             />}
-            <button className="arrow right" onClick={nextTitle1()}> D </button>
+            <button className="arrow right" onClick={nextTitle1}> D </button>
           </div>
         </section>
         <section className="toprated">
           <h3>Melhores avaliados</h3>
 
           <div className="toprated-slider">
-            <button className="arrow left" onClick={prevTitle2()}> E </button>
+            <button className="arrow left" onClick={prevTitle2}> E </button>
             <div className="carde" id="toprated-slider-card">
               <img src="/images/card_340w_240h.png" />
               <p id="card-slider-toprated">Stardew Valley</p>
             </div>
-            <button className="arrow right" onClick={nextTitle2()}> D </button>
+            <button className="arrow right" onClick={nextTitle2}> D </button>
           </div>
         </section>
       </section>

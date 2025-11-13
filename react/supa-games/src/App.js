@@ -13,20 +13,20 @@ import Settings from "./pages/Settings";
 
 const App = () => (
   <Router>
-    <Layout>
-      <Routes>
-        <Route path="/register" element={<Register />}/>
-        <Route path="/login" element={<Login />}/>
-        <Route path="/home" element={<Home />}/>
-        <Route path="/games" element={<Games />}/>
-        <Route path="/genres" element={<Genres />}/>
-        <Route path="/wishlist" element={<Wishlist />}/>
-        <Route path="/profile" element={<Profile />}/>
-        <Route path="/myGames" element={<myGames />}/>
-        <Route path="/history" element={<History />}/>
-        <Route path="/settings" element={<Settings />}/>
-      </Routes>
-    </Layout>
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/home" element={<Home />} />
+        <Route path="/games" element={<Games />} />
+        <Route path="/genres" element={<Genres />} />
+        <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/myGames" element={<myGames />} />
+        <Route path="/history" element={<History />} />
+        <Route path="/settings" element={<Settings />} />
+      </Route>
+      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
+    </Routes>
   </Router>
 );
 

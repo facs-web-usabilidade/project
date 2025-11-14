@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import "../styles/pages/myGames.css";
 
-const myGames = () => {
+const MyGames = () => {
     // useEffect(() => {
         
     // }, []);
@@ -13,4 +13,4 @@ const myGames = () => {
     );
 };
 
-export default myGames;
+export default MyGames;

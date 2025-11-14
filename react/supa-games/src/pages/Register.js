@@ -8,7 +8,7 @@ const Register = () => {
 
     return (
         <main>
-            
+            <p>teste</p>
         </main> 
     );
 };

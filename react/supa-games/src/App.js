@@ -11,6 +11,7 @@ import Profile from "./pages/Profile";
 import MyGames from "./pages/MyGames";
 import History from "./pages/History";
 import Settings from "./pages/Settings";
+import Cart from "./pages/Cart";
 
 const App = () => (
   <Router>
@@ -26,6 +27,7 @@ const App = () => (
       <Route path="/myGames" element={<MyGames />} />
       <Route path="/history" element={<History />} />
       <Route path="/settings" element={<Settings />} />
+      <Route path="/cart" element={<Cart />} />
       {/* </Route> */}
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />

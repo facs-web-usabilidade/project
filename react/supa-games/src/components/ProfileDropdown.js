@@ -23,7 +23,7 @@ const ProfileDropdown = ({ theme, setTheme, zoom, setZoom }) => {
                 <img id="profile-image" src="/images/profile_icon.png" onClick={() => setOpen(!open)}/>
 
                 {open && (
-                <div className="dropdown-menu show">
+                <div className={`dropdown-menu ${open ? "show" : ""}`}>
                     <NavLink to="/profile" onClick={() => setOpen(false)}>Perfil</NavLink>
                     <NavLink to="/settings" onClick={() => setOpen(false)}>Configurações</NavLink>
                     <NavLink to="/logout" onClick={() => setOpen(false)}>Sair</NavLink>

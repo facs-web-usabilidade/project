@@ -52,7 +52,7 @@ const Games = () => {
     }
 
     function fetchGames() {
-        fetch("http://localhost:3000/api/v1/jogos") // http://localhost:3000/api/v1/jogos com token, fiz usando public
+        fetch("http://localhost:3000/api/v1/jogos")
         .then(res => res.json())
         .then(data => {
             const container = document.getElementById('game-list');
@@ -82,8 +82,6 @@ const Games = () => {
 
                 link.appendChild(card);
                 link.appendChild(title);
-
-                console.log("API categoria:", game.categoria, "→ normalized:", normalizeGenre(game.categoria));
 
                 container.appendChild(link);
             });

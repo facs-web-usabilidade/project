@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/pages/login.css";
 
 const Login = () => {
@@ -14,8 +15,9 @@ const Login = () => {
     const [loginStatus, setLoginStatus] = useState("");
     const [statusClass, setStatusClass] = useState("feedback-pending");
 
-
     const [loading, setLoading] = useState(false);
+
+    const navigate = useNavigate();
 
     function validateInput(value, setter, message) {
         if (!value.trim()) {
@@ -70,13 +72,14 @@ const Login = () => {
             await sleep(3000);
 
             if (response.ok) {
+                localStorage.setItem("supa_token", data.token);
                 setStatusClass("feedback-success");
                 setLoginStatus(
                     "Credenciais verificadas com sucesso! Em breve você será redirecionado(a) para a loja, por favor aguarde..."
                 );
 
                 await sleep(3000);
-                window.location.href = "/home";
+                navigate("/home");
             } else {
                 setStatusClass("feedback-error");
                 setLoginStatus("Email ou senha incorretos.");

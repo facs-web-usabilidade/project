@@ -13,6 +13,12 @@ const ProfileDropdown = ({ theme, setTheme, zoom, setZoom }) => {
         setZoom(e.target.value);
     };
 
+    const handleLogout = () => {
+        setOpen(false);
+        localStorage.removeItem("supa_token");
+        window.location.reload();
+    }
+
     return (
         <section className="icons">
             <NavLink to="/cart">
@@ -23,10 +29,10 @@ const ProfileDropdown = ({ theme, setTheme, zoom, setZoom }) => {
                 <img id="profile-image" src="/images/profile_icon.png" onClick={() => setOpen(!open)}/>
 
                 {open && (
-                <div className="dropdown-menu show">
+                <div className={`dropdown-menu ${open ? "show" : ""}`}>
                     <NavLink to="/profile" onClick={() => setOpen(false)}>Perfil</NavLink>
                     <NavLink to="/settings" onClick={() => setOpen(false)}>Configurações</NavLink>
-                    <NavLink to="/logout" onClick={() => setOpen(false)}>Sair</NavLink>
+                    <NavLink to="/logout" onClick={handleLogout}>Sair</NavLink>
                     <hr />
 
                     <div className="menu-item">

@@ -1,113 +1,102 @@
-import { useEffect, useState } from "react";
-import BigGameCard from "../components/BigGameCard";
 import "../styles/pages/home.css";
 import Layout from "../components/Layout";
+import { useEffect, useState } from "react";
+import getRandomInt from "../utils/mathRandom";
+import BigGameCard from "../components/BigGameCard";
+import SmallGameCard from "../components/SmallGameCard";
+import AllGamesMock from "../utils/gamesMock";
 
 
 function Home() {
   let [games, setGames] = useState();
-  let [bestSellers, setBestSellers] = useState();
+  let [bestOffer, setBestOffer] = useState();
   let [topRated, setTopRated] = useState();
-  let index1 = 0, index2 = 0;
+  let [indexCarroussel1, setIndexCarroussel1] = useState(0);
+  let [indexCarroussel2, setIndexCarroussel2] = useState(0);
+  const instanceGamesMock = new AllGamesMock();
 
   const container = document.getElementById('game-list');
-  const card_bestsellers = document.getElementById("card-slider-bestsellers");
-  const card_toprated = document.getElementById("card-slider-toprated");
+  // const card_bestsellers = document.getElementById("card-slider-bestsellers");
+  // const card_toprated = document.getElementById("card-slider-toprated");
 
   useEffect(() => {
     setGames(getGames());
-    setBestSellers(getBestSellers());
+    setBestOffer(getBestOffer());
     setTopRated(getTopRated());
-    // setGameCardProperties(games);
   }, []);
 
   function getGames() {
-    return [
-      { id: 1, title: "Hollow Knight: Silksong", genre: "Ação", href: "../gameInfo/gameInfo.html" },
-      { id: 2, title: "Death Stranding", genre: "Ação" },
-      { id: 3, title: "Split Fiction", genre: "Ação" },
-      { id: 4, title: "Stardew Valley", genre: "Ação" },
-      { id: 5, title: "Pokémon Emerald", genre: "RPG" },
-    ];
+    const apiGames = instanceGamesMock.gamesMock();
+    const randomIndex = getRandomInt(apiGames.length - 4);
+    const randomGames = apiGames.slice(randomIndex, randomIndex + 5);
+    return randomGames;
   }
 
-  function getBestSellers() {
-    return [
-      "Hollow Knight: Silksong",
-      "Death Stranding",
-      "Split Fiction",
-      "Stardew Valley",
-      "Pokémon Emerald"
-    ];
+  function getBestOffer() {
+    const bestOffer = instanceGamesMock.bestOffer();
+    return bestOffer;
   }
 
   function getTopRated() {
-    return [
-      "Stardew Valley",
-      "Death Stranding",
-      "Split Fiction",
-      "Hollow Knight: Silksong",
-      "Pokémon Emerald"
-    ];
+    topRated = instanceGamesMock.topRated();
+    return topRated;
   }
 
-  function setGameCardProperties(object_games) {
-    object_games.forEach(game => {
-      const link = document.createElement('a');
-      link.classList.add('card-link');
-      link.href = game.href || '#';
+  // function setGameCardProperties(object_games) {
+  //   object_games.forEach(game => {
+  //     const link = document.createElement('a');
+  //     link.classList.add('card-link');
+  //     link.href = game.href || '#';
 
-      const card = document.createElement('div');
-      card.classList.add('card');
-      card.dataset.genre = game.genre;
+  //     const card = document.createElement('div');
+  //     card.classList.add('card');
+  //     card.dataset.genre = game.genre;
 
-      const img = document.createElement('img');
-      img.src = game.img || "images/card_205w_305h.png";
-      card.appendChild(img);
+  //     const img = document.createElement('img');
+  //     img.src = game.img || "images/card_205w_305h.png";
+  //     card.appendChild(img);
 
-      const title = document.createElement('p');
-      title.classList.add('game-title-img');
-      title.textContent = game.title;
+  //     const title = document.createElement('p');
+  //     title.classList.add('game-title-img');
+  //     title.textContent = game.title;
 
-      link.appendChild(card);
-      link.appendChild(title);
+  //     link.appendChild(card);
+  //     link.appendChild(title);
 
-      container.appendChild(link);
-    });
-  }
+  //     container.appendChild(link);
+  //   });
+  // }
 
-  function showTitle1(i) {
-    if (bestSellers) {
-      index1 = (i + bestSellers.length) % bestSellers.length;
+  function prevTitleCarroussel1() {
+    if (indexCarroussel1 === 0) {
+      setIndexCarroussel1(bestOffer.length - 1);
+    } else {
+      setIndexCarroussel1(indexCarroussel1 - 1);
     }
-    setTimeout(() => {
-      // card_bestsellers.p = bestSellers[index1];
-    }, 200); // delay para mudar o content do card, apenas para parecer mais suave - CSS também tem transition ease
   };
 
-  function showTitle2(i) {
-    if (topRated) {
-      index2 = (i + topRated.length) % topRated.length;
+  function nextTitleCarroussel1() {
+    if (indexCarroussel1 === bestOffer.length - 1) {
+      setIndexCarroussel1(0);
+    } else {
+      setIndexCarroussel1(indexCarroussel1 + 1);
     }
-    setTimeout(() => {
-      // card_toprated.textContent = topRated[index2];
-    }, 200); // delay para mudar o content do card, apenas para parecer mais suave - CSS também tem transition ease
   };
 
-  function prevTitle1() {
-    showTitle1(index1 - 1);
+  function prevTitleCarroussel2() {
+    if (indexCarroussel2 === 0) {
+      setIndexCarroussel2(topRated.length - 1);
+    } else {
+      setIndexCarroussel2(indexCarroussel2 - 1);
+    }
   };
 
-  function nextTitle1() {
-    showTitle1(index1 + 1);
-  };
-
-  function prevTitle2() {
-    showTitle2(index2 - 1);
-  };
-
-  function nextTitle2() {
-    showTitle2(index2 + 1);
+  function nextTitleCarroussel2() {
+    if (indexCarroussel2 === topRated.length - 1) {
+      setIndexCarroussel2(0);
+    } else {
+      setIndexCarroussel2(indexCarroussel2 + 1);
+    }
   };
 
   return (
@@ -118,26 +107,29 @@ function Home() {
             <h3>Melhores Ofertas</h3>
 
             <div className="bestseller-slider">
-              <button className="arrow left" onClick={prevTitle1}> E </button>
-              {games && <BigGameCard
+              <button className="arrow left" onClick={prevTitleCarroussel1}> E </button>
+              {bestOffer && <BigGameCard
                 id={"bestseller-slider-card"}
-                game={games[0]}
+                game={bestOffer[indexCarroussel1]}
                 imgSrc={"images/card_340w_240h.png"}
                 altTxt={"imagem de jogo"}
               />}
-              <button className="arrow right" onClick={nextTitle1}> D </button>
+              <button className="arrow right" onClick={nextTitleCarroussel1}> D </button>
             </div>
           </section>
           <section className="toprated">
             <h3>Melhores avaliados</h3>
-
             <div className="toprated-slider">
-              <button className="arrow left" onClick={prevTitle2}> E </button>
-              <div className="carde" id="toprated-slider-card">
-                <img src="/images/card_340w_240h.png" />
-                <p id="card-slider-toprated">Stardew Valley</p>
-              </div>
-              <button className="arrow right" onClick={nextTitle2}> D </button>
+              <button className="arrow left" onClick={prevTitleCarroussel2}> E </button>
+              {topRated &&
+                <BigGameCard
+                  id={"toprated-slider-card"}
+                  game={topRated[indexCarroussel2]}
+                  imgSrc={"images/card_340w_240h.png"}
+                  altTxt={"imagem de jogo"}
+                />
+              }
+              <button className="arrow right" onClick={nextTitleCarroussel2}> D </button>
             </div>
           </section>
         </section>
@@ -151,10 +143,22 @@ function Home() {
               <h4>Descubra mais</h4>
             </a>
           </div>
-          <section className="cards" id="game-list"></section>
+          <section className="cards" id="game-list">
+            {games && games.map(game => {
+              return (
+                <SmallGameCard
+                  key={game.id}
+                  classId={"card"}
+                  game={game}
+                  imgSrc={"images/card_205w_305h.png"}
+                  altTxt={"imagem de jogo"}
+                />
+              )
+            })}
+          </section>
         </section>
       </main >
-    </Layout>
+    </Layout >
   );
 };
 

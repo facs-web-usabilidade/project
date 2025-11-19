@@ -1,52 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Layout from "../components/Layout";
-import CartItem from "../components/CartItem";
+import GameListItem from "../components/GameListItem";
 import "../styles/pages/cart.css"; 
 
 function Cart() {
-    const [cartItems, setCartItems] = useState([]); 
-    const [totalValue, setTotalValue] = useState("R$ 0,00");
-
-  useEffect(() => {
-    let calculatedTotal = 0;
-    for (const item of cartItems) {
-      calculatedTotal = calculatedTotal + (item.price * item.quantity);
-    }
-
-    const formattedTotal = calculatedTotal.toLocaleString('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
-    });
-
-    setTotalValue(formattedTotal);
-  }, [cartItems]);
+  const [cartItems, setCartItems] = useState([]); 
 
   const handleRemove = (fkJogo) => {
     const novaLista = cartItems.filter(item => item.fkJogo !== fkJogo);
     setCartItems(novaLista); 
   };
 
-  
-  // função temporaria de adicinar jogo (para teste)
-const handleAddItem = () => {
-    const priceOptions = [10.00, 100.00, 25.50];
-    const newPrice = priceOptions[Math.floor(Math.random() * priceOptions.length)];
-
+  const handleAddItem = () => {
     const novoJogo = {
       id: Math.random(),
       fkJogo: Math.floor(Math.random() * 100) + 10,
-      title: `Jogo Teste (R$ ${newPrice.toFixed(2)})`, // Nome do jogo mostra o preço
+      title: "Jogo Teste R$ 50.00",
       quantity: 1,
-      price: newPrice, // O preço real do item
+      price: 50.00,
       image: "",
     };
     const novaLista = [...cartItems, novoJogo];
     setCartItems(novaLista);
   };
-    // 
 
-  
-    return (
+  return (
     <Layout>
       <main className="content-grid">
         <div className="cart-container">
@@ -59,13 +37,22 @@ const handleAddItem = () => {
             </button>
             
             <div className="cart-list">
-              {cartItems.map((item) => (
-                <CartItem
-                  key={item.id}
-                  item={item}
-                  onRemove={handleRemove}
-                />
-              ))}
+              {cartItems.map((item) => {
+                const formattedPrice = item.price.toLocaleString('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL'
+                });
+
+                return (
+                  <GameListItem
+                    key={item.id}
+                    item={item}
+                    onRemove={handleRemove}
+                    type="cart"
+                    priceText={formattedPrice}
+                  />
+                );
+              })}
 
               {cartItems.length === 0 && (
                 <p>Seu carrinho está vazio.</p>
@@ -75,7 +62,7 @@ const handleAddItem = () => {
 
           <aside className="cart-summary">
             <h2>Valor total:</h2>
-            <p className="total-price">{totalValue}</p>
+            <p className="total-price">R$ 0,00</p>
             <button className="checkout-btn">Continuar para o pagamento</button>
           </aside>
           

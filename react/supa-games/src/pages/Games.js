@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import "../styles/pages/games.css";
 import Layout from "../components/Layout";
+import MediumGameCard from "../components/MediumGameCard";
 
 const Games = () => {
     useEffect(() => {
@@ -52,7 +53,11 @@ const Games = () => {
     }
 
     function fetchGames() {
-        fetch("http://localhost:3000/api/v1/jogos")
+        fetch("http://localhost:3000/api/v1/jogos", {
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("supa_token")}`
+            }
+        })
         .then(res => res.json())
         .then(data => {
             const container = document.getElementById('game-list');
@@ -66,7 +71,11 @@ const Games = () => {
                 card.classList.add('card');
 
                 // setar categoria dos jogos
-                fetch(`http://localhost:3000/api/v1/categorias/${game.fkCategoria}`)
+                fetch(`http://localhost:3000/api/v1/categorias/${game.fkCategoria}`, {
+                    headers: {
+                        "Authorization": `Bearer ${localStorage.getItem("supa_token")}`
+                    }
+                })
                     .then(res => res.json())
                     .then(categoria => {
                     card.dataset.genre = normalizeGenre(categoria.nome) || "Indefinido";

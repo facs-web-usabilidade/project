@@ -9,6 +9,7 @@ const GameInfo = () => {
     useEffect(() => {
         if (id){
             fetchGameInfo(id);
+            fetchComments(id);
         }
     }, []);
 
@@ -31,7 +32,11 @@ const GameInfo = () => {
     // }
 
     function fetchGameInfo(gameId) {
-    fetch(`http://localhost:3000/api/v1/jogos/${gameId}`)
+    fetch(`http://localhost:3000/api/v1/jogos/${gameId}`, {
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("supa_token")}`
+            }
+        })
         .then(res => res.json())
         .then(game => {
             document.querySelector(".game-preco").textContent = game.preco;
@@ -39,26 +44,221 @@ const GameInfo = () => {
             document.querySelector(".game-description").textContent = (game.descricao).replace('"', ' ').slice(0, -1); // remover aspas
             document.querySelector(".game-details h2").textContent = game.nome;
 
-            fetch(`http://localhost:3000/api/v1/empresas/${game.fkEmpresa}`)
+            fetch(`http://localhost:3000/api/v1/empresas/${game.fkEmpresa}`, {
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem("supa_token")}`
+                }
+            })
                 .then(res => res.json())
                 .then(empresa => {
                 document.querySelector(".game-dev").textContent = empresa.nome;
             });
 
-            fetch(`http://localhost:3000/api/v1/categorias/${game.fkCategoria}`)
+            fetch(`http://localhost:3000/api/v1/categorias/${game.fkCategoria}`, {
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem("supa_token")}`
+                }
+            })
                 .then(res => res.json())
                 .then(categoria => {
                 document.querySelector(".game-genero").textContent = categoria.nome;
             });
 
-            //! NOTA DO JOGO, NÃO ESTÁ FUNCIONANDO, ACREDITO QUE POR ERRO DO BACKEND
-            // fetch(`http://localhost:3000/api/v1/avaliacoes/media/${gameId}`)
-            //     .then(res => res.json())
-            //     .then(avaliacao => {
-            //     document.querySelector(".game-nota").textContent = avaliacao.nota;
-            // });
+            fetch(`http://localhost:3000/api/v1/avaliacoes/media/${gameId}`, {
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem("supa_token")}`
+                }
+            })
+            .then(async res => {
+                if (res.status === 204) return null;
+
+                const text = await res.text();
+
+                if (!text || text.trim() === "") return null;
+
+                try {
+                    return JSON.parse(text);
+                } catch {
+                    return null;
+                }
+            })
+            .then(avaliacao => {
+                const el = document.querySelector(".game-nota");
+
+                if (!avaliacao || !avaliacao.media) {
+                    el.textContent = "Sem avaliações";
+                } else {
+                    el.textContent = avaliacao.media + " ★";
+                }
+            })
+            .catch(err => console.error("Erro ao buscar avaliação:", err));
         })
         .catch(err => console.error("Erro ao carregar jogo:", err));
+    }
+
+    async function fetchComments(gameId) {
+        fetch("http://localhost:3000/api/v1/avaliacoes", {
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("supa_token")}`
+            }
+        })
+            .then(async res => {
+                if (res.status === 204) return [];
+                return await res.json();
+            })
+            .then(list => {
+                const comments = list.filter(item => item.fkJogo == gameId);
+
+                const commentBox = document.querySelector(".comment-list");
+                commentBox.innerHTML = ""; // limpar o commentbox de inicio
+
+                if (comments.length === 0) {
+                    commentBox.innerHTML = "<p className=\"no-comments\">Sem comentários.</p>";
+                    return;
+                }
+
+                comments.forEach(async item => {
+                    const box = document.createElement("div");
+                    box.classList.add("comment-box");
+
+                    const avatar = document.createElement("img");
+                    avatar.classList.add("comment-avatar");
+                    avatar.src = "../../images/profile_icon.png";
+
+                    const p = document.createElement("p");
+                    const formattedCommentDate = formatCommentDate(item.data);
+                    p.innerHTML = `Usuário Anônimo kkk ${item.nota} ★<br>${item.comentario}<br>Data: ${formattedCommentDate}`;
+
+                    box.appendChild(avatar);
+                    box.appendChild(p);
+
+                    commentBox.appendChild(box);
+
+                    const username = await fetchUsername(item.fkUsuario);
+
+                    p.innerHTML = `
+                        <span className="comment-lines">Usuário: </span><span className="comment-lines2">${username}</span><br>
+                        <span className="comment-lines">Nota: </span><span className="comment-lines2">${item.nota} ★</span> <br>
+                        <span className="comment-lines">Comentário: </span><span className="comment-lines2">${item.comentario}</span><br>
+                        <span className="comment-lines">Data: </span><span className="comment-lines2">${formattedCommentDate}</span>
+                    `;
+                });
+            })
+            .catch(err => {
+                console.error(err);
+                document.querySelector(".comment-list").innerHTML =
+                    "<p>Erro ao carregar comentários.</p>";
+            });
+    }
+
+    function formatCommentDate(date) {
+        const d = new Date(date);
+
+        const day = String(d.getDate()).padStart(2, "0");
+        const month = String(d.getMonth() + 1).padStart(2, "0");
+        const year = d.getFullYear();
+
+        const hours = String(d.getHours()).padStart(2, "0");
+        const minutes = String(d.getMinutes()).padStart(2, "0");
+
+        return `${day}/${month}/${year} - ${hours}:${minutes}`;
+    }
+
+    function fetchUsername(userId) {
+        return fetch(`http://localhost:3000/api/v1/usuarios/${userId}`, {
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("supa_token")}`
+            }
+        })
+        .then(res => res.json())
+        .then(data => data.nome) // adjust if backend returns different field
+        .catch(() => "Usuário desconhecido");
+    }
+
+    function handleAddToCart(gameId) {
+    fetch(`http://localhost:3000/api/v1/carrinho/add`, {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${localStorage.getItem("supa_token")}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ jogoId: gameId })
+    })
+        // .then(res => res.json())
+        .then(async res => {
+            const data = await res.json().catch(() => null);
+            if (!res.ok) throw data;
+            return data;
+        })
+        .then(data => {
+            alert(`${data.message}\n`) // se já estiver no carrinho, muda a mensagem e retorna bad request...
+        })
+        .catch(err => {
+            console.error("Erro ao adicionar:", err);
+            alert(err?.error || "Erro ao adicionar ao carinho, produto pode já estar no carrinho");
+        });
+    }
+
+    function handleAddToWishlist(gameId) {
+    fetch(`http://localhost:3000/api/v1/lista-desejo/`, {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${localStorage.getItem("supa_token")}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ jogoId: gameId })
+    })
+        // .then(res => res.json())
+        .then(async res => {
+            const data = await res.json().catch(() => null);
+            if (!res.ok) throw data;
+            return data;
+        })
+        .then(data => {
+            alert(`${data.error !== null ? data.error : "Jogo adicionado com sucesso"}`)
+            console.log(data)
+        })
+        .catch(err => {
+            console.error("Erro ao adicionar:", err);
+            alert(err?.error || "Erro ao adicionar à lista de desejos");
+        });
+    }
+
+    function updateRating(value) {
+        var selectedRating = parseFloat(value);
+        document.getElementById("notaValue").textContent = value;
+    }
+
+    function sendRating(gameId) {
+        let selectedRating = document.getElementById("ratingRange").value;
+
+        const comment = document.getElementById("comment-text").value.trim();
+
+        if (!comment) {
+            alert("Escreva um comentário!");
+            return;
+        }
+
+        fetch("http://localhost:3000/api/v1/avaliacoes/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("supa_token")}`
+            },
+            body: JSON.stringify({
+                nota: selectedRating,
+                jogoId: gameId,
+                comentario: comment
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            alert(data.message);
+        })
+        .catch(err => {
+            console.error(err);
+            alert("Erro ao enviar.");
+        });
     }
 
     return (
@@ -72,7 +272,7 @@ const GameInfo = () => {
                         <img src="../../images/card_205w_305h.png" alt="Capa do Jogo"/></div>
                     <div className="game-details">
                         <h2>Carregando...</h2>
-                        <p className="game-price"><strong>R$ <span className="game-preco">Carregando...</span></strong></p>
+                        <p className="game-price"><strong>Preço: <span className="game-preco">Carregando...</span></strong></p>
                         <p><strong>Avaliação: <span className="game-nota">Carregando...</span></strong></p>
                         <p><strong>Desenvolvedora: <span className="game-dev">Carregando...</span></strong></p>
                         <p><strong>Gênero: <span className="game-genero">Carregando...</span></strong></p>
@@ -85,9 +285,16 @@ const GameInfo = () => {
                             Descrição do jogo...
                         </p>
                         </fieldset>
+                        <div id="game-info-buttons">
+                            <button onClick={() => handleAddToCart(id)} className="cart-btn">
+                                Adicionar ao carrinho
+                            </button>
 
-                        <a href="#" className="cart-btn">Adicionar ao carrinho</a>
-                        <button className="wishlist-btn">+ Lista de desejos</button>
+                            <button onClick={() => handleAddToWishlist(id)} className="wishlist-btn">
+                                + Lista de desejos
+                            </button>
+                        </div>
+                        
 
                     </div>
                     </div>
@@ -107,11 +314,21 @@ const GameInfo = () => {
                     <h3>Comentários:</h3>
 
                     <div className="comment-box new-comment">
-                    <textarea placeholder="Comente aqui:"></textarea>
+                        <form id="ratingForm">
+                            <textarea id="comment-text" placeholder="Comente aqui:"></textarea>
+
+                            <div className="rating-row">
+                                <label htmlFor="notaRange" id="notaRangeLabel">Nota: <span id="notaValue">0</span> ★</label>
+                                <input type="range" id="ratingRange" min="0" max="5" step="0.5" defaultValue={0} onChange={(e) => updateRating(e.target.value)} // <input type="range" id="ratingRange" min="0" max="5" step="0.5" value="0" onChange={() => updateRating(this.value)}
+                                />
+                            </div>
+
+                            <button type="button" id="submit-comment" onClick={() => sendRating(id)}>Enviar</button>
+                        </form>
                     </div>
 
                     <div className="comment-list">
-                    <div className="comment-box">
+                    {/* <div className="comment-box">
                         <img className="comment-avatar" src="../../images/profile_icon.png"></img>
                         <p>Historia fraca ....</p>
                     </div>
@@ -119,7 +336,7 @@ const GameInfo = () => {
                     <div className="comment-box">
                         <img className="comment-avatar" src="../../images/profile_icon.png"></img>
                         <p>Historia divertida ....</p>
-                    </div>
+                    </div> */}
                     </div>
                 </aside>
 

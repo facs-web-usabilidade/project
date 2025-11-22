@@ -109,9 +109,7 @@ const Register = () => {
                 headers: { "Content-Type": "application/json" },
             });
 
-            const registerData = await response.json();
-
-            await sleep(3000);
+            await sleep(1000);
 
             if (response.ok) {
                 const usuario = { email: userToRegister.email, senha: userToRegister.senha };
@@ -132,7 +130,7 @@ const Register = () => {
                     "Cadastro realizado com sucesso! Em breve você será redirecionado(a) para a loja, por favor aguarde..."
                 );
 
-                await sleep(3000);
+                await sleep(2000);
                 navigate("/");
             } else {
                 throw new Error();

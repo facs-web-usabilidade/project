@@ -33,7 +33,7 @@
 }
 
 .dropdown-menu {
-    display: block;
+    display:block;
     position: fixed;
     min-width: 200px;
     padding: 8px 0;

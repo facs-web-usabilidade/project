@@ -63,6 +63,7 @@ body {
 }
 
 @media (max-width: 1080px) {
+
   .cards,
   .bestsellers-cards {
     margin: 0;
@@ -82,6 +83,7 @@ body {
   border-radius: 12px;
   box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.5);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
@@ -99,6 +101,7 @@ body {
 
 .card img {
   border-radius: 10px;
+
 }
 
 .arrow {
@@ -151,6 +154,7 @@ body {
   /*flex-shrink: unset;*/
   gap: 40px;
   margin-top: 80px;
+  padding: 20px;
 }
 
 @media screen and (max-width: 1080px) {
@@ -159,7 +163,8 @@ body {
     align-items: center;
   }
 
-  .bestseller, .toprated {
+  .bestseller,
+  .toprated {
     width: 80vw;
   }
 }
@@ -168,19 +173,22 @@ hr {
   box-shadow: 0px 5px 5px 0px blueviolet;
 }
 
-.bestseller-slider, .toprated-slider {
+.bestseller-slider,
+.toprated-slider {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.bestseller, .toprated {
+.bestseller,
+.toprated {
   width: 30vw;
   margin-bottom: 40px;
 }
 
-#card-slider-bestsellers, #card-slider-toprated {
+#card-slider-bestsellers,
+#card-slider-toprated {
   width: 26vw;
   height: 30vh;
   color: black;
@@ -189,7 +197,8 @@ hr {
   font-size: 30px;
 }
 
-#card-slider-bestsellers:hover, #card-slider-toprated:hover {
+#card-slider-bestsellers:hover,
+#card-slider-toprated:hover {
   color: blueviolet;
 }
 
@@ -205,20 +214,25 @@ hr {
 
 .card-link {
   height: fit-content;
-  width: fit-content  ;
+  width: fit-content;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
 }
 
 .card-link[style*="display: none"] {
   display: none !important;
 }
 
-#bestseller-slider-card img, #toprated-slider-card img {
+#bestseller-slider-card img,
+#toprated-slider-card img {
   width: 420px;
   height: 240px;
   border-radius: 10px;
 }
 
-#card-slider-toprated, #card-slider-bestsellers {
+#card-slider-toprated,
+#card-slider-bestsellers {
   background-color: transparent;
   position: absolute;
   bottom: -30px;
@@ -231,14 +245,17 @@ hr {
 }
 
 @media screen and (max-width: 768px) {
-  #card-slider-bestsellers, #card-slider-toprated {
+
+  #card-slider-bestsellers,
+  #card-slider-toprated {
     width: 80vw;
     background-color: transparent;
     font-size: 24px;
     min-width: fit-content;
   }
 
-  #bestseller-slider-card img, #toprated-slider-card img {
+  #bestseller-slider-card img,
+  #toprated-slider-card img {
     width: 90vw;
   }
 }
@@ -259,6 +276,7 @@ hr {
 }
 
 @media (max-width: 1080px) {
+
   .bestseller h3,
   .toprated h3 {
     margin: 0;
@@ -280,6 +298,9 @@ body.light-theme .card {
 body.light-theme .carde img {
   box-shadow: 0px 0px 3px 1px #000;
 }
-body.light-theme h4, body.light-theme #card-slider-toprated, body.light-theme #card-slider-bestsellers  {
+
+body.light-theme h4,
+body.light-theme #card-slider-toprated,
+body.light-theme #card-slider-bestsellers {
   color: #000;
 }

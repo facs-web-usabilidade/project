@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import "../styles/pages/games.css";
-import Layout from "../components/Layout";
 import MediumGameCard from "../components/MediumGameCard";
 
 const Games = () => {
@@ -100,30 +99,28 @@ const Games = () => {
     }
 
     return (
-        <Layout>
-            <main className="content">
-                <section className="games-section">
-                    <div className="genre-row">
-                        <h3>Gêneros</h3>
+        <main className="content">
+            <section className="games-section">
+                <div className="genre-row">
+                    <h3>Gêneros</h3>
 
-                        <section className="genre-filters">
-                            <button className="genre-btn genre-btn-all" data-genre="all">Todos</button>
-                            <button className="genre-btn" data-genre="acao">Ação</button>
-                            <button className="genre-btn" data-genre="rpg">RPG</button>
-                            <button className="genre-btn" data-genre="aventura">Aventura</button>
-                            <button className="genre-btn" data-genre="puzzle">Puzzle</button>
-                            <button className="genre-btn" data-genre="simulacao">Simulação</button>
-                            <a className="genre-btn genre-btn-more" href="/genres">Mais</a>
-                        </section>
-                    </div>
-
-                    <section className="games">
-                        <h3>Lista de Jogos</h3>
-                        <section className="cards" id="game-list"></section>
+                    <section className="genre-filters">
+                        <button className="genre-btn genre-btn-all" data-genre="all">Todos</button>
+                        <button className="genre-btn" data-genre="acao">Ação</button>
+                        <button className="genre-btn" data-genre="rpg">RPG</button>
+                        <button className="genre-btn" data-genre="aventura">Aventura</button>
+                        <button className="genre-btn" data-genre="puzzle">Puzzle</button>
+                        <button className="genre-btn" data-genre="simulacao">Simulação</button>
+                        <a className="genre-btn genre-btn-more" href="/genres">Mais</a>
                     </section>
+                </div>
+
+                <section className="games">
+                    <h3>Lista de Jogos</h3>
+                    <section className="cards" id="game-list"></section>
                 </section>
-            </main>
-        </Layout>
+            </section>
+        </main>
     );
 };
 

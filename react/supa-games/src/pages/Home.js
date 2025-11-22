@@ -1,8 +1,7 @@
 import "../styles/pages/home.css";
-import Layout from "../components/Layout";
 import { useEffect, useState } from "react";
 import getRandomInt from "../utils/mathRandom";
-import BigGameCard from "../components/BigGameCard";
+import WideGameCard from "../components/WideGameCard";
 import SmallGameCard from "../components/SmallGameCard";
 import AllGamesMock from "../utils/gamesMock";
 
@@ -100,65 +99,63 @@ function Home() {
   };
 
   return (
-    <Layout>
-      <main className="content">
-        <section className="home-carrousel">
-          <section className="bestseller">
-            <h3>Melhores Ofertas</h3>
+    <main className="content">
+      <section className="home-carrousel">
+        <section className="bestseller">
+          <h3>Melhores Ofertas</h3>
 
-            <div className="bestseller-slider">
-              <button className="arrow left" onClick={prevTitleCarroussel1}> E </button>
-              {bestOffer && <BigGameCard
-                id={"bestseller-slider-card"}
-                game={bestOffer[indexCarroussel1]}
+          <div className="bestseller-slider">
+            <button className="arrow left" onClick={prevTitleCarroussel1}> E </button>
+            {bestOffer && <WideGameCard
+              id={"bestseller-slider-card"}
+              game={bestOffer[indexCarroussel1]}
+              imgSrc={"images/card_340w_240h.png"}
+              altTxt={"imagem de jogo"}
+            />}
+            <button className="arrow right" onClick={nextTitleCarroussel1}> D </button>
+          </div>
+        </section>
+        <section className="toprated">
+          <h3>Melhores avaliados</h3>
+          <div className="toprated-slider">
+            <button className="arrow left" onClick={prevTitleCarroussel2}> E </button>
+            {topRated &&
+              <WideGameCard
+                id={"toprated-slider-card"}
+                game={topRated[indexCarroussel2]}
                 imgSrc={"images/card_340w_240h.png"}
                 altTxt={"imagem de jogo"}
-              />}
-              <button className="arrow right" onClick={nextTitleCarroussel1}> D </button>
-            </div>
-          </section>
-          <section className="toprated">
-            <h3>Melhores avaliados</h3>
-            <div className="toprated-slider">
-              <button className="arrow left" onClick={prevTitleCarroussel2}> E </button>
-              {topRated &&
-                <BigGameCard
-                  id={"toprated-slider-card"}
-                  game={topRated[indexCarroussel2]}
-                  imgSrc={"images/card_340w_240h.png"}
-                  altTxt={"imagem de jogo"}
-                />
-              }
-              <button className="arrow right" onClick={nextTitleCarroussel2}> D </button>
-            </div>
-          </section>
-        </section>
-
-        <hr id="home-splitter" />
-
-        <section className="featured">
-          <div className="same-line">
-            <h3>Mais Vendidos</h3>
-            <a href="#">
-              <h4>Descubra mais</h4>
-            </a>
+              />
+            }
+            <button className="arrow right" onClick={nextTitleCarroussel2}> D </button>
           </div>
-          <section className="cards" id="game-list">
-            {games && games.map(game => {
-              return (
-                <SmallGameCard
-                  key={game.id}
-                  classId={"card"}
-                  game={game}
-                  imgSrc={"images/card_205w_305h.png"}
-                  altTxt={"imagem de jogo"}
-                />
-              )
-            })}
-          </section>
         </section>
-      </main >
-    </Layout >
+      </section>
+
+      <hr id="home-splitter" />
+
+      <section className="featured">
+        <div className="same-line">
+          <h3>Mais Vendidos</h3>
+          <a href="#">
+            <h4>Descubra mais</h4>
+          </a>
+        </div>
+        <section className="cards" id="game-list">
+          {games && games.map(game => {
+            return (
+              <SmallGameCard
+                key={game.id}
+                classId={"card"}
+                game={game}
+                imgSrc={"images/card_205w_305h.png"}
+                altTxt={"imagem de jogo"}
+              />
+            )
+          })}
+        </section>
+      </section>
+    </main >
   );
 };
 

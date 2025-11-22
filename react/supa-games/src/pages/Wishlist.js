@@ -14,7 +14,7 @@ function Wishlist() {
   localStorage
   .setItem(
     'token', 
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwibm9tZSI6IkNsaWVudGUiLCJwZXJmaWwiOiJDbGllbnRlIiwiaWF0IjoxNzYzNzY5MTQ0LCJleHAiOjE3NjM3NzI3NDR9.604UhRNfwd9XP07ob9TIoTveeZpTvvY8IzY_gTX-dv4'
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwibm9tZSI6IkNsaWVudGUiLCJwZXJmaWwiOiJDbGllbnRlIiwiaWF0IjoxNzYzODI1ODg5LCJleHAiOjE3NjM4Mjk0ODl9.YCMhmGhS6rTsZxuCQAsM54GBMPzJ7zSUUbquye1wbEQ'
   )
   
   const token = localStorage.getItem('token');
@@ -28,35 +28,41 @@ function Wishlist() {
         }
       });
 
-      setUser({ ...user, ...data })
-      setReloadPage(false);
+      console.log(data)
+
+      // setUser({ ...user, ...data })
+      // setReloadPage(false);
 
     } catch (error) {
       console.log(error.message)
     }
   }
   
-  async function getUserWishList() {
-    try {
-      const response = await axiosInstance('/jogos/10', {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-      return response.data;
-    }
-    catch(error) {
-      console.log(error.message)
-    }
-  }
+  // async function getUserWishList() {
+  //   try {
+  //     const response = await axiosInstance.get('/lista-desejo', {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`
+  //       },
+  //       user: {
+  //         id: user.id
+  //       }
+  //     });
+  //     // console.log(user.id)
+  //     // console.log(response.data);
+  //   }
+  //   catch(error) {
+  //     console.log(error.message)
+  //   }
+  // }
 
   useEffect(() => {
     if (!token) {
       return navigate('/login')
     }
 
-    GetUserInfo()
-    console.log(parseJwt(token))
+    GetUserInfo
+    // getUserWishList()
   }, []);
 
   return (

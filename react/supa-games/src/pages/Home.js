@@ -1,71 +1,89 @@
 import "../styles/pages/home.css";
 import Layout from "../components/Layout";
 import { useEffect, useState } from "react";
-import getRandomInt from "../utils/mathRandom";
-import BigGameCard from "../components/BigGameCard";
+import arrayRandom from "../utils/arrayRandom";
+import axiosInstance from "../services/apiService";
+import WideGameCard from "../components/WideGameCard";
 import SmallGameCard from "../components/SmallGameCard";
-import AllGamesMock from "../utils/gamesMock";
 
 
 function Home() {
-  let [games, setGames] = useState();
-  let [bestOffer, setBestOffer] = useState();
+
+  const token = localStorage.getItem('token');
+
   let [topRated, setTopRated] = useState();
+  let [apiGames, setApiGames] = useState();
+  let [bestOffer, setBestOffer] = useState();
+  let [featuredGames, setFeaturedGames] = useState();
   let [indexCarroussel1, setIndexCarroussel1] = useState(0);
   let [indexCarroussel2, setIndexCarroussel2] = useState(0);
-  const instanceGamesMock = new AllGamesMock();
+  localStorage
+  .setItem(
+    'token', 
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwibm9tZSI6IkNsaWVudGUiLCJwZXJmaWwiOiJDbGllbnRlIiwiaWF0IjoxNzYzODM5MTczLCJleHAiOjE3NjM4NDI3NzN9.ySgDFN86iAczyR4sDg66zxW8jJju9ScNq51LEhX7knw'
+  );
 
-  const container = document.getElementById('game-list');
-  // const card_bestsellers = document.getElementById("card-slider-bestsellers");
-  // const card_toprated = document.getElementById("card-slider-toprated");
+  async function getGames() {
+    try {
+      const response = await axiosInstance.get('/jogos', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      const games = response.data;
+      setGames(games);
+    } catch(error) {
+      console.log(error.message)
+    }
 
-  useEffect(() => {
-    setGames(getGames());
-    setBestOffer(getBestOffer());
-    setTopRated(getTopRated());
-  }, []);
+  };
 
-  function getGames() {
-    const apiGames = instanceGamesMock.gamesMock();
-    const randomIndex = getRandomInt(apiGames.length - 4);
-    const randomGames = apiGames.slice(randomIndex, randomIndex + 5);
-    return randomGames;
+  async function getBestOffer() {
+    try {
+      const response = await axiosInstance.get('/relatorios/jogos-mais-vendidos', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      
+      const gamesResponse = response.data
+
+      if(gamesResponse) {
+        setBestOffer(gamesResponse);
+      } 
+    } catch(error) {
+      console.log(error.message)
+      // console.log(apiGames)
+      // if(apiGames) {
+      //   // setBestOffer(arrayRandom(allGames, 4))
+      // }
+    }
+  };
+
+  async function getTopRated() {
+    try {
+      const response = await axiosInstance.get('/relatorios/jogos-mais-vendidos', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      
+      const gamesResponse = response.data
+
+      if(gamesResponse) {
+        setTopRated(gamesResponse)
+      }
+    } catch(error) {
+      console.log(error.message)
+      // setTopRated(arrayRandom(allGames, 4))
+    }
+  };
+
+  function setGames(gamesArray) {
+    setApiGames(gamesArray);
+    const randomGames = arrayRandom(gamesArray, 4)
+    setFeaturedGames(randomGames);
   }
-
-  function getBestOffer() {
-    const bestOffer = instanceGamesMock.bestOffer();
-    return bestOffer;
-  }
-
-  function getTopRated() {
-    topRated = instanceGamesMock.topRated();
-    return topRated;
-  }
-
-  // function setGameCardProperties(object_games) {
-  //   object_games.forEach(game => {
-  //     const link = document.createElement('a');
-  //     link.classList.add('card-link');
-  //     link.href = game.href || '#';
-
-  //     const card = document.createElement('div');
-  //     card.classList.add('card');
-  //     card.dataset.genre = game.genre;
-
-  //     const img = document.createElement('img');
-  //     img.src = game.img || "images/card_205w_305h.png";
-  //     card.appendChild(img);
-
-  //     const title = document.createElement('p');
-  //     title.classList.add('game-title-img');
-  //     title.textContent = game.title;
-
-  //     link.appendChild(card);
-  //     link.appendChild(title);
-
-  //     container.appendChild(link);
-  //   });
-  // }
 
   function prevTitleCarroussel1() {
     if (indexCarroussel1 === 0) {
@@ -99,6 +117,12 @@ function Home() {
     }
   };
 
+  useEffect(() => {
+    getGames();
+    getTopRated();
+    getBestOffer();
+  }, []);
+
   return (
     <Layout>
       <main className="content">
@@ -108,12 +132,14 @@ function Home() {
 
             <div className="bestseller-slider">
               <button className="arrow left" onClick={prevTitleCarroussel1}> E </button>
-              {bestOffer && <BigGameCard
-                id={"bestseller-slider-card"}
-                game={bestOffer[indexCarroussel1]}
-                imgSrc={"images/card_340w_240h.png"}
-                altTxt={"imagem de jogo"}
-              />}
+              {bestOffer && 
+                <WideGameCard
+                  classId={"bestseller-slider-card"}
+                  game={bestOffer[indexCarroussel1]}
+                  imgSrc={"images/card_340w_240h.png"}
+                  altTxt={"imagem de jogo"}
+                />              
+              }
               <button className="arrow right" onClick={nextTitleCarroussel1}> D </button>
             </div>
           </section>
@@ -122,8 +148,8 @@ function Home() {
             <div className="toprated-slider">
               <button className="arrow left" onClick={prevTitleCarroussel2}> E </button>
               {topRated &&
-                <BigGameCard
-                  id={"toprated-slider-card"}
+                <WideGameCard
+                  classId={"toprated-slider-card"}
                   game={topRated[indexCarroussel2]}
                   imgSrc={"images/card_340w_240h.png"}
                   altTxt={"imagem de jogo"}
@@ -144,7 +170,7 @@ function Home() {
             </a>
           </div>
           <section className="cards" id="game-list">
-            {games && games.map(game => {
+            {featuredGames && featuredGames.map(game => {
               return (
                 <SmallGameCard
                   key={game.id}

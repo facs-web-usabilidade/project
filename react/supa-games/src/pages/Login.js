@@ -79,7 +79,7 @@ const Login = () => {
                 );
 
                 await sleep(3000);
-                navigate("/home");
+                navigate("/");
             } else {
                 setStatusClass("feedback-error");
                 setLoginStatus("Email ou senha incorretos.");

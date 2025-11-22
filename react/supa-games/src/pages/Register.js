@@ -133,7 +133,7 @@ const Register = () => {
                 );
 
                 await sleep(3000);
-                navigate("/home");
+                navigate("/");
             } else {
                 throw new Error();
             }

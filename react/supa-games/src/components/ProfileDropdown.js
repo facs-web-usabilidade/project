@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, Link } from "react-router-dom";
 import "../styles/profile-dropdown.css";
 
 const ProfileDropdown = ({ theme, setTheme, zoom, setZoom }) => {
@@ -15,7 +15,8 @@ const ProfileDropdown = ({ theme, setTheme, zoom, setZoom }) => {
 
     const navigate = useNavigate();
 
-    const handleLogout = () => {
+    const handleLogout = (e) => {
+        e.preventDefault();
         setOpen(false);
         localStorage.removeItem("supa_token");
         navigate("/login");
@@ -34,7 +35,7 @@ const ProfileDropdown = ({ theme, setTheme, zoom, setZoom }) => {
                 <div className={`dropdown-menu ${open ? "show" : ""}`}>
                     <NavLink to="/profile" onClick={() => setOpen(false)}>Perfil</NavLink>
                     <NavLink to="/settings" onClick={() => setOpen(false)}>Configurações</NavLink>
-                    <NavLink to="/logout" onClick={handleLogout}>Sair</NavLink>
+                    <Link onClick={handleLogout}>Sair</Link>
                     <hr />
 
                     <div className="menu-item">

@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import "../styles/pages/myGames.css";
-import Layout from "../components/Layout";
 
 const MyGames = () => {
     useEffect(() => {
@@ -88,14 +87,12 @@ const MyGames = () => {
             .catch((err) => console.error("erro ao carregar lista de jogos:", err));
         }
     return (
-        <Layout>
-            <main className="content">
-                <section className="games">
-                    <h3>Meus Jogos</h3>
-                    <section className="cards" id="game-list"></section>
-                </section>
-            </main>
-        </Layout>
+        <main className="content">
+            <section className="games">
+                <h3>Meus Jogos</h3>
+                <section className="cards" id="game-list"></section>
+            </section>
+        </main>
     );
 };
 

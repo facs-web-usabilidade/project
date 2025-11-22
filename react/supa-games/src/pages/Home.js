@@ -1,9 +1,7 @@
 import "../styles/pages/home.css";
-import Layout from "../components/Layout";
 import { useEffect, useState } from "react";
-import arrayRandom from "../utils/arrayRandom";
-import axiosInstance from "../services/apiService";
-import WideGameCard from "../components/WideGameCard";
+import getRandomInt from "../utils/mathRandom";
+import BigGameCard from "../components/BigGameCard";
 import SmallGameCard from "../components/SmallGameCard";
 
 
@@ -124,22 +122,19 @@ function Home() {
   }, []);
 
   return (
-    <Layout>
-      <main className="content">
-        <section className="home-carrousel">
-          <section className="bestseller">
-            <h3>Melhores Ofertas</h3>
+    <main className="content">
+      <section className="home-carrousel">
+        <section className="bestseller">
+          <h3>Melhores Ofertas</h3>
 
             <div className="bestseller-slider">
               <button className="arrow left" onClick={prevTitleCarroussel1}> E </button>
-              {bestOffer && 
-                <WideGameCard
-                  classId={"bestseller-slider-card"}
-                  game={bestOffer[indexCarroussel1]}
-                  imgSrc={"images/card_340w_240h.png"}
-                  altTxt={"imagem de jogo"}
-                />              
-              }
+              {bestOffer && <BigGameCard
+                id={"bestseller-slider-card"}
+                game={bestOffer[indexCarroussel1]}
+                imgSrc={"images/card_340w_240h.png"}
+                altTxt={"imagem de jogo"}
+              />}
               <button className="arrow right" onClick={nextTitleCarroussel1}> D </button>
             </div>
           </section>
@@ -148,8 +143,8 @@ function Home() {
             <div className="toprated-slider">
               <button className="arrow left" onClick={prevTitleCarroussel2}> E </button>
               {topRated &&
-                <WideGameCard
-                  classId={"toprated-slider-card"}
+                <BigGameCard
+                  id={"toprated-slider-card"}
                   game={topRated[indexCarroussel2]}
                   imgSrc={"images/card_340w_240h.png"}
                   altTxt={"imagem de jogo"}
@@ -160,7 +155,7 @@ function Home() {
           </section>
         </section>
 
-        <hr id="home-splitter" />
+      <hr id="home-splitter" />
 
         <section className="featured">
           <div className="same-line">
@@ -170,7 +165,7 @@ function Home() {
             </a>
           </div>
           <section className="cards" id="game-list">
-            {featuredGames && featuredGames.map(game => {
+            {games && games.map(game => {
               return (
                 <SmallGameCard
                   key={game.id}

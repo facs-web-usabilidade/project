@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
+import { Outlet } from "react-router-dom";
+
 import Sidebar from "./Sidebar";
 import Topbar from "./Topbar";
-
 import HamburgerMenu from "./HamburgerMenu";
 import ProfileDropdown from "./ProfileDropdown";
 
-const Layout = ({ children }) => {
+const Layout = () => {
     const [sidebarVisible, setSidebarVisible] = useState(false);
     const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
     const [zoom, setZoom] = useState(localStorage.getItem("zoom") || 100);
@@ -27,7 +28,7 @@ const Layout = ({ children }) => {
             <div className="main-content">
                 <Topbar />
                 <ProfileDropdown theme={theme} setTheme={setTheme} zoom={zoom} setZoom={setZoom}/>
-                {children}
+                <Outlet />
             </div>
         </div>
     );

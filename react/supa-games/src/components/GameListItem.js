@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function GameListItem({ item, type, onRemove, onAdd, priceText }) {
   const handleRemoveClick = (event) => {
     event.preventDefault(); 
@@ -11,14 +13,28 @@ function GameListItem({ item, type, onRemove, onAdd, priceText }) {
 
   const isWishlist = type === 'wishlist';
 
+  const imageSrc = item.image || "/images/card_205w_305h.png";
+
+  const gameLink = `/games/gameInfo/${item.fkJogo}`;
+
   return (
     <div className="cart-item">
-      <div className="cart-item-image">
-      </div>
+
+      <Link to={gameLink} className="cart-item-image-link">
+        <img 
+          src={imageSrc} 
+          alt={item.title} 
+          className="cart-item-image" 
+        />
+      </Link>
+
       <div className="cart-item-details">
-        <h4>{item.title}</h4>
+        <Link to={gameLink} className="cart-item-title-link">
+            <h4>{item.title}</h4>
+        </Link>
+        
         <p>Quantidade: {item.quantity || 1}</p>
-        <p className="cart-item-price">{priceText}</p>
+        <p className="cart-item-price">{priceText}</p> 
       </div>
 
       <div className="item-controls">

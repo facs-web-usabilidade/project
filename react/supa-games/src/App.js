@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./components/Layout";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
@@ -17,6 +17,7 @@ const App = () => (
       <Route path="/register" element={<Register />}/>
       <Route path="/login" element={<Login />}/>
       <Route element={<Layout />}>
+        <Route path="/" element={<Navigate to="/home" replace />}/>
         <Route path="/home" element={<Home />}/>
         <Route path="/games" element={<Games />}/>
         <Route path="/genres" element={<Genres />}/>

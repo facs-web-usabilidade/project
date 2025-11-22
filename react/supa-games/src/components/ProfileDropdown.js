@@ -1,5 +1,5 @@
-import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import "../styles/profile-dropdown.css";
 
 const ProfileDropdown = ({ theme, setTheme, zoom, setZoom }) => {
@@ -13,10 +13,12 @@ const ProfileDropdown = ({ theme, setTheme, zoom, setZoom }) => {
         setZoom(e.target.value);
     };
 
+    const navigate = useNavigate();
+
     const handleLogout = () => {
         setOpen(false);
         localStorage.removeItem("supa_token");
-        window.location.reload();
+        navigate("/login");
     }
 
     return (

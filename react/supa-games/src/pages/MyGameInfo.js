@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import "../styles/pages/myGameInfo.css";
-import Layout from "../components/Layout";
 import { useParams } from "react-router-dom";
 
 const MyGameInfo = () => {
@@ -227,77 +226,75 @@ const MyGameInfo = () => {
     }
 
     return (
-        <Layout>
-            <main className="content-grid">
-                <div className="game-details-container">
+        <main className="content-grid">
+            <div className="game-details-container">
 
-                <section className="game-info">
-                    <div className="info-top">
-                    <div className="game-image">
-                        <img src="../../images/card_205w_305h.png" alt="Capa do Jogo"/></div>
-                    <div className="game-details">
-                        <h2>Carregando...</h2>
-                        <p className="game-price"><strong>Preço: <span className="game-preco">Carregando...</span></strong></p>
-                        <p><strong>Chave de ativação: <span className="game-key">Carregando... </span></strong></p>
-                        <p><strong>Avaliação: <span className="game-nota">Carregando...</span></strong></p>
-                        <p><strong>Desenvolvedora: <span className="game-dev">Carregando...</span></strong></p>
-                        <p><strong>Gênero: <span className="game-genero">Carregando...</span></strong></p>
-                        <p><strong>Ano: <span className="game-ano">Carregando... </span></strong></p>
-                        <fieldset>
-                        <legend>
-                            <h3>Sobre este jogo:</h3>
-                        </legend>
-                        <p className="game-description">
-                            Descrição do jogo...
-                        </p>
-                        </fieldset>
-                    </div>
-                    </div>
-                    {/* <div className="game-rating">
-                    <h3>Avalie</h3>
-                    <div className="stars">
-                        <span className="star">★</span>
-                        <span className="star">★</span>
-                        <span className="star">★</span>
-                        <span className="star">★</span>
-                        <span className="star">☆</span>
-                    </div>
-                    </div> */}
-                </section>
-
-                <aside className="comments-section">
-                    <h3>Comentários:</h3>
-
-                    <div className="comment-box new-comment">
-                        <form id="ratingForm">
-                            <textarea id="comment-text" placeholder="Comente aqui:"></textarea>
-
-                            <div className="rating-row">
-                                <label htmlFor="notaRange" id="notaRangeLabel">Nota: <span id="notaValue">0</span> ★</label>
-                                <input type="range" id="ratingRange" min="0" max="5" step="0.5" defaultValue={0} onChange={(e) => updateRating(e.target.value)} // <input type="range" id="ratingRange" min="0" max="5" step="0.5" value="0" onChange={() => updateRating(this.value)}
-                                />
-                            </div>
-
-                            <button type="button" id="submit-comment" onClick={() => sendRating(id)}>Enviar</button>
-                        </form>
-                    </div>
-
-                    <div className="comment-list">
-                    {/* <div className="comment-box">
-                        <img className="comment-avatar" src="../../images/profile_icon.png"></img>
-                        <p>Historia fraca ....</p>
-                    </div>
-
-                    <div className="comment-box">
-                        <img className="comment-avatar" src="../../images/profile_icon.png"></img>
-                        <p>Historia divertida ....</p>
-                    </div> */}
-                    </div>
-                </aside>
-
+            <section className="game-info">
+                <div className="info-top">
+                <div className="game-image">
+                    <img src="../../images/card_205w_305h.png" alt="Capa do Jogo"/></div>
+                <div className="game-details">
+                    <h2>Carregando...</h2>
+                    <p className="game-price"><strong>Preço: <span className="game-preco">Carregando...</span></strong></p>
+                    <p><strong>Chave de ativação: <span className="game-key">Carregando... </span></strong></p>
+                    <p><strong>Avaliação: <span className="game-nota">Carregando...</span></strong></p>
+                    <p><strong>Desenvolvedora: <span className="game-dev">Carregando...</span></strong></p>
+                    <p><strong>Gênero: <span className="game-genero">Carregando...</span></strong></p>
+                    <p><strong>Ano: <span className="game-ano">Carregando... </span></strong></p>
+                    <fieldset>
+                    <legend>
+                        <h3>Sobre este jogo:</h3>
+                    </legend>
+                    <p className="game-description">
+                        Descrição do jogo...
+                    </p>
+                    </fieldset>
                 </div>
-            </main>
-        </Layout>
+                </div>
+                {/* <div className="game-rating">
+                <h3>Avalie</h3>
+                <div className="stars">
+                    <span className="star">★</span>
+                    <span className="star">★</span>
+                    <span className="star">★</span>
+                    <span className="star">★</span>
+                    <span className="star">☆</span>
+                </div>
+                </div> */}
+            </section>
+
+            <aside className="comments-section">
+                <h3>Comentários:</h3>
+
+                <div className="comment-box new-comment">
+                    <form id="ratingForm">
+                        <textarea id="comment-text" placeholder="Comente aqui:"></textarea>
+
+                        <div className="rating-row">
+                            <label htmlFor="notaRange" id="notaRangeLabel">Nota: <span id="notaValue">0</span> ★</label>
+                            <input type="range" id="ratingRange" min="0" max="5" step="0.5" defaultValue={0} onChange={(e) => updateRating(e.target.value)} // <input type="range" id="ratingRange" min="0" max="5" step="0.5" value="0" onChange={() => updateRating(this.value)}
+                            />
+                        </div>
+
+                        <button type="button" id="submit-comment" onClick={() => sendRating(id)}>Enviar</button>
+                    </form>
+                </div>
+
+                <div className="comment-list">
+                {/* <div className="comment-box">
+                    <img className="comment-avatar" src="../../images/profile_icon.png"></img>
+                    <p>Historia fraca ....</p>
+                </div>
+
+                <div className="comment-box">
+                    <img className="comment-avatar" src="../../images/profile_icon.png"></img>
+                    <p>Historia divertida ....</p>
+                </div> */}
+                </div>
+            </aside>
+
+            </div>
+        </main>
     );
 };
 

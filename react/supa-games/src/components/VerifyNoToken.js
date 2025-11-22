@@ -4,16 +4,17 @@ import { jwtDecode } from "jwt-decode";
 const VerifyNoToken = () => {
     const token = localStorage.getItem("supa_token");
 
-    if (!token) return <Outlet />;
+    if (token) {
+        try {
+            const { exp } = jwtDecode(token);
+            const isExpired = Date.now() >= exp * 1000;
 
-    try {
-        const { exp } = jwtDecode(token);
-        const isExpired = Date.now() >= exp * 1000;
-
-        if (!isExpired) {
-            return <Navigate to="/home" replace />;
+            if (!isExpired) {
+                return <Navigate to="/home" replace />;
+            }
+        } catch (_) {
         }
-    } catch (_) {}
+    }
 
     localStorage.removeItem("supa_token");
     return <Outlet />;

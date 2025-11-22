@@ -11,12 +11,15 @@ import MyGames from "./pages/MyGames";
 import History from "./pages/History";
 import Settings from "./pages/Settings";
 import VerifyToken from "./components/VerifyToken";
+import VerifyNoToken from "./components/VerifyNoToken";
 
 const App = () => (
   <Router>
     <Routes>
-      <Route path="/register" element={<Register />}/>
-      <Route path="/login" element={<Login />}/>
+      <Route element={<VerifyNoToken />}>
+        <Route path="/register" element={<Register />}/>
+        <Route path="/login" element={<Login />}/>
+      </Route>
       <Route element={<VerifyToken />}>
         <Route element={<Layout />}>
           <Route path="/" element={<Navigate to="/home" replace />}/>
@@ -30,6 +33,7 @@ const App = () => (
           <Route path="/settings" element={<Settings />}/>
         </Route>
       </Route>
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   </Router>
 );

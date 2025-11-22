@@ -7,7 +7,7 @@ function Wishlist() {
   }, []);
 
   return (
-    <main className="content">
+    <main className="wishlist-page">
       <aside>
         <h1>left container</h1>
       </aside>

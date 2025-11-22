@@ -281,14 +281,19 @@
 }
 
 .login-page .error-message {
-  font-size: 16px;
+  font-size: 12px;
   color: red;
   font-weight: 700;
   align-self: flex-start;
 }
 
-.login-page #login-status.error-message {
+.login-page #login-status.error-message,
+.login-page #login-status.feedback-pending,
+.login-page #login-status.feedback-error,
+.login-page #login-status.feedback-success  {
+  font-size: 16px;
   align-self: center;
+  text-align: center;
 }
 
 .login-page #login-status.feedback-pending {

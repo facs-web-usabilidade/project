@@ -133,7 +133,12 @@ const Register = () => {
                 await sleep(2000);
                 navigate("/");
             } else {
-                throw new Error();
+                    if (response.status === 409) {
+                        setStatusClass("feedback-error");
+                        setRegisterStatus("Este email já está associado a outra conta existente. Por favor, insira outro email e tente novamente.");
+                    } else {
+                        throw new Error();
+                    }
             }
         } catch (err) {
             setStatusClass("feedback-error");

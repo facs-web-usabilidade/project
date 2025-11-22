@@ -150,8 +150,13 @@
     align-self: flex-start;
 }
 
-.register-page #register-status.error-message {
-    align-self: center;
+.register-page #register-status.error-message,
+.register-page #register-status.feedback-pending,
+.register-page #register-status.feedback-error,
+.register-page #register-status.feedback-success  {
+  font-size: 16px;
+  align-self: center;
+  text-align: center;
 }
 
 .register-page #register-status.feedback-pending {

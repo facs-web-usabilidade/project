@@ -49,8 +49,8 @@ main.content-grid .search-box {
 
 @media screen and (max-width: 1080px) {
     .search-box {
-        width: 65vw;
-        margin-left: 0;
+        width: 55vw;
+        margin-left: -15px;
     }
 
     .search-box input {

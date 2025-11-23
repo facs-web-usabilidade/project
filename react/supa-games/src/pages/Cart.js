@@ -81,6 +81,36 @@ function Cart() {
     }
   };
 
+  //!!!!!!! TEMPORÁRIO, USANDO CONFIRM E ALERT
+  const handleCheckout = async () => {
+    const token = getLocalItem("supa_token");
+
+    if (cartItems.length === 0) return alert("Seu carrinho está vazio.");
+
+    const jogosList = cartItems.map(item => item.title).join("\n- ");
+    const comprarJogos = window.confirm(
+      `Você está prestes a comprar ${cartItems.length > 1 ? "os jogos" : "o jogo"}: \n- ${jogosList}\n\n[TOTAL: ${totalValue}]\n\n [Confirme clicando nos botões]:`
+    );
+
+    if (!comprarJogos) return;
+
+    try {
+      await apiService.post(`/vendas/checkout/`, {}, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      alert("Jogo(s) comprado(s).");
+      setCartItems([]); // limpar o carrinho <
+
+    } catch (err) {
+      // if (err.response && err.response.status === 200) {
+      //   alert("O carrinho está vazio.");
+      //   return;
+      // }
+      console.error(err);
+      alert("Erro ao processar a compra: " + err);
+    }
+  };
+
   return (
     <main className="content-grid">
       <div className="cart-container">
@@ -114,7 +144,7 @@ function Cart() {
         <aside className="cart-summary">
           <h2>Valor total:</h2>
           <p className="total-price">{totalValue}</p>
-          <button className="checkout-btn">Continuar para o pagamento</button>
+          <button onClick={handleCheckout} className="checkout-btn">Continuar para o pagamento</button>
         </aside>
         
       </div>

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import "../styles/pages/gameInfo.css";
 import { useParams } from "react-router-dom";
+import apiService from "../services/apiService";
 
 const GameInfo = () => {
     const { id } = useParams();
@@ -31,55 +32,46 @@ const GameInfo = () => {
     // }
 
     function fetchGameInfo(gameId) {
-    fetch(`http://localhost:3000/api/v1/jogos/${gameId}`, {
+        apiService.get(`/jogos/${gameId}`, {
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("supa_token")}`
             }
         })
-        .then(res => res.json())
-        .then(game => {
+        .then(res => {
+            const game = res.data;
             document.querySelector(".game-preco").textContent = game.preco;
             document.querySelector(".game-ano").textContent = game.ano;
             document.querySelector(".game-description").textContent = (game.descricao).replace('"', ' ').slice(0, -1); // remover aspas
             document.querySelector(".game-details h2").textContent = game.nome;
 
-            fetch(`http://localhost:3000/api/v1/empresas/${game.fkEmpresa}`, {
+            apiService.get(`/empresas/${game.fkEmpresa}`, {
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem("supa_token")}`
                 }
             })
-                .then(res => res.json())
-                .then(empresa => {
+                .then(res => {
+                const empresa = res.data;
                 document.querySelector(".game-dev").textContent = empresa.nome;
             });
 
-            fetch(`http://localhost:3000/api/v1/categorias/${game.fkCategoria}`, {
+            apiService.get(`/categorias/${game.fkCategoria}`, {
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem("supa_token")}`
                 }
             })
-                .then(res => res.json())
-                .then(categoria => {
+                .then(res => {
+                const categoria = res.data;
                 document.querySelector(".game-genero").textContent = categoria.nome;
             });
 
-            fetch(`http://localhost:3000/api/v1/avaliacoes/media/${gameId}`, {
+            apiService.get(`/avaliacoes/media/${gameId}`, {
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem("supa_token")}`
                 }
             })
-            .then(async res => {
+            .then(res => {
                 if (res.status === 204) return null;
-
-                const text = await res.text();
-
-                if (!text || text.trim() === "") return null;
-
-                try {
-                    return JSON.parse(text);
-                } catch {
-                    return null;
-                }
+                return res.data;
             })
             .then(avaliacao => {
                 const el = document.querySelector(".game-nota");
@@ -96,14 +88,14 @@ const GameInfo = () => {
     }
 
     async function fetchComments(gameId) {
-        fetch("http://localhost:3000/api/v1/avaliacoes", {
+        apiService.get("/avaliacoes", {
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("supa_token")}`
             }
         })
-            .then(async res => {
+            .then(res => {
                 if (res.status === 204) return [];
-                return await res.json();
+                return res.data;
             })
             .then(list => {
                 const comments = list.filter(item => item.fkJogo == gameId);
@@ -164,29 +156,29 @@ const GameInfo = () => {
     }
 
     function fetchUsername(userId) {
-        return fetch(`http://localhost:3000/api/v1/usuarios/${userId}`, {
+        apiService.get(`/usuarios/${userId}`, {
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("supa_token")}`
             }
         })
-        .then(res => res.json())
+        .then(res => res.data)
         .then(data => data.nome) // adjust if backend returns different field
         .catch(() => "Usuário desconhecido");
     }
 
     function handleAddToCart(gameId) {
-    fetch(`http://localhost:3000/api/v1/carrinho/add`, {
-        method: "POST",
-        headers: {
-            "Authorization": `Bearer ${localStorage.getItem("supa_token")}`,
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ jogoId: gameId })
-    })
+        apiService.post("/carrinho/add",
+            { jogoId: gameId },
+            {
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem("supa_token")}`,
+                }
+            }
+        )
         // .then(res => res.json())
-        .then(async res => {
-            const data = await res.json().catch(() => null);
-            if (!res.ok) throw data;
+        .then(res => {
+            const data = res.data ?? null;
+            if (res.status < 200 || res.status >= 300) throw data;
             return data;
         })
         .then(data => {
@@ -199,22 +191,23 @@ const GameInfo = () => {
     }
 
     function handleAddToWishlist(gameId) {
-    fetch(`http://localhost:3000/api/v1/lista-desejo/`, {
-        method: "POST",
-        headers: {
-            "Authorization": `Bearer ${localStorage.getItem("supa_token")}`,
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ jogoId: gameId })
-    })
+        apiService.post("/lista-desejo/",
+            { jogoId: gameId },
+            {
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem("supa_token")}`,
+                }
+            }
+        )
         // .then(res => res.json())
-        .then(async res => {
-            const data = await res.json().catch(() => null);
-            if (!res.ok) throw data;
+        .then(res => {
+            const data = res.data ?? null;
+            if (res.status < 200 || res.status >= 300) throw data;
             return data;
         })
         .then(data => {
-            alert(`${data.error !== null ? data.error : "Jogo adicionado com sucesso"}`)
+            alert(!data.error ? "Jogo adicionado com sucesso" : data.error)
+            //alert(`${data?.error !== null ? data.error : "Jogo adicionado com sucesso"}`)
             console.log(data)
         })
         .catch(err => {
@@ -238,19 +231,19 @@ const GameInfo = () => {
             return;
         }
 
-        fetch("http://localhost:3000/api/v1/avaliacoes/", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${localStorage.getItem("supa_token")}`
-            },
-            body: JSON.stringify({
+        apiService.post("/avaliacoes/",
+            {
                 nota: selectedRating,
                 jogoId: gameId,
                 comentario: comment
-            })
-        })
-        .then(res => res.json())
+            },
+            {
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem("supa_token")}`,
+                }
+            }
+        )
+        .then(res => res.data)
         .then(data => {
             alert(data.message);
         })

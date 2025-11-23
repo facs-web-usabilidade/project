@@ -66,17 +66,14 @@ function Wishlist() {
   }, []);
 
   return (
-    <Layout>
-      <main className="content">
-        <aside className="left">
-          <h2>Lista de desejo</h2>
-
-        </aside>
-        <aside className="right">
-          <h1>right container</h1>
-        </aside>
-      </main>
-    </Layout>
+    <main className="wishlist-page">
+      <aside>
+        <h1>left container</h1>
+      </aside>
+      <aside>
+        <h1>right container</h1>
+      </aside>
+    </main>
   );
 };
 

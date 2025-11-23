@@ -1,17 +1,18 @@
 // src/components/MediumCard.jsx
 import { useEffect, useState } from "react";
+import apiService from "../services/apiService";
 
 function MediumGameCard({ game }) {
     const [genre, setGenre] = useState("Indefinido");
 
     useEffect(() => {
-        fetch(`http://localhost:3000/api/v1/categorias/${game.fkCategoria}`, {
+        apiService.get(`/categorias/${game.fkCategoria}`, {
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("supa_token")}`
             }
         })
-            .then(res => res.json())
-            .then(categoria => {
+            .then((res) => {
+                const categoria = res.data;
                 setGenre(normalizeGenre(categoria.nome));
             });
     }, [game.fkCategoria]);

@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom"; // Aqui é para deixar o link ativo quando estiver na página dele, está como o professor mostrou no slide
 import "../styles/sidebar.css";
 
-const Sidebar = ({ visible }) => {
+const Sidebar = ({ visible, onNavigate  }) => {
     return (
         <aside className={`sidebar ${visible ? "" : "hidden"}`}>
             <ul className="menu">
@@ -9,6 +9,7 @@ const Sidebar = ({ visible }) => {
                     <NavLink 
                         to="/home" 
                         className={({ isActive }) => isActive ? "active-link" : ""}
+                        onClick={onNavigate}
                     >
                         <img src="/images/home_icon.png"/>
                         Home
@@ -19,6 +20,7 @@ const Sidebar = ({ visible }) => {
                     <NavLink 
                         to="/games" 
                         className={({ isActive }) => isActive ? "active-link" : ""}
+                        onClick={onNavigate}
                     >
                         <img src="/images/games_icon.png"/>
                         Jogos
@@ -29,6 +31,7 @@ const Sidebar = ({ visible }) => {
                     <NavLink 
                         to="/genres" 
                         className={({ isActive }) => isActive ? "active-link" : ""}
+                        onClick={onNavigate}
                     >
                         <img src="/images/genre_icon.png"/>
                         Gêneros
@@ -39,6 +42,7 @@ const Sidebar = ({ visible }) => {
                     <NavLink 
                         to="/wishlist" 
                         className={({ isActive }) => isActive ? "active-link" : ""}
+                        onClick={onNavigate}
                     >
                         <img src="/images/wishlist_icon.png"/>
                         Lista de desejos
@@ -49,6 +53,7 @@ const Sidebar = ({ visible }) => {
                     <NavLink 
                         to="/profile" 
                         className={({ isActive }) => isActive ? "active-link" : ""}
+                        onClick={onNavigate}
                     >
                         <img src="/images/profile_icon.png"/>
                         Perfil

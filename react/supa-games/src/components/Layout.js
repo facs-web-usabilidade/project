@@ -24,7 +24,7 @@ const Layout = () => {
     return (
         <div className="app-layout">
             <HamburgerMenu onClick={() => setSidebarVisible(!sidebarVisible)} />
-            <Sidebar visible={sidebarVisible} />
+            <Sidebar visible={sidebarVisible} onNavigate={() => setSidebarVisible(false)} />
             <div className="main-content">
                 <Topbar />
                 <ProfileDropdown theme={theme} setTheme={setTheme} zoom={zoom} setZoom={setZoom}/>

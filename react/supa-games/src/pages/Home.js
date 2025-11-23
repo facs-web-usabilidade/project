@@ -157,29 +157,30 @@ function Home() {
 
       <hr id="home-splitter" />
 
-        <section className="featured">
-          <div className="same-line">
-            <h3>Mais Vendidos</h3>
-            <a href="#">
-              <h4>Descubra mais</h4>
-            </a>
-          </div>
-          <section className="cards" id="game-list">
-            {games && games.map(game => {
-              return (
-                <SmallGameCard
-                  key={game.id}
-                  classId={"card"}
-                  game={game}
-                  imgSrc={"images/card_205w_305h.png"}
-                  altTxt={"imagem de jogo"}
-                />
-              )
-            })}
-          </section>
+      <section className="featured">
+        <div className="same-line">
+          <h3>Mais Vendidos</h3>
+          <a href="#">
+            <h4>Descubra mais</h4>
+          </a>
+        </div>
+        <section className="cards" id="game-list">
+          {games && games.map(game => {
+            return (
+              <SmallGameCard
+                key={game.id}
+                classId={"card"}
+                game={game}
+                imgSrc={"images/card_205w_305h.png"}
+                altTxt={"imagem de jogo"}
+                path="/games/gameInfo/"
+                usarGameId={true}
+              />
+            )
+          })}
         </section>
-      </main >
-    </Layout >
+      </section>
+    </main >
   );
 };
 

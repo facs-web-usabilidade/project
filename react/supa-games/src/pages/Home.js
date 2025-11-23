@@ -95,7 +95,7 @@ function Home() {
             {topSeller.length > 0
               && 
               <WideGameCard
-                id={"bestseller-slider-card"}
+                classId={"bestseller-slider-card"}
                 gameArray={topSeller}
                 imgSrc={"images/card_340w_240h.png"}
                 altTxt={"imagem de jogo"}/>
@@ -106,7 +106,7 @@ function Home() {
               {bestDescount.length > 0
                 && 
                 <WideGameCard
-                  id={"bestseller-slider-card"}
+                  classId={"bestseller-slider-card"}
                   gameArray={bestDescount}
                   imgSrc={"images/card_340w_240h.png"}
                   altTxt={"imagem de jogo"}/>

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import "../styles/pages/wishlist.css";
-import Layout from "../components/Layout";
 import axiosInstance from "../services/apiService";
 import { useNavigate } from "react-router-dom";
 import parseJwt from "../utils/jwtUtils";
@@ -11,32 +10,27 @@ function Wishlist() {
   const [wishList, setWishList] = useState();
   const [sameCompany, setSameCompany] = useState();
   const [sameCategory, setSameCategory] = useState();
-  localStorage
-  .setItem(
-    'token', 
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwibm9tZSI6IkNsaWVudGUiLCJwZXJmaWwiOiJDbGllbnRlIiwiaWF0IjoxNzYzODI1ODg5LCJleHAiOjE3NjM4Mjk0ODl9.YCMhmGhS6rTsZxuCQAsM54GBMPzJ7zSUUbquye1wbEQ'
-  )
   
   const token = localStorage.getItem('token');
   const navigate = useNavigate();
 
-  async function GetUserInfo() {
-    try {
-      const { data } = await axiosInstance.get('/usuarios', {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
+  // async function GetUserInfo() {
+  //   try {
+  //     const { data } = await axiosInstance.get('/usuarios', {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`
+  //       }
+  //     });
 
-      console.log(data)
+  //     console.log(data)
 
-      // setUser({ ...user, ...data })
-      // setReloadPage(false);
+  //     // setUser({ ...user, ...data })
+  //     // setReloadPage(false);
 
-    } catch (error) {
-      console.log(error.message)
-    }
-  }
+  //   } catch (error) {
+  //     console.log(error.message)
+  //   }
+  // }
   
   // async function getUserWishList() {
   //   try {
@@ -57,11 +51,11 @@ function Wishlist() {
   // }
 
   useEffect(() => {
-    if (!token) {
-      return navigate('/login')
-    }
+    // if (!token) {
+    //   return navigate('/login')
+    // }
 
-    GetUserInfo
+    // GetUserInfo()
     // getUserWishList()
   }, []);
 

@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import apiService from "../services/apiService";
 import "../styles/pages/myGames.css";
 
 const MyGames = () => {
@@ -51,13 +52,13 @@ const MyGames = () => {
     }
 
     function fetchGames() {
-        fetch("http://localhost:3000/api/v1/usuarios/my/games", {
+        apiService.get("/usuarios/my/games", {
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("supa_token")}`
             }
         })
-            .then((res) => res.json())
-            .then((data) => {
+            .then((res) => {
+            const data = res.data;
             const container = document.getElementById("game-list");
 
             data.forEach((dado) => {

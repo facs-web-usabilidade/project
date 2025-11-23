@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import apiService from "../services/apiService";
 import "../styles/pages/register.css";
 
 const Register = () => {
@@ -102,47 +103,31 @@ const Register = () => {
         try {
             setLoading(true);
             setRegisterStatus("Realizando o seu cadastro, por favor aguarde...");
-
-            let response = await fetch("http://localhost:3000/api/v1/auth/register", {
-                method: "POST",
-                body: JSON.stringify(userToRegister),
-                headers: { "Content-Type": "application/json" },
-            });
-
             await sleep(1000);
 
-            if (response.ok) {
-                const usuario = { email: userToRegister.email, senha: userToRegister.senha };
+            await apiService.post("/auth/register", userToRegister);
 
-                response = await fetch("http://localhost:3000/api/v1/auth/login", {
-                    method: "POST",
-                    body: JSON.stringify(usuario),
-                    headers: {
-                        "Content-type": "application/json"
-                    }
-                });
+            const userLogin = { email: userToRegister.email, senha: userToRegister.senha };
 
-                const loginData = await response.json();
-                localStorage.setItem("supa_token", loginData.token);
+            const response = await apiService.post("/auth/login", userLogin);
 
-                setStatusClass("feedback-success");
-                setRegisterStatus(
-                    "Cadastro realizado com sucesso! Em breve você será redirecionado(a) para a loja, por favor aguarde..."
-                );
+            const loginData = response.data;
+            localStorage.setItem("supa_token", loginData.token);
 
-                await sleep(2000);
-                navigate("/");
-            } else {
-                    if (response.status === 409) {
-                        setStatusClass("feedback-error");
-                        setRegisterStatus("Este email já está associado a outra conta existente. Por favor, insira outro email e tente novamente.");
-                    } else {
-                        throw new Error();
-                    }
-            }
+            setStatusClass("feedback-success");
+            setRegisterStatus(
+                "Cadastro realizado com sucesso! Em breve você será redirecionado(a) para a loja, por favor aguarde..."
+            );
+
+            await sleep(2000);
+            navigate("/");
         } catch (err) {
             setStatusClass("feedback-error");
-            setRegisterStatus("Não foi possível contactar o servidor. Tente novamente mais tarde.");
+            if (!err.response || err.response.status !== 409) {
+                setRegisterStatus("Não foi possível contactar o servidor. Tente novamente mais tarde.");
+            } else {
+                setRegisterStatus("Este email já está associado a outra conta existente. Por favor, insira outro email e tente novamente.");
+            }
         } finally {
             setLoading(false);
         }

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import apiService from "../services/apiService";
 import "../styles/pages/login.css";
 
 const Login = () => {
@@ -53,39 +54,32 @@ const Login = () => {
 
         if (!validEmail || !validPassword) return;
 
-        const usuario = { email, senha };
+        const userLogin = { email, senha };
 
         try {
             setLoading(true);
             setLoginStatus("Verificando suas credenciais, por favor aguarde...");
-
-            const response = await fetch("http://localhost:3000/api/v1/auth/login", {
-                method: "POST",
-                body: JSON.stringify(usuario),
-                headers: {
-                    "Content-type": "application/json"
-                }
-            });
-
             await sleep(1000);
 
-            if (response.ok) {
-                const data = await response.json();
-                localStorage.setItem("supa_token", data.token);
-                setStatusClass("feedback-success");
-                setLoginStatus(
-                    "Credenciais verificadas com sucesso! Em breve você será redirecionado(a) para a loja, por favor aguarde..."
-                );
+            const response = await apiService.post("/auth/login", userLogin);
+        
+            const loginData = response.data;
+            localStorage.setItem("supa_token", loginData.token);
 
-                await sleep(2000);
-                navigate("/");
-            } else {
-                setStatusClass("feedback-error");
-                setLoginStatus("Email ou senha incorretos.");
-            }
+            setStatusClass("feedback-success");
+            setLoginStatus(
+                "Credenciais verificadas com sucesso! Em breve você será redirecionado(a) para a loja, por favor aguarde..."
+            );
+
+            await sleep(2000);
+            navigate("/");
         } catch (err) {
             setStatusClass("feedback-error");
-            setLoginStatus("Não foi possível contactar o servidor. Tente novamente mais tarde.");
+            if (!err.response || (err.response.status !== 404 && err.response.status !== 401)) {
+                setLoginStatus("Não foi possível contactar o servidor. Tente novamente mais tarde.");
+            } else {
+                setLoginStatus("Email ou senha incorretos..");
+            }
         } finally {
             setLoading(false);
         }

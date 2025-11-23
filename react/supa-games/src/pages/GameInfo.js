@@ -68,13 +68,12 @@ const GameInfo = () => {
 
     async function loadComments() {
         try {
-            const res = await apiService.get(`/avaliacoes`, config);
-            const list = res.data || [];
+            const res = await apiService.get(`/avaliacoes/media/${id}`, config);
+            const list = res.data?.avaliacoes || [];
 
-            const commentList = list.filter(comm => comm.fkJogo == id);
-
+            // console.log(list)
             const commentsList = await Promise.all(
-                commentList.map(async (comm) => {
+                list.map(async (comm) => {
                     try {
                         const userRes = await apiService.get(`/usuarios/${comm.fkUsuario}`, config);
                         return { ...comm, username: userRes.data?.nome || "Usuário" };
@@ -85,6 +84,7 @@ const GameInfo = () => {
             );
 
             setComments(commentsList);
+            // console.log(commentsList);
         } catch {
             setComments([]);
         }

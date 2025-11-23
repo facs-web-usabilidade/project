@@ -89,13 +89,12 @@ const MyGameInfo = () => {
         if (!selectedGame) return;
 
         try {
-            const res = await apiService.get(`/avaliacoes`, config);
-            const list = res.data || [];
-
-            const commentList = list.filter(comm => comm.fkJogo === selectedGame.jogo.id);
+            // const res = await apiService.get(`/avaliacoes/media/${id}`, config);
+            const res = await apiService.get(`/avaliacoes/media/${selectedGame.jogo.id}`, config);
+            const list = res.data?.avaliacoes || [];
 
             const commentsList = await Promise.all(
-                commentList.map(async (comm) => {
+                list.map(async (comm) => {
                     try {
                         const userRes = await apiService.get(`/usuarios/${comm.fkUsuario}`, config);
                         return { ...comm, username: userRes.data?.nome || "Usuário" };

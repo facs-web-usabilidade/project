@@ -192,6 +192,25 @@ body.light-theme .game-info {
   padding: 25px;
 }
 
+.comment-list {
+  overflow-y: auto !important;
+  max-height: 320px !important;
+  padding-right: 10px;  
+}
+
+::-webkit-scrollbar {
+  background-color: #1C2C3B;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: blueviolet;
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 10px 1px rgb(0,0,0,0.3);
+  border: 1px solid black;
+}
+
 body.light-theme .wishlist-btn {
   background-color: #a89b8f;
 }

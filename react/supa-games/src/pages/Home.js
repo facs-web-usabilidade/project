@@ -1,171 +1,128 @@
 import "../styles/pages/home.css";
-import { useEffect, useState } from "react";
-import getRandomInt from "../utils/mathRandom";
-import BigGameCard from "../components/BigGameCard";
+import { useEffect, useState, useCallback, use } from "react";
+import WideGameCard from "../components/WideGameCard";
 import SmallGameCard from "../components/SmallGameCard";
+import axiosInstance from "../services/apiService";
+import arrayRandom from "../utils/arrayRandom";
 
 
 function Home() {
+  const [apiGames, setApiGames] = useState([]);
+  const [bestDescount, setBestDescount] = useState([]);
+  const [topSeller, setTopSeller] = useState([]);
+  const [featuredGames, setFeaturedGames] = useState([]);
 
-  const token = localStorage.getItem('token');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  let [topRated, setTopRated] = useState();
-  let [apiGames, setApiGames] = useState();
-  let [bestOffer, setBestOffer] = useState();
-  let [featuredGames, setFeaturedGames] = useState();
-  let [indexCarroussel1, setIndexCarroussel1] = useState(0);
-  let [indexCarroussel2, setIndexCarroussel2] = useState(0);
-  localStorage
-  .setItem(
-    'token', 
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwibm9tZSI6IkNsaWVudGUiLCJwZXJmaWwiOiJDbGllbnRlIiwiaWF0IjoxNzYzODM5MTczLCJleHAiOjE3NjM4NDI3NzN9.ySgDFN86iAczyR4sDg66zxW8jJju9ScNq51LEhX7knw'
-  );
-
-  async function getGames() {
-    try {
-      const response = await axiosInstance.get('/jogos', {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-      const games = response.data;
-      setGames(games);
-    } catch(error) {
-      console.log(error.message)
+  const fetchHomeData = useCallback(async(abortController) => {
+    const token = localStorage.getItem('supa_token');
+    if(!token) {
+      setError('Token inválido');
+      setLoading(false);
+      return;
     }
 
-  };
-
-  async function getBestOffer() {
     try {
-      const response = await axiosInstance.get('/relatorios/jogos-mais-vendidos', {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
+      setLoading(true);
+      setError(null);
+
+      const gamesResponse = await axiosInstance.get('/jogos', {
+        headers: { Authorization: `Bearer ${token}`},
+        signal: abortController.signal,
       });
-      
-      const gamesResponse = response.data
 
-      if(gamesResponse) {
-        setBestOffer(gamesResponse);
-      } 
-    } catch(error) {
-      console.log(error.message)
-      // console.log(apiGames)
-      // if(apiGames) {
-      //   // setBestOffer(arrayRandom(allGames, 4))
-      // }
-    }
-  };
-
-  async function getTopRated() {
-    try {
-      const response = await axiosInstance.get('/relatorios/jogos-mais-vendidos', {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
+      const apiGamesData = gamesResponse.data;
+      setApiGames(apiGamesData);
+      setFeaturedGames(arrayRandom(apiGamesData, 4));
+ 
+      const topSellerPromise = await axiosInstance.get('/relatorios/jogos-mais-vendidos?top=10', {
+        headers: {Authorization: `Bearer ${token}`},
+        signal: abortController.signal,
       });
-      
-      const gamesResponse = response.data
 
-      if(gamesResponse) {
-        setTopRated(gamesResponse)
+      const [topSellerResult] = await Promise.allSettled([topSellerPromise])
+
+      if(topSellerResult.status === 'fulfilled' && topSellerResult.value.data.length > 0) {
+        getGameIdByName(topSellerResult.value.data, apiGamesData);
+      } else {
+        if(topSellerResult.status === 'rejected') {
+          console.error('Falha ao resgatar melhores ofertas ')
+        }
+        setTopSeller(arrayRandom(apiGamesData, 4))
       }
-    } catch(error) {
-      console.log(error.message)
-      // setTopRated(arrayRandom(allGames, 4))
-    }
-  };
 
-  function setGames(gamesArray) {
-    setApiGames(gamesArray);
-    const randomGames = arrayRandom(gamesArray, 4)
-    setFeaturedGames(randomGames);
+      orderApiGamesbyDescount(apiGamesData);
+    } catch(error) {
+      if(error.name === 'CanceledError') {
+        console.error('Abortado ao montar componente')
+        return;
+      }
+      const msg = 'Falha ao pegar dados de jogos da API'
+      console.error(msg + error.message);
+      setError(msg)
+    } finally {
+      setLoading(false)
+    }
+  }, []);
+
+  function orderApiGamesbyDescount(gamesArray) {
+    const filteredArray = gamesArray.filter((game) => game.desconto);
+    if(filteredArray.length > 0) {
+      const sortedArray = filteredArray.sort((a, b) => b.desconto - a.desconto);
+      setBestDescount(sortedArray);
+    } else {
+      setBestDescount(arrayRandom(gamesArray, 4));
+    }
   }
 
-  function prevTitleCarroussel1() {
-    if (indexCarroussel1 === 0) {
-      setIndexCarroussel1(bestOffer.length - 1);
-    } else {
-      setIndexCarroussel1(indexCarroussel1 - 1);
-    }
-  };
-
-  function nextTitleCarroussel1() {
-    if (indexCarroussel1 === bestOffer.length - 1) {
-      setIndexCarroussel1(0);
-    } else {
-      setIndexCarroussel1(indexCarroussel1 + 1);
-    }
-  };
-
-  function prevTitleCarroussel2() {
-    if (indexCarroussel2 === 0) {
-      setIndexCarroussel2(topRated.length - 1);
-    } else {
-      setIndexCarroussel2(indexCarroussel2 - 1);
-    }
-  };
-
-  function nextTitleCarroussel2() {
-    if (indexCarroussel2 === topRated.length - 1) {
-      setIndexCarroussel2(0);
-    } else {
-      setIndexCarroussel2(indexCarroussel2 + 1);
-    }
-  };
-
+  function getGameIdByName(topSellerArray, gamesArray) {
+    const filteredArray = gamesArray.filter(game =>
+      topSellerArray.some(topGame => topGame.nome === game.nome))
+    setTopSeller(filteredArray);
+  }
+  
   useEffect(() => {
-    getGames();
-    getTopRated();
-    getBestOffer();
+    const abortController = new AbortController();
+    fetchHomeData(abortController);
   }, []);
 
   return (
     <main className="content">
       <section className="home-carrousel">
         <section className="bestseller">
-          <h3>Melhores Ofertas</h3>
-
-            <div className="bestseller-slider">
-              <button className="arrow left" onClick={prevTitleCarroussel1}> E </button>
-              {bestOffer && <BigGameCard
+          <h3>Mais vendidos</h3>
+            {topSeller.length > 0
+              && 
+              <WideGameCard
                 id={"bestseller-slider-card"}
-                game={bestOffer[indexCarroussel1]}
+                gameArray={topSeller}
                 imgSrc={"images/card_340w_240h.png"}
-                altTxt={"imagem de jogo"}
-              />}
-              <button className="arrow right" onClick={nextTitleCarroussel1}> D </button>
-            </div>
-          </section>
-          <section className="toprated">
-            <h3>Melhores avaliados</h3>
-            <div className="toprated-slider">
-              <button className="arrow left" onClick={prevTitleCarroussel2}> E </button>
-              {topRated &&
-                <BigGameCard
-                  id={"toprated-slider-card"}
-                  game={topRated[indexCarroussel2]}
+                altTxt={"imagem de jogo"}/>
+            }
+        </section>
+        <section className="toprated">
+          <h3>Melhores descontos</h3>
+              {bestDescount.length > 0
+                && 
+                <WideGameCard
+                  id={"bestseller-slider-card"}
+                  gameArray={bestDescount}
                   imgSrc={"images/card_340w_240h.png"}
-                  altTxt={"imagem de jogo"}
-                />
+                  altTxt={"imagem de jogo"}/>
               }
-              <button className="arrow right" onClick={nextTitleCarroussel2}> D </button>
-            </div>
           </section>
         </section>
-
       <hr id="home-splitter" />
-
       <section className="featured">
         <div className="same-line">
-          <h3>Mais Vendidos</h3>
-          <a href="#">
+          <h3>Jogos em destaque</h3>
+          <a href="/games">
             <h4>Descubra mais</h4>
           </a>
         </div>
         <section className="cards" id="game-list">
-          {games && games.map(game => {
+          {featuredGames && featuredGames.map(game => {
             return (
               <SmallGameCard
                 key={game.id}

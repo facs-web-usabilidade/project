@@ -151,6 +151,7 @@ function Home() {
                 imgSrc={"images/card_205w_305h.png"}
                 altTxt={"imagem de jogo"}
                 path="/games/gameInfo/"
+                usarGameId={true}
               />
             )
           })}

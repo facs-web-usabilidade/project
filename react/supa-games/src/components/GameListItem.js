@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 
 function GameListItem({ item, type, onRemove, onAdd, priceText }) {
+
   const handleRemoveClick = (event) => {
-    event.preventDefault(); 
-    onRemove(item.fkJogo); 
+    event.preventDefault();
+    if(window.confirm(`Certeza que deseja remover ${item.title}?`) === true) {
+      onRemove(item.fkJogo); 
+    } 
   };
   
   const handleAddClick = (event) => {

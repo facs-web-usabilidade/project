@@ -336,6 +336,7 @@ body.light-theme .game-details p span {
   margin-left: 130px;
   appearance: none !important;
   background-color: transparent;
+  -moz-appearance: auto !important;
 }
 
 .rating-range::-webkit-slider-thumb {

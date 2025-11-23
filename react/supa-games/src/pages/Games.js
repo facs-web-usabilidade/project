@@ -113,6 +113,7 @@ const Games = () => {
             );
 
             setGames(gamesList);
+            console.log(gameList)
         } catch (err) {
             console.error("Erro ao carregar jogos:", err);
         } finally {
@@ -172,6 +173,7 @@ const Games = () => {
                                         imgSrc="../images/card_205w_305h.png"
                                         altTxt="imagem de jogo"
                                         path="/games/gameInfo/"
+                                        usarGameId={true}
                                     />
                                 ))}
 

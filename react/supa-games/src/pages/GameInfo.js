@@ -1,15 +1,28 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "../styles/pages/gameInfo.css";
 import { useParams } from "react-router-dom";
 import apiService from "../services/apiService";
+import { getLocalItem } from "../utils/localStorage";
 
 const GameInfo = () => {
     const { id } = useParams();
+
+    const [game, setGame] = useState(null);
+    const [empresa, setEmpresa] = useState("");
+    const [categoria, setCategoria] = useState("");
+    const [avaliacaoMedia, setAvaliacaoMedia] = useState(null);
+    const [comments, setComments] = useState([]);
+
+    const [rating, setRating] = useState(0);
+    const [commentText, setCommentText] = useState("");
     
+    const token = getLocalItem("supa_token");
+    const config = { headers: { Authorization: `Bearer ${token}` } };
+
     useEffect(() => {
         if (id){
-            fetchGameInfo(id);
-            fetchComments(id);
+            loadGame();
+            loadComments();
         }
     }, []);
 
@@ -31,115 +44,50 @@ const GameInfo = () => {
     //     .catch(err => console.error("Erro ao carregar empresa:", err));
     // }
 
-    function fetchGameInfo(gameId) {
-        apiService.get(`/jogos/${gameId}`, {
-            headers: {
-                "Authorization": `Bearer ${localStorage.getItem("supa_token")}`
-            }
-        })
-        .then(res => {
-            const game = res.data;
-            document.querySelector(".game-preco").textContent = game.preco;
-            document.querySelector(".game-ano").textContent = game.ano;
-            document.querySelector(".game-description").textContent = (game.descricao).replace('"', ' ').slice(0, -1); // remover aspas
-            document.querySelector(".game-details h2").textContent = game.nome;
+    async function loadGame() {
+        try {
+            const res = await apiService.get(`/jogos/${id}`, config);
+            const jogo = res.data;
 
-            apiService.get(`/empresas/${game.fkEmpresa}`, {
-                headers: {
-                    "Authorization": `Bearer ${localStorage.getItem("supa_token")}`
-                }
-            })
-                .then(res => {
-                const empresa = res.data;
-                document.querySelector(".game-dev").textContent = empresa.nome;
-            });
+            setGame(jogo);
 
-            apiService.get(`/categorias/${game.fkCategoria}`, {
-                headers: {
-                    "Authorization": `Bearer ${localStorage.getItem("supa_token")}`
-                }
-            })
-                .then(res => {
-                const categoria = res.data;
-                document.querySelector(".game-genero").textContent = categoria.nome;
-            });
+            const [empresaRes, categoriaRes, mediaRes] = await Promise.all([
+                apiService.get(`/empresas/${jogo.fkEmpresa}`, config),
+                apiService.get(`/categorias/${jogo.fkCategoria}`, config),
+                apiService.get(`/avaliacoes/media/${id}`, config).catch(() => ({ data: { media: null } }))
+            ]);
 
-            apiService.get(`/avaliacoes/media/${gameId}`, {
-                headers: {
-                    "Authorization": `Bearer ${localStorage.getItem("supa_token")}`
-                }
-            })
-            .then(res => {
-                if (res.status === 204) return null;
-                return res.data;
-            })
-            .then(avaliacao => {
-                const el = document.querySelector(".game-nota");
+            setEmpresa(empresaRes.data?.nome || "");
+            setCategoria(categoriaRes.data?.nome || "");
+            setAvaliacaoMedia(mediaRes.data?.media || null);
 
-                if (!avaliacao || !avaliacao.media) {
-                    el.textContent = "Sem avaliações";
-                } else {
-                    el.textContent = avaliacao.media + " ★";
-                }
-            })
-            .catch(err => console.error("Erro ao buscar avaliação:", err));
-        })
-        .catch(err => console.error("Erro ao carregar jogo:", err));
+        } catch (err) {
+            console.error("Erro ao carregar jogo:", err);
+        }
     }
 
-    async function fetchComments(gameId) {
-        apiService.get("/avaliacoes", {
-            headers: {
-                "Authorization": `Bearer ${localStorage.getItem("supa_token")}`
-            }
-        })
-            .then(res => {
-                if (res.status === 204) return [];
-                return res.data;
-            })
-            .then(list => {
-                const comments = list.filter(item => item.fkJogo == gameId);
+    async function loadComments() {
+        try {
+            const res = await apiService.get(`/avaliacoes`, config);
+            const list = res.data || [];
 
-                const commentBox = document.querySelector(".comment-list");
-                commentBox.innerHTML = ""; // limpar o commentbox de inicio
+            const commentList = list.filter(comm => comm.fkJogo == id);
 
-                if (comments.length === 0) {
-                    commentBox.innerHTML = "<p className=\"no-comments\">Sem comentários.</p>";
-                    return;
-                }
+            const commentsList = await Promise.all(
+                commentList.map(async (comm) => {
+                    try {
+                        const userRes = await apiService.get(`/usuarios/${comm.fkUsuario}`, config);
+                        return { ...comm, username: userRes.data?.nome || "Usuário" };
+                    } catch {
+                        return { ...comm, username: "Usuário desconhecido" };
+                    }
+                })
+            );
 
-                comments.forEach(async item => {
-                    const box = document.createElement("div");
-                    box.classList.add("comment-box");
-
-                    const avatar = document.createElement("img");
-                    avatar.classList.add("comment-avatar");
-                    avatar.src = "../../images/profile_icon.png";
-
-                    const p = document.createElement("p");
-                    const formattedCommentDate = formatCommentDate(item.data);
-                    p.innerHTML = `Usuário Anônimo kkk ${item.nota} ★<br>${item.comentario}<br>Data: ${formattedCommentDate}`;
-
-                    box.appendChild(avatar);
-                    box.appendChild(p);
-
-                    commentBox.appendChild(box);
-
-                    const username = await fetchUsername(item.fkUsuario);
-
-                    p.innerHTML = `
-                        <span className="comment-lines">Usuário: </span><span className="comment-lines2">${username}</span><br>
-                        <span className="comment-lines">Nota: </span><span className="comment-lines2">${item.nota} ★</span> <br>
-                        <span className="comment-lines">Comentário: </span><span className="comment-lines2">${item.comentario}</span><br>
-                        <span className="comment-lines">Data: </span><span className="comment-lines2">${formattedCommentDate}</span>
-                    `;
-                });
-            })
-            .catch(err => {
-                console.error(err);
-                document.querySelector(".comment-list").innerHTML =
-                    "<p>Erro ao carregar comentários.</p>";
-            });
+            setComments(commentsList);
+        } catch {
+            setComments([]);
+        }
     }
 
     function formatCommentDate(date) {
@@ -155,102 +103,71 @@ const GameInfo = () => {
         return `${day}/${month}/${year} - ${hours}:${minutes}`;
     }
 
-    function fetchUsername(userId) {
-        apiService.get(`/usuarios/${userId}`, {
-            headers: {
-                "Authorization": `Bearer ${localStorage.getItem("supa_token")}`
+    // function fetchUsername(userId) {
+    //     return fetch(`http://localhost:3000/api/v1/usuarios/${userId}`, {
+    //         headers: {
+    //             "Authorization": `Bearer ${localStorage.getItem("supa_token")}`
+    //         }
+    //     })
+    //     .then(res => res.json())
+    //     .then(data => data.nome)
+    //     .catch(() => "Usuário desconhecido");
+    // }
+
+    async function handleAddToCart() {
+        try {
+            const res = await apiService.post(`/carrinho/add`, { jogoId: id }, config);
+            alert(res.data?.message || "Adicionado ao carrinho");
+        } catch (err) {
+            if (err.response && err.response.status === 400) {
+                alert("Jogo já adicionado ao carrinho.");
+                return;
             }
-        })
-        .then(res => res.data)
-        .then(data => data.nome) // adjust if backend returns different field
-        .catch(() => "Usuário desconhecido");
+            alert("Erro ao adicionar ao carrinho");
+        }
     }
 
-    function handleAddToCart(gameId) {
-        apiService.post("/carrinho/add",
-            { jogoId: gameId },
-            {
-                headers: {
-                    "Authorization": `Bearer ${localStorage.getItem("supa_token")}`,
-                }
+    async function handleAddToWishlist() {
+        try {
+            const res = await apiService.post(`/lista-desejo/`, { jogoId: id }, config);
+            alert(res.data?.message || "Adicionado à lista de desejos");
+        } catch (err) {
+            if (err.response && err.response.status === 400) {
+                alert("Jogo já adicionado à lista de desejos.");
+                return;
             }
-        )
-        // .then(res => res.json())
-        .then(res => {
-            const data = res.data ?? null;
-            if (res.status < 200 || res.status >= 300) throw data;
-            return data;
-        })
-        .then(data => {
-            alert(`${data.message}\n`) // se já estiver no carrinho, muda a mensagem e retorna bad request...
-        })
-        .catch(err => {
-            console.error("Erro ao adicionar:", err);
-            alert(err?.error || "Erro ao adicionar ao carinho, produto pode já estar no carrinho");
-        });
+            alert("Erro ao adicionar à lista de desejos");
+        }
     }
 
-    function handleAddToWishlist(gameId) {
-        apiService.post("/lista-desejo/",
-            { jogoId: gameId },
-            {
-                headers: {
-                    "Authorization": `Bearer ${localStorage.getItem("supa_token")}`,
-                }
-            }
-        )
-        // .then(res => res.json())
-        .then(res => {
-            const data = res.data ?? null;
-            if (res.status < 200 || res.status >= 300) throw data;
-            return data;
-        })
-        .then(data => {
-            alert(!data.error ? "Jogo adicionado com sucesso" : data.error)
-            //alert(`${data?.error !== null ? data.error : "Jogo adicionado com sucesso"}`)
-            console.log(data)
-        })
-        .catch(err => {
-            console.error("Erro ao adicionar:", err);
-            alert(err?.error || "Erro ao adicionar à lista de desejos");
-        });
-    }
-
-    function updateRating(value) {
-        var selectedRating = parseFloat(value);
-        document.getElementById("notaValue").textContent = value;
-    }
-
-    function sendRating(gameId) {
-        let selectedRating = document.getElementById("ratingRange").value;
-
-        const comment = document.getElementById("comment-text").value.trim();
-
-        if (!comment) {
+    async function sendRating() {
+        if (commentText.trim() === "") {
             alert("Escreva um comentário!");
             return;
         }
 
-        apiService.post("/avaliacoes/",
-            {
-                nota: selectedRating,
-                jogoId: gameId,
-                comentario: comment
-            },
-            {
-                headers: {
-                    "Authorization": `Bearer ${localStorage.getItem("supa_token")}`,
-                }
+        try {
+            const res = await apiService.post(`/avaliacoes/`,{ nota: rating, jogoId: id, comentario: commentText}, config);
+
+            alert(res.data?.message || "Avaliação enviada");
+            loadComments();
+
+        } catch (err) {
+            if (err.response && err.response.status === 400) {
+                alert("Avaliação já enviada desse jogo.");
+                return;
             }
-        )
-        .then(res => res.data)
-        .then(data => {
-            alert(data.message);
-        })
-        .catch(err => {
-            console.error(err);
-            alert("Erro ao enviar.");
-        });
+            alert("Erro ao enviar avaliação.");
+        }
+    }
+
+    // caso não consiga achar o jogo
+    if (!game) {
+        return <main className="content-grid">
+            <div className="game-details-container">
+                <h2>Carregando...</h2>
+            </div>
+        </main>;
     }
 
     return (
@@ -262,74 +179,78 @@ const GameInfo = () => {
                 <div className="game-image">
                     <img src="../../images/card_205w_305h.png" alt="Capa do Jogo"/></div>
                 <div className="game-details">
-                    <h2>Carregando...</h2>
-                    <p className="game-price"><strong>Preço: <span className="game-preco">Carregando...</span></strong></p>
-                    <p><strong>Avaliação: <span className="game-nota">Carregando...</span></strong></p>
-                    <p><strong>Desenvolvedora: <span className="game-dev">Carregando...</span></strong></p>
-                    <p><strong>Gênero: <span className="game-genero">Carregando...</span></strong></p>
-                    <p><strong>Ano: <span className="game-ano">Carregando... </span></strong></p>
-                    <fieldset>
-                    <legend>
-                        <h3>Sobre este jogo:</h3>
-                    </legend>
-                    <p className="game-description">
-                        Descrição do jogo...
+                    <h2>{game.nome}</h2>
+
+                    <p>
+                        <strong>Preço: </strong> 
+                        <span className="game-price">
+                            {game.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                        </span>
                     </p>
+                    <p>
+                        <strong>Avaliação: </strong> 
+                        <span className="game-nota">
+                            {avaliacaoMedia ? `${avaliacaoMedia} ★` : "Sem avaliações"}
+                        </span>
+                    </p>
+                    <p><strong>Desenvolvedora: </strong> <span className="game-dev">{empresa}</span></p>
+                    <p><strong>Gênero: </strong> <span className="game-genero">{categoria}</span></p>
+                    <p><strong>Ano: </strong> <span className="game-ano">{game.ano}</span></p>
+
+                    <fieldset>
+                        <legend><h3>Sobre este jogo:</h3></legend>
+                        <p>{game.descricao.replace('"', " ").slice(0, -1)}</p>
                     </fieldset>
                     <div id="game-info-buttons">
-                        <button onClick={() => handleAddToCart(id)} className="cart-btn">
-                            Adicionar ao carrinho
-                        </button>
-
-                        <button onClick={() => handleAddToWishlist(id)} className="wishlist-btn">
-                            + Lista de desejos
-                        </button>
+                        <button onClick={handleAddToCart} className="cart-btn">Adicionar ao carrinho</button>
+                        <button onClick={handleAddToWishlist} className="wishlist-btn">+ Lista de desejos</button>
                     </div>
-                    
-
                 </div>
-                </div>
-                {/* <div className="game-rating">
-                <h3>Avalie</h3>
-                <div className="stars">
-                    <span className="star">★</span>
-                    <span className="star">★</span>
-                    <span className="star">★</span>
-                    <span className="star">★</span>
-                    <span className="star">☆</span>
-                </div>
-                </div> */}
+            </div>
             </section>
 
             <aside className="comments-section">
-                <h3>Comentários:</h3>
+                    <h3>Comentários:</h3>
 
-                <div className="comment-box new-comment">
-                    <form id="ratingForm">
-                        <textarea id="comment-text" placeholder="Comente aqui:"></textarea>
+                    <div className="comment-box new-comment">
+                        <textarea className="comment-text" placeholder="Digite seu comentário" value={commentText}onChange={e => setCommentText(e.target.value)} />
 
                         <div className="rating-row">
-                            <label htmlFor="notaRange" id="notaRangeLabel">Nota: <span id="notaValue">0</span> ★</label>
-                            <input type="range" id="ratingRange" min="0" max="5" step="0.5" defaultValue={0} onChange={(e) => updateRating(e.target.value)} // <input type="range" id="ratingRange" min="0" max="5" step="0.5" value="0" onChange={() => updateRating(this.value)}
-                            />
+                            <label>
+                                Nota: <span>{rating}</span> ★
+                            </label>
+
+                            <input className="rating-range" type="range" min="0" max="5" step="0.5" value={rating} onChange={e => setRating(e.target.value)}/>
                         </div>
 
-                        <button type="button" id="submit-comment" onClick={() => sendRating(id)}>Enviar</button>
-                    </form>
-                </div>
+                        <button className="submit-comment" onClick={sendRating}>Enviar</button>
+                    </div>
 
-                <div className="comment-list">
-                {/* <div className="comment-box">
-                    <img className="comment-avatar" src="../../images/profile_icon.png"></img>
-                    <p>Historia fraca ....</p>
-                </div>
+                    <div className="comment-list">
+                        {comments.length === 0 ? (
+                            <p className="no-comments">Sem comentários. Seja o primeiro a avaliar o jogo!</p>
+                        ) : (
+                            comments.map((comm, key) => (
+                                <div className="comment-box" key={key}>
+                                    <img className="comment-avatar" src="../../images/profile_icon.png" />
+                                    <p>
+                                        <span className="comment-lines">Usuário: </span>
+                                        <span className="comment-lines2">{comm.username}</span><br />
 
-                <div className="comment-box">
-                    <img className="comment-avatar" src="../../images/profile_icon.png"></img>
-                    <p>Historia divertida ....</p>
-                </div> */}
-                </div>
-            </aside>
+                                        <span className="comment-lines">Nota: </span>
+                                        <span className="comment-lines2">{comm.nota} ★</span><br />
+
+                                        <span className="comment-lines">Comentário: </span>
+                                        <span className="comment-lines2">{comm.comentario}</span><br />
+
+                                        <span className="comment-lines">Data: </span>
+                                        <span className="comment-lines2">{formatCommentDate(comm.data)}</span>
+                                    </p>
+                                </div>
+                            ))
+                        )}
+                    </div>
+                </aside>
 
             </div>
         </main>

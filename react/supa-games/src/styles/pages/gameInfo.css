@@ -69,20 +69,23 @@ body.light-theme .game-info {
 }
 
 .game-image {
+  position: relative;
   flex: 1;
   min-width: 200px;
   min-height: 300px;
-  background-color: #D9D9D9;
+  background-color: #e9e9e9 !important;
   border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0px;
+  padding: 0 50px !important;
   box-sizing: border-box;
 }
 
 .game-image img {
-  width: 100%;
+  position: relative;
+  width: 150% !important; 
   height: 100%;
   object-fit: fit;
   border-radius: 8px;
@@ -103,12 +106,11 @@ body.light-theme .game-info {
 
 .game-details .game-price {
   font-size: 24px;
-  color: #eee;
   margin-bottom: 20px;
 }
 
 .game-details p {
-  font-size: 16px;
+  font-size: 17px !important;
   line-height: 1.5;
 }
 
@@ -185,7 +187,10 @@ body.light-theme .game-info {
 
 /* Comentários */
 .comments-section {
-  flex: 1;
+  display: flex;
+  flex: 1 !important;
+  flex-direction: column !important;
+  flex-wrap: wrap !important;
   min-width: 300px;
   border: 1px solid #1C2C3B;
   border-radius: 10px;
@@ -209,8 +214,8 @@ body.light-theme .wishlist-btn:hover {
   background-color: #1C2C3B;
   border-radius: 8px;
   padding: 15px;
-  margin-bottom: 15px;
   display: flex;
+  margin-bottom: 15px;
   align-items: center;
   gap: 15px;
 }
@@ -227,9 +232,9 @@ body.light-theme .game-details p span {
   text-shadow: 1px 1px black;
 }
 
-.game-details .game-preco {
+.game-details .game-price {
   background-color: rgb(0,0,0,0.5);
-  color: green;
+  color: green !important;
   border: 1px solid green;
   padding: 0 5px;
   border-radius: 5px;
@@ -249,13 +254,13 @@ body.light-theme .game-details p span {
   border-radius: 5px;
 }
 
-.game-preco, .game-nota, .game-dev, .game-genero, .game-ano {
-    text-shadow: 2px 1px 1px rgb(0,0,0,0.5);
-    font-weight: 800;
+.game-price, .game-nota, .game-dev, .game-genero, .game-ano {
+  text-shadow: 2px 1px 1px rgb(0,0,0,0.5);
+  font-weight: 800;
 }
 
 .comment-box.new-comment textarea {
-  width: 100%;
+  width: 94% !important;
   height: 80px;
   background-color: #eee;
   border: none;
@@ -265,6 +270,13 @@ body.light-theme .game-details p span {
   font-size: 14px;
   resize: vertical;
   color: #333;
+}
+
+.comment-box.new-comment {
+  display: flex;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 15px;
 }
 
 .comment-avatar {
@@ -282,6 +294,12 @@ body.light-theme .game-details p span {
 .no-comments {
   text-align: center;
   color: red; 
+  width: fit-content;
+  padding: 5px;
+  border-radius: 5px;
+  transform: translate(-50%, -50%);
+  margin-left: 50%;
+  margin-top: 30%;
   border: 1px solid red;
 }
 
@@ -293,13 +311,15 @@ body.light-theme .game-details p span {
   color: yellow;
 }
 
-#ratingRange { /* parece q t´á pegando estilo de algum lugar, tá tendo q tirar tudo antes */
+.rating-range { /* parece q t´á pegando estilo de algum lugar, tá tendo q tirar tudo antes */
   -webkit-appearance: none !important;
+  position: absolute;
+  margin-left: 130px;
   appearance: none !important;
   background-color: transparent;
 }
 
-#ratingRange::-webkit-slider-thumb {
+.rating-range::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 18px;
@@ -311,7 +331,7 @@ body.light-theme .game-details p span {
   box-shadow: 0px 0px 2px 2px rgb(0,0,0,0.5);
 }
 
-#ratingRange::-webkit-slider-runnable-track {
+.rating-range::-webkit-slider-runnable-track {
   border: 1px solid black;
   border-radius: 10px;
   background: rgb(152, 88, 212);
@@ -330,11 +350,11 @@ body.light-theme .game-details p span {
   gap: 12px;
 }
 
-#comment-text {
-  width: 108%;
+.comment-text {
+  width: 100%;
 }
 
-#submit-comment {
+.submit-comment {
   background-color: #eee;
   color: #333;
   border: none;
@@ -352,6 +372,10 @@ body.light-theme .game-details p span {
   box-sizing: border-box;
   text-align: center;
   height: 40px;
+}
+
+.submit-comment:hover {
+  background-color:#ccc !important;
 }
 
 @media screen and (max-width: 768px) {

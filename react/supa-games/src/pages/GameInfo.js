@@ -24,7 +24,7 @@ const GameInfo = () => {
             loadGame();
             loadComments();
         }
-    }, []);
+    }, [id]);
 
     // function returnEmpresa(id) {
     // fetch(`http://localhost:3000/api/v1/empresas/${id}`) // http://localhost:3000/api/v1/empresas

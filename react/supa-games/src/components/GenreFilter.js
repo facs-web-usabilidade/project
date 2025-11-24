@@ -1,4 +1,4 @@
-import "../styles/pages/games.css"; 
+import "../styles/pages/genres.css"; 
 
 export default function GenreFilter({ genreKeys, gamesByGenre, onScrollToGenre, activeGenre }) {
     return (
@@ -19,4 +19,5 @@ export default function GenreFilter({ genreKeys, gamesByGenre, onScrollToGenre, 
         </div>
     );
 }
+
 

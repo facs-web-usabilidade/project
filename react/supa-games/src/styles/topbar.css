@@ -76,15 +76,8 @@
     }
 }
 
-body.light-theme .search-box input {
+body.light-theme .search-box input,
+body.light-theme .search-box .suggestion-box {
     background-color: #E3D3C4;
     color: #000;
-}
-
-body.light-theme .search-box img {
-    filter: invert(0);
-}
-
-body.light-theme .search-box button {
-    background-color: #bbada0;
 }

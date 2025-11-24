@@ -24,7 +24,7 @@ body.light-theme fieldset {
 }
 
 .greetings h2 {
-  margin-top: 50px;
+  margin-top: 100px;
   font-size: 36px;
   font-weight: 100;
 }
@@ -66,6 +66,8 @@ body.light-theme .profile-box {
   padding: 20px;
   border-radius: 6px;
   margin: 10px 0px;
+  max-height: 500px;
+  overflow-y: auto;
 }
 
 body.light-theme .reviews-box {
@@ -127,6 +129,37 @@ body.light-theme .reviews-box {
 .profile-card:hover {
   background-color: rgb(100, 100, 100, 0.25);
   transform: scale(1.02);
+}
+
+.profile-reviews-game-stars, .profile-reviews-game-name, .profile-reviews-game-title, .profile-reviews-game-comment {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.profile-reviews-game-stars {
+  color: gold;
+}
+
+.profile-reviews-game-name {
+  border: 1px solid blueviolet;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.profile-reviews-game-comment {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  line-height: 25px;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.profile-reviews-game-comment-label {
+  line-height: 50px;
+}
+
+.profile-reviews-game-hr {
+  box-shadow: none;
 }
 
 body.light-theme .profile-card {

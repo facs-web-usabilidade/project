@@ -170,3 +170,18 @@ body.light-theme .back-top-btn:hover {
     margin: 50px 0 40px 0;
   }
 }
+
+@media (max-width: 1080px) {
+  .same-line {
+    padding: 0 20px; 
+  }
+
+  .cards {
+    padding: 0 10px; 
+  }
+}
+@media (max-width: 1080px) {
+  .genre-row h3 {
+    padding: 0 20px; 
+  }
+}

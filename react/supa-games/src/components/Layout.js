@@ -5,6 +5,7 @@ import Sidebar from "./Sidebar";
 import Topbar from "./Topbar";
 import HamburgerMenu from "./HamburgerMenu";
 import ProfileDropdown from "./ProfileDropdown";
+import SupaLogo from "./SupaLogo";
 
 const Layout = () => {
     const [sidebarVisible, setSidebarVisible] = useState(false);
@@ -24,6 +25,7 @@ const Layout = () => {
     return (
         <div className="app-layout">
             <HamburgerMenu onClick={() => setSidebarVisible(!sidebarVisible)} />
+            <SupaLogo invisible={sidebarVisible} />
             <Sidebar visible={sidebarVisible} onNavigate={() => setSidebarVisible(false)} />
             <div className="main-content">
                 <Topbar />

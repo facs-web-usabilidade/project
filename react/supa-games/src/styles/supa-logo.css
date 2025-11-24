@@ -1,0 +1,31 @@
+.supagames-hidden {
+    display: none;
+}
+
+.supagames-container {
+    position: absolute;
+    left: 5vw;
+}
+
+.supagames-container .supagames-link-home {
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+}
+
+.supagames-container p {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.supagames-container .supagames-link-home:hover {
+    text-shadow: 1px 1px blueviolet;
+}
+
+@media (max-width: 1080px) {
+    .supagames-container {
+        display: none;
+    }
+}

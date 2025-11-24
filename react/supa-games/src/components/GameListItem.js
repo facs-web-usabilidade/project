@@ -5,7 +5,11 @@ function GameListItem({ item, type, onRemove, onAdd, priceText }) {
   const handleRemoveClick = (event) => {
     event.preventDefault();
     if(window.confirm(`Certeza que deseja remover ${item.title}?`) === true) {
-      onRemove(item.fkJogo); 
+      if(type === 'cart') {
+        onRemove(item.fkJogo); 
+      } else if (type === 'wishlist') {
+        onRemove(item.id)
+      }
     } 
   };
   

@@ -289,6 +289,8 @@ body.light-theme .game-details p span {
   font-size: 14px;
   resize: vertical;
   color: #333;
+  max-height: 200px;
+  min-height: 80px;
 }
 
 .comment-box.new-comment {
@@ -296,6 +298,9 @@ body.light-theme .game-details p span {
   flex-direction: column !important;
   align-items: stretch !important;
   gap: 15px;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
 }
 
 .comment-avatar {
@@ -308,6 +313,8 @@ body.light-theme .game-details p span {
 
 .comment-box p {
   margin: 0;
+  word-break: break-word;
+  white-space: pre-wrap;
 }
 
 .no-comments {
@@ -328,6 +335,11 @@ body.light-theme .game-details p span {
 
 .comment-lines2 {
   color: yellow;
+}
+
+.comment-lines2 {
+  word-break: break-word;
+  white-space: pre-wrap;
 }
 
 .rating-range { /* parece q t´á pegando estilo de algum lugar, tá tendo q tirar tudo antes */

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "../styles/pages/profile.css";
 import apiService from "../services/apiService";
 import { getLocalItem } from "../utils/localStorage";
+import parseJwt from "../utils/jwtUtils";
 
 const Profile = () => {
     const [user, setUser] = useState(null);
@@ -18,11 +19,19 @@ const Profile = () => {
 
     async function loadProfile() {
         try {
-            const res = await apiService.get("/avaliacoes/", config);
-            const keyUser = res.data[0].fkUsuario
-            const usr = await apiService.get(`/usuarios/${keyUser}`, config); // http://localhost:3000/api/v1/usuarios/:fkUsuario
-            // console.log(usr.data.nome)
-            setUser(usr.data);
+            const token = getLocalItem("supa_token");
+
+            if(!token) {
+                console.error("Token não encontrado");
+                return;
+            }
+
+            const decodedToken = parseJwt(token);
+
+            const username = decodedToken.nome;
+            // console.log(username);
+
+            setUser(username);
         } catch (err) {
             console.error("Erro ao carregar usuário:", err);
         }
@@ -40,13 +49,13 @@ const Profile = () => {
                         return {
                             nota: rev.nota,
                             comentario: rev.comentario,
-                            jogoNome: jogoRes.data?.nome || "Jogo X"
+                            jogoNome: jogoRes.data?.nome || "Jogo não encontrado"
                         };
                     } catch {
                         return {
                             nota: rev.nota,
                             comentario: rev.comentario,
-                            jogoNome: "Jogo X"
+                            jogoNome: "Jogo não encontrado"
                         };
                     }
                 })
@@ -63,7 +72,7 @@ const Profile = () => {
     return (
         <main className="content profile-content">
             <section className="greetings">
-                <h2>Olá, {user?.nome || "novo usuário."}</h2>
+                <h2>Olá, {`${user}.` || "Usuário."}</h2>
             </section>
 
             <section className="profile-box">
@@ -85,7 +94,7 @@ const Profile = () => {
                 </div>
 
                 <div className="avatar">
-                    <img src="images/profile_icon.png" />
+                    <img src="images/profile_icon.png" alt="Foto de perfil"/>
                 </div>
             </section>
 

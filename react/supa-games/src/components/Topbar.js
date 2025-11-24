@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import apiService from "../services/apiService";
-import { getLocalItem } from "../utils/localStorage";
+import { getLocalItem, removeLocalItem } from "../utils/localStorage";
 import "../styles/topbar.css";
 
 const Topbar = () => {
@@ -31,7 +31,11 @@ const Topbar = () => {
             setGames(response.data);
             lastFetch.current = Date.now();
         } catch (err) {
-            console.error("Error fetching game list:", err);
+            if (err.response.status === 401) {
+                removeLocalItem("supa_token");
+                alert("Não foi possível contactar o servidor. Por favor, faça o login novamente.");
+                window.location.reload();
+            }
         }
     }
 

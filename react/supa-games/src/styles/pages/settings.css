@@ -1,0 +1,45 @@
+.settings-box h2 {
+    margin-top: 100px;
+}
+
+.password-box label {
+    font-weight: 700;
+}
+
+.password-box input {
+    background-color: #eee;
+    color: #333;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    width: 30%;
+    max-width: 250px;
+    text-decoration: none;
+    display: block;
+    box-sizing: border-box;
+    text-align: center;
+    margin-top: 5px;
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+.password-box .confirm-btn {
+    background-color: #eee;
+    color: #333;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    width: 30%;
+    max-width: 250px;
+    text-decoration: none;
+    display: block;
+    box-sizing: border-box;
+    text-align: center;
+    margin-right: auto;
+    height: 40px;
+}

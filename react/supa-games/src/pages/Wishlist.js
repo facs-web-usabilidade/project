@@ -3,9 +3,12 @@ import "../styles/pages/wishlist.css";
 import axiosInstance from "../services/apiService";
 import { getLocalItem } from "../utils/localStorage";
 import GameListItem from "../components/GameListItem";
+import SmallGameCard from "../components/SmallGameCard";
 
 function Wishlist() {
   const [wishListItems, setWishListItems] = useState([]);
+  const [sameCategory, setSameCategory] = useState([]);
+  const [sameCompany, setSameCompany] = useState([]);
   const [loading, setLoading] = useState(true);
   const token = getLocalItem("supa_token");
   const config = { headers: { Authorization: `Bearer ${token}` } };
@@ -45,6 +48,24 @@ function Wishlist() {
 
       setWishListItems(responseToPage);
 
+      const gameReference = responseWishlist.data[0];
+      const categoryReferenceId = gameReference.fk_categoria;
+      const companyReferenceId = gameReference.fk_empresa;
+
+      const allGamesResponse = await axiosInstance.get(`/jogos`, config);
+
+      const filteredSameCategoryGames = allGamesResponse.data.filter((game) => game.fkCategoria === categoryReferenceId)
+      const slicedSameCategory = filteredSameCategoryGames.slice(filteredSameCategoryGames.length-3, filteredSameCategoryGames.length);
+      setSameCategory(slicedSameCategory);
+
+      console.log(slicedSameCategory);
+
+      const filteredSameCompanyGames = allGamesResponse.data.filter((game) => game.fkEmpresa === companyReferenceId);
+      const slicedSameCompany = filteredSameCompanyGames.slice(filteredSameCompanyGames.length - 3, filteredSameCompanyGames.length);
+      setSameCompany(slicedSameCompany);
+
+      console.log(slicedSameCompany);
+
     } catch (error) {
       console.error("Erro ao carregar lista de desejos:", error.msg);
     } finally {
@@ -80,6 +101,10 @@ function Wishlist() {
       alert(msg);
     }
   };
+    
+    const style = {
+      gap:10
+    };
 
   return (
     <main className="content-grid">
@@ -112,12 +137,40 @@ function Wishlist() {
           </div>
         </section>
 
-        <aside className="cart-summary">
-          {/* <h2>Valor total:</h2>
-          <p className="total-price">{totalValue}</p>
-          <button onClick={handleCheckout} className="checkout-btn">Continuar para o pagamento</button> */}
+        <aside style={style}>
+          <div className="cart-summary">
+            <h2>Da mesma empresa:</h2>  
+            {sameCompany && sameCompany.map((game) => {
+              return(
+                <SmallGameCard
+                  key={game.id}
+                  classId={"tiny_card"}
+                  game={game}
+                  imgSrc={"images/card_205w_305h.png"}
+                  altTxt={"imagem de jogo"}
+                  path="/games/gameInfo/"
+                  usarGameId={true}
+                />
+              )
+            })}
+          </div>
+          <div className="cart-summary">
+            <h2>Da mesma categoria:</h2>
+            {sameCategory && sameCategory.map((game) => {
+              return(
+                <SmallGameCard
+                key={game.id}
+                  classId={"card"}
+                  game={game}
+                  imgSrc={"images/card_205w_305h.png"}
+                  altTxt={"imagem de jogo"}
+                  path="/games/gameInfo/"
+                  usarGameId={true}
+                />
+              )
+            })}
+          </div>
         </aside>
-        
       </div>
     </main>
   );

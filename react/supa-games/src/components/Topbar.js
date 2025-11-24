@@ -40,7 +40,7 @@ const Topbar = () => {
     }
 
     const handleInput = async (text) => {
-        console.log("start")
+        //console.log("start")
         setQuery(text);
 
         const now = Date.now();
@@ -61,7 +61,7 @@ const Topbar = () => {
             .slice(0, 5);
 
         setSearchResults(filtered);
-        console.log(filtered)
+        //console.log(filtered)
     };
 
     return (

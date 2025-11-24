@@ -20,6 +20,8 @@ function GameListItem({ item, type, onRemove, onAdd, priceText }) {
 
   const isWishlist = type === 'wishlist';
 
+  const isHistory = type === 'history';
+
   const imageSrc = item.image || "/images/card_205w_305h.png";
 
   const gameLink = `/games/gameInfo/${item.fkJogo}`;
@@ -41,6 +43,9 @@ function GameListItem({ item, type, onRemove, onAdd, priceText }) {
         </Link>
         
         <p>Quantidade: {item.quantity || 1}</p>
+        {isHistory && (
+          <p>Data: {item.data || "Informação não disponível"}</p>
+        )}
         <p className="cart-item-price">{priceText}</p> 
       </div>
 
@@ -51,9 +56,11 @@ function GameListItem({ item, type, onRemove, onAdd, priceText }) {
           </button>
         )}
         
-        <a href="#" onClick={handleRemoveClick} className="cart-item-remove">
-          Remover <span className="remove-icon">X</span>
-        </a>
+        {!isHistory && (
+          <a href="#" onClick={handleRemoveClick} className="cart-item-remove">
+            Remover <span className="remove-icon">X</span>
+          </a>
+        )}
       </div>
     </div>
   );

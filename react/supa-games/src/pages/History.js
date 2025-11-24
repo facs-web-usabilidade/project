@@ -40,7 +40,7 @@ function History() {
     try {
         const responseHistory = await axiosInstance.get("/vendas", config);
 
-        console.log(responseHistory)
+        //console.log(responseHistory)
 
         if (!responseHistory.data || responseHistory.data.length === 0) {
             setHistoryItems([]);
@@ -61,7 +61,7 @@ function History() {
                 id: item.id,
                 fkJogo: 0,
                 title: `Compra ID: ${item.id}`,
-                data: formatDate(item.date),
+                data: formatDate(item.data),
                 price: item.valor_total,
                 quantity: item.quantidade,
                 image: "/images/card_205w_305h.png",

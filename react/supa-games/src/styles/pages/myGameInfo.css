@@ -1,0 +1,412 @@
+body {
+  overflow: auto;
+  margin: 0;
+  padding: 0 5%;
+  font-family: Arial, sans-serif;
+  background-color: #0D171F;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+}
+
+fieldset {
+  border: 1px solid rgb(154, 204, 180);
+  margin: 10px 5px;
+}
+
+.star {
+  color: goldenrod;
+}
+
+.cart-btn {
+  background-color: #fff;
+}
+
+.cart-btn:hover {
+  background-color: #ffffffcc;
+}
+
+.wishlist-btn:hover {
+  background-color: blueviolet;
+}
+
+main.content {
+  flex: 0;
+  padding: 0;
+}
+
+main.content-grid {
+  flex: 1;
+  padding: 20px;
+  max-width: 1200px;
+  width: 100%;
+  margin-top: 80px;
+  box-sizing: border-box;
+}
+
+.game-details-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.game-info {
+  flex: 2;
+  min-width: 300px;
+  background-color: #1C2C3B;
+  border-radius: 10px;
+  padding: 25px;
+}
+
+body.light-theme .game-info {
+  background-color: #bbada0;
+}
+
+.info-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+.game-image {
+  flex: 1;
+  min-width: 200px;
+  min-height: 300px;
+  background-color: #D9D9D9;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.game-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: fit;
+  border-radius: 8px;
+}
+
+.game-details {
+  flex: 2;
+  min-width: 250px;
+}
+
+.game-details h2 {
+  font-weight: 1000;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  margin-top: 0;
+  font-size: 28px;
+}
+
+.game-details .game-price {
+  font-size: 24px;
+  color: #eee;
+  margin-bottom: 20px;
+}
+
+.game-details p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.game-details h3 {
+  margin-top: 25px;
+  font-size: 18px;
+}
+
+#game-info-buttons {
+  display: flex;
+}
+
+.cart-btn {
+  background-color: #eee;
+  color: #333;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  width: 45%;
+  max-width: 250px;
+  text-decoration: none;
+  display: block;
+  box-sizing: border-box;
+  text-align: center;
+  margin-left: 6px;
+  margin-right: auto;
+  height: 60px;
+}
+
+.wishlist-btn {
+  background-color: #2a3a4a;
+  color: #eee;
+  border: 1px solid #445;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 0px;
+  width: 50%;
+  margin-right: 6px;
+  max-width: 250px;
+  text-decoration: none;
+  display: block;
+  box-sizing: border-box;
+  text-align: center;
+  height: 60px;
+}
+
+/* Avaliação*/
+.game-rating {
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid #0D171F;
+}
+
+.game-rating h3 {
+  margin: 0 0 10px 0;
+}
+
+.stars {
+  font-size: 30px;
+  color: #D9D9D9;
+}
+
+.stars .star {
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Comentários */
+.comments-section {
+  flex: 1;
+  min-width: 300px;
+  border: 1px solid #1C2C3B;
+  border-radius: 10px;
+  padding: 25px;
+}
+
+.comment-list {
+  overflow-y: auto !important;
+  max-height: 320px !important;
+  padding-right: 10px;  
+}
+
+::-webkit-scrollbar {
+  background-color: #1C2C3B;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: blueviolet;
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 10px 1px rgb(0,0,0,0.3);
+  border: 1px solid black;
+}
+
+body.light-theme .wishlist-btn {
+  background-color: #a89b8f;
+}
+
+body.light-theme .wishlist-btn:hover {
+  background-color: blueviolet;
+}
+
+.comments-section h3 {
+  margin-top: 0;
+  font-size: 24px;
+}
+
+.comment-box {
+  background-color: #1C2C3B;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+body.light-theme .comment-box {
+  background-color: #a89b8f;
+}
+
+body.light-theme .game-price {
+  color: #000;
+}
+
+body.light-theme .game-details p span {
+  text-shadow: 1px 1px black;
+}
+
+.game-details .game-preco {
+  background-color: rgb(0,0,0,0.5);
+  color: green;
+  border: 1px solid green;
+  padding: 0 5px;
+  border-radius: 5px;
+}
+.game-details .game-key {
+  background-color: rgb(0,0,0,0.5);
+  color: orange;
+  border: 1px solid orange;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 0;
+}
+.game-details .game-key-title {
+  color: #FFF !important;
+}
+.game-details .game-nota {
+  background-color: rgb(0,0,0,0.5);
+  color: gold;
+  border: 1px solid gold;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.game-details .game-dev, .game-details .game-genero, .game-details .game-ano {
+  background-color: rgb(0,0,0,0.5);
+  color: rgb(152, 88, 212);
+  border: 1px solid rgb(152, 88, 212);
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.game-preco, .game-nota, .game-dev, .game-genero, .game-ano, .game-key {
+  text-shadow: 2px 1px 1px rgb(0,0,0,0.5);
+  font-weight: 800;
+}
+
+.comment-box.new-comment textarea {
+  width: 100%;
+  height: 80px;
+  background-color: #eee;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  resize: vertical;
+  color: #333;
+}
+
+.comment-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #D9D9D9;
+  flex-shrink: 0;
+}
+
+.comment-box p {
+  margin: 0;
+}
+
+.no-comments {
+  text-align: center;
+  color: red; 
+  border: 1px solid red;
+}
+
+.comment-lines {
+  font-weight: bold;
+}
+
+.comment-lines2 {
+  color: yellow;
+}
+
+#ratingRange { /* parece q t´á pegando estilo de algum lugar, tá tendo q tirar tudo antes */
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  background-color: transparent;
+}
+
+#ratingRange::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 1px solid black;
+  box-shadow: 0px 0px 2px 2px rgb(0,0,0,0.5);
+}
+
+#ratingRange::-webkit-slider-runnable-track {
+  border: 1px solid black;
+  border-radius: 10px;
+  background: rgb(152, 88, 212);
+}
+
+#notaValue {
+  display: inline-block;
+  width: 25px;
+  text-align: center;
+}
+
+.rating-row {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+#comment-text {
+  width: 108%;
+}
+
+#submit-comment {
+  background-color: #eee;
+  color: #333;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px; 
+  cursor: pointer;
+  margin-top: 10px;
+  margin-left: 20px;
+  width: 100%;
+  max-width: 250px;
+  text-decoration: none;
+  display: block;
+  box-sizing: border-box;
+  text-align: center;
+  height: 40px;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    padding: 0;
+  }
+
+  main.content-grid {
+    padding: 15px;
+    margin-top: 70px;
+  }
+
+  .info-top {
+    flex-direction: column;
+  }
+    .game-image {
+    width: 100%;
+    min-height: auto;
+    height: auto;
+  }
+
+  .game-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+}

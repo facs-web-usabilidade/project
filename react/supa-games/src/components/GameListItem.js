@@ -38,9 +38,13 @@ function GameListItem({ item, type, onRemove, onAdd, priceText }) {
       </Link>
 
       <div className="cart-item-details">
-        <Link to={gameLink} className="cart-item-title-link">
+        {!isHistory ? (
+          <Link to={gameLink} className="cart-item-title-link">
             <h4>{item.title}</h4>
-        </Link>
+          </Link>
+        ) : (
+          <h4>{item.title}</h4>
+        )}
         
         <p>Quantidade: {item.quantity || 1}</p>
         {isHistory && (

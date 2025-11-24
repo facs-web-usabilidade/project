@@ -13,7 +13,7 @@ const GameInfo = () => {
     const [avaliacaoMedia, setAvaliacaoMedia] = useState(null);
     const [comments, setComments] = useState([]);
 
-    const [rating, setRating] = useState(0);
+    const [rating, setRating] = useState(1);
     const [commentText, setCommentText] = useState("");
     
     const token = getLocalItem("supa_token");
@@ -146,8 +146,12 @@ const GameInfo = () => {
             return;
         }
 
+        const confirmar = window.confirm(`Você deseja avaliar o jogo "${game.nome}" com: \n[Nota]: ${rating}\n[Comentário]: "${commentText}"\n\n[Clique em (OK) para confirmar]:`);
+
+        if (!confirmar) return;
+
         try {
-            const res = await apiService.post(`/avaliacoes/`,{ nota: rating, jogoId: id, comentario: commentText}, config);
+            const res = await apiService.post(`/avaliacoes/`,{ nota: rating, jogoId: id, comentario: commentText }, config);
 
             alert(res.data?.message || "Avaliação enviada");
             loadComments();
@@ -158,6 +162,31 @@ const GameInfo = () => {
                 return;
             }
             alert("Erro ao enviar avaliação.");
+        }
+    }
+
+    async function editRating() {
+        if (commentText.trim() === "") {
+            alert("Escreva um comentário!");
+            return;
+        }
+
+        const confirmar = window.confirm(`Você deseja editar sua avaliação do jogo "${game.nome}" com: \n[Nota]: ${rating}\n[Comentário]: "${commentText}"\n\n[Clique em (OK) para confirmar]:`);
+
+        if (!confirmar) return;
+
+        try {
+            const res = await apiService.put(`/avaliacoes/`,{ nota: rating, jogoId: id, comentario: commentText }, config);
+
+            alert(res.data?.message || "Avaliação editada");
+            loadComments();
+
+        } catch (err) {
+            if (err.response && err.response.status === 404) {
+                alert("Você não tem uma avaliação para editar.");
+                return;
+            }
+            alert("Erro ao editar avaliação.");
         }
     }
 
@@ -220,10 +249,12 @@ const GameInfo = () => {
                                 Nota: <span>{rating}</span> ★
                             </label>
 
-                            <input className="rating-range" type="range" min="0" max="5" step="0.5" value={rating} onChange={e => setRating(e.target.value)}/>
+                            <input className="rating-range" type="range" min="1" max="5" step="0.5" value={rating} onChange={e => setRating(e.target.value)}/>
                         </div>
-
-                        <button className="submit-comment" onClick={sendRating}>Enviar</button>
+                        <div className="comment-buttons">
+                            <button className="submit-comment" onClick={sendRating}>Enviar</button>
+                            <button className="edit-comment" onClick={editRating}>Editar</button>
+                        </div>
                     </div>
 
                     <div className="comment-list">

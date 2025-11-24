@@ -374,7 +374,12 @@ body.light-theme .game-details p span {
   width: 100%;
 }
 
-.submit-comment {
+.comment-buttons {
+  flex: 1;
+  display: flex;
+}
+
+.submit-comment, .edit-comment {
   background-color: #eee;
   color: #333;
   border: none;
@@ -385,7 +390,7 @@ body.light-theme .game-details p span {
   cursor: pointer;
   margin-top: 10px;
   margin-left: 20px;
-  width: 100%;
+  width: 40%;
   max-width: 250px;
   text-decoration: none;
   display: block;
@@ -394,7 +399,7 @@ body.light-theme .game-details p span {
   height: 40px;
 }
 
-.submit-comment:hover {
+.submit-comment:hover, .edit-comment:hover {
   background-color:#ccc !important;
 }
 

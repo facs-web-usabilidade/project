@@ -13,6 +13,7 @@ import MyGameInfo from "./pages/MyGameInfo";
 import History from "./pages/History";
 import Settings from "./pages/Settings";
 import Cart from "./pages/Cart";
+import Admin from "./pages/Admin";
 import VerifyToken from "./components/VerifyToken";
 import VerifyNoToken from "./components/VerifyNoToken";
 import VerifyAdmin from "./components/VerifyAdmin";
@@ -40,6 +41,7 @@ const App = () => (
           <Route path="/cart" element={<Cart />} />
           <Route element={<VerifyAdmin />}>
             {/* admin only routes */}
+            <Route path="/admin" element={<Admin />} />
           </Route>
         </Route>
       </Route>

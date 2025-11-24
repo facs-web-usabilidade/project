@@ -106,7 +106,7 @@ const MyGames = () => {
 
         try {
             const response = await apiService.get("/usuarios/my/games", config);
-            const myGameList = response.data;
+            const myGameList = response.data.filter(myGame => myGame.chaveAtivacao);
             console.log(myGameList)
 
             const myGamesList = await Promise.all(
